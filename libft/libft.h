@@ -19,8 +19,8 @@
 # define BUFFER_SIZE 50
 
 typedef enum e_gnl_result {
-	LINE_READ,
 	END_OF_READ,
+	LINE_READ,
 	READ_ERROR,
 	MALLOC_ERROR
 }	t_gnl_result;
