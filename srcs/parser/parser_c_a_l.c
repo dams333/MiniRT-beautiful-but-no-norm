@@ -6,35 +6,11 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:41:06 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 13:44:37 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/17 17:32:21 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-bool	parse_three_floats(char *str, float *value1, float *value2, float *value3)
-{
-	char	**split;
-
-	split = ft_split(str, ',');
-	if (!split)
-	{
-		ft_putendl_fd("Error\nA malloc failed during parsing", 2);
-		return (false);
-	}
-	if (get_split_size(split) != 3)
-	{
-		ft_putendl_fd("Error\nImpossible to parse 3 floats comma separated", 2);
-		return (false);
-	}
-	if(!parse_float(split[0], value1))
-		return (false);
-	if(!parse_float(split[1], value2))
-		return (false);
-	if(!parse_float(split[2], value3))
-		return (false);
-	return (true);
-}
 
 bool	parse_camera(char **args)
 {
@@ -45,7 +21,7 @@ bool	parse_camera(char **args)
 		ft_putendl_fd("Error\nImpossible to parse camera because argument's count is not 4", 2);
 		return (false);
 	}
-	obj = ft_calloc(1, sizeof(obj));
+	obj = ft_calloc(1, sizeof(t_camera_object));
 	if (!obj)
 	{
 		ft_putendl_fd("Error\nA malloc failed during parsing", 2);
@@ -57,7 +33,7 @@ bool	parse_camera(char **args)
 		return (false);
 	if(obj->orientation_x < -1 || obj->orientation_x > 1 || obj->orientation_y < -1 || obj->orientation_y > 1 || obj->orientation_z < -1 || obj->orientation_z > 1)
 	{
-		ft_putendl_fd("Error\nImpossible to parse camera because orientation vector is not normalized", 2);
+		ft_putendl_fd("Error\nImpossible to parse camera because one composant of the orientation vector is not in [-1;1]", 2);
 		return (false);
 	}
 	if (!parse_int(args[3], &(obj->horizontal_fov)))
@@ -65,6 +41,39 @@ bool	parse_camera(char **args)
 	if(obj->horizontal_fov < 0 || obj->horizontal_fov > 180)
 	{
 		ft_putendl_fd("Error\nImpossible to parse camera because FOV is not in [0;180]", 2);
+		return (false);
+	}
+	free(obj);
+	return (true);
+}
+
+bool	parse_ambient_lightning(char **args)
+{
+	t_ambient_lightning_object *obj;
+
+	if(get_split_size(args) != 3)
+	{
+		ft_putendl_fd("Error\nImpossible to parse ambient lightning because argument's count is not 3", 2);
+		return (false);
+	}
+	obj = ft_calloc(1, sizeof(t_ambient_lightning_object));
+	if (!obj)
+	{
+		ft_putendl_fd("Error\nA malloc failed during parsing", 2);
+		return (false);
+	}
+	if (!parse_float(args[1], &(obj->lightning_ratio)))
+		return (false);
+	if(obj->lightning_ratio < 0 || obj->lightning_ratio > 1)
+	{
+		ft_putendl_fd("Error\nImpossible to parse ambient lightning because lightning ration is not in [-1;1]", 2);
+		return (false);
+	}
+	if (!parse_three_ints(args[2], &(obj->color_r), &(obj->color_g), &(obj->color_b)))
+		return (false);
+	if(obj->color_r < 0 || obj->color_r > 255 || obj->color_g < 0 || obj->color_g > 255 || obj->color_b < 0 || obj->color_b > 255)
+	{
+		ft_putendl_fd("Error\nImpossible to parse ambient lightning because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
 	free(obj);
