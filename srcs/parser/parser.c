@@ -6,13 +6,13 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 12:42:02 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:45:15 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	parse_line(char *line)
+bool	parse_line(char *line)
 {
 	char	**elem;
 
@@ -20,7 +20,7 @@ int	parse_line(char *line)
 	if (!elem)
 	{
 		ft_putendl_fd("Error\nA malloc failed during parsing", 2);
-		return (1);
+		return (false);
 	}
 	if (!elem[0])
 		return (0);
@@ -28,7 +28,7 @@ int	parse_line(char *line)
 	{
 		if(ft_strncmp(elem[0], "C", 1) == 0)
 		{
-
+			return (parse_camera(elem));
 		}
 		else if(ft_strncmp(elem[0], "A", 1) == 0)
 		{
@@ -43,7 +43,7 @@ int	parse_line(char *line)
 			ft_putstr_fd("Error\nObject type ", 2);
 			ft_putstr_fd(elem[0], 2);
 			ft_putendl_fd(" unknown", 2);
-			return (1);
+			return (false);
 		}
 	}
 	else if (ft_strlen(elem[0]) == 2)
@@ -65,7 +65,7 @@ int	parse_line(char *line)
 			ft_putstr_fd("Error\nObject type ", 2);
 			ft_putstr_fd(elem[0], 2);
 			ft_putendl_fd(" unknown", 2);
-			return (1);
+			return (false);
 		}
 	}
 	else
@@ -73,9 +73,9 @@ int	parse_line(char *line)
 		ft_putstr_fd("Error\nObject type ", 2);
 		ft_putstr_fd(elem[0], 2);
 		ft_putendl_fd(" unknown", 2);
-		return (1);
+		return (false);
 	}
-	return (0);
+	return (true);
 }
 
 int	read_file(int fd)
@@ -88,7 +88,7 @@ int	read_file(int fd)
 	{
 		if (ft_strlen(line) > 1)
 		{
-			if(parse_line(line))
+			if(!parse_line(line))
 				return (1);
 		}
 		free(line);

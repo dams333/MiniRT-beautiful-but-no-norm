@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:33:16 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 12:43:29 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:41:11 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 
 int		parse_map(int argc, char **argv);
 bool	parse_float(char *str, float *value);
-bool	parse_int(char *str, float *value);
+bool	parse_int(char *str, int *value);
 int		get_split_size(char **str);
+
+bool	parse_camera(char **args);
 
 #endif
