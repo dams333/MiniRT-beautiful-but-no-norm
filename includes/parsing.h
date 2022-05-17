@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 12:41:52 by dhubleur         ###   ########.fr       */
+/*   Created: 2022/05/17 12:33:16 by dhubleur          #+#    #+#             */
+/*   Updated: 2022/05/17 12:43:29 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-#include "parsing.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-int main(int argc, char **argv)
-{
-	return (parse_map(argc, argv));
-}
+# include "libft.h"
+# include "structures.h"
+
+# include <stdbool.h>
+# include <fcntl.h>
+# include <stdio.h>
+
+int		parse_map(int argc, char **argv);
+bool	parse_float(char *str, float *value);
+bool	parse_int(char *str, float *value);
+int		get_split_size(char **str);
+
+#endif

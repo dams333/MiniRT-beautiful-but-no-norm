@@ -6,13 +6,11 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 12:00:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:42:02 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <fcntl.h>
-#include <stdio.h>
+#include "parsing.h"
 
 int	parse_line(char *line)
 {
