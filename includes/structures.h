@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 13:37:13 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:49:56 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_plane_object
 	float	coord_y;
 	float	coord_z;
 	float	orientation_x;
-	float	orientationy;
+	float	orientation_y;
 	float	orientation_z;
 	int		color_r;
 	int		color_g;
@@ -89,10 +89,10 @@ typedef struct s_cylinder_object
 	float	coord_y;
 	float	coord_z;
 	float	orientation_x;
-	float	orientationy;
+	float	orientation_y;
 	float	orientation_z;
 	float	diameter;
-	float	hieght;
+	float	height;
 	int		color_r;
 	int		color_g;
 	int		color_b;

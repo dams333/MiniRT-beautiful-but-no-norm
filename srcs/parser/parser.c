@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 10:27:19 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:47:15 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ bool	parse_line(char *line)
 		return (0);
 	if (ft_strlen(elem[0]) == 1)
 	{
-		if(ft_strncmp(elem[0], "C", 1) == 0)
+		if (ft_strncmp(elem[0], "C", 1) == 0)
 			return (parse_camera(elem));
-		else if(ft_strncmp(elem[0], "A", 1) == 0)
+		else if (ft_strncmp(elem[0], "A", 1) == 0)
 			return (parse_ambient_lightning(elem));
-		else if(ft_strncmp(elem[0], "L", 1) == 0)
+		else if (ft_strncmp(elem[0], "L", 1) == 0)
 			return (parse_light(elem));
 		else
 		{
@@ -44,16 +44,12 @@ bool	parse_line(char *line)
 	}
 	else if (ft_strlen(elem[0]) == 2)
 	{
-		if(ft_strncmp(elem[0], "sp", 2) == 0)
+		if (ft_strncmp(elem[0], "sp", 2) == 0)
 			return (parse_sphere(elem));
-		else if(ft_strncmp(elem[0], "pl", 2) == 0)
-		{
-
-		}
-		else if(ft_strncmp(elem[0], "cy", 2) == 0)
-		{
-			
-		}
+		else if (ft_strncmp(elem[0], "pl", 2) == 0)
+			return (parse_plane(elem));
+		else if (ft_strncmp(elem[0], "cy", 2) == 0)
+			return (parse_cylinder(elem));
 		else
 		{
 			ft_putstr_fd("Error\nObject type [", 2);
