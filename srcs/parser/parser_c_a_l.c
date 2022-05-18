@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:41:06 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 17:32:21 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/18 09:59:59 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool	parse_ambient_lightning(char **args)
 		return (false);
 	if(obj->lightning_ratio < 0 || obj->lightning_ratio > 1)
 	{
-		ft_putendl_fd("Error\nImpossible to parse ambient lightning because lightning ration is not in [-1;1]", 2);
+		ft_putendl_fd("Error\nImpossible to parse ambient lightning because lightning ration is not in [0;1]", 2);
 		return (false);
 	}
 	if (!parse_three_ints(args[2], &(obj->color_r), &(obj->color_g), &(obj->color_b)))
@@ -74,6 +74,41 @@ bool	parse_ambient_lightning(char **args)
 	if(obj->color_r < 0 || obj->color_r > 255 || obj->color_g < 0 || obj->color_g > 255 || obj->color_b < 0 || obj->color_b > 255)
 	{
 		ft_putendl_fd("Error\nImpossible to parse ambient lightning because one of the color composant in not in [0;255]", 2);
+		return (false);
+	}
+	free(obj);
+	return (true);
+}
+
+bool	parse_light(char **args)
+{
+	t_light_object *obj;
+
+	if(get_split_size(args) != 4)
+	{
+		ft_putendl_fd("Error\nImpossible to parse light because argument's count is not 4", 2);
+		return (false);
+	}
+	obj = ft_calloc(1, sizeof(t_light_object));
+	if (!obj)
+	{
+		ft_putendl_fd("Error\nA malloc failed during parsing", 2);
+		return (false);
+	}
+	if (!parse_three_floats(args[1], &(obj->coord_x), &(obj->coord_y), &(obj->coord_z)))
+		return (false);
+	if (!parse_float(args[2], &(obj->brightness_ratio)))
+		return (false);
+	if(obj->brightness_ratio < 0 || obj->brightness_ratio > 1)
+	{
+		ft_putendl_fd("Error\nImpossible to parse light because brightness ration is not in [0;1]", 2);
+		return (false);
+	}
+	if (!parse_three_ints(args[3], &(obj->color_r), &(obj->color_g), &(obj->color_b)))
+		return (false);
+	if(obj->color_r < 0 || obj->color_r > 255 || obj->color_g < 0 || obj->color_g > 255 || obj->color_b < 0 || obj->color_b > 255)
+	{
+		ft_putendl_fd("Error\nImpossible to parse light because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
 	free(obj);

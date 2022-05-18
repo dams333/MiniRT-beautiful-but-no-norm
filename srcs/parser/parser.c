@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/17 17:26:44 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:01:51 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,11 @@ bool	parse_line(char *line)
 	if (ft_strlen(elem[0]) == 1)
 	{
 		if(ft_strncmp(elem[0], "C", 1) == 0)
-		{
 			return (parse_camera(elem));
-		}
 		else if(ft_strncmp(elem[0], "A", 1) == 0)
-		{
 			return (parse_ambient_lightning(elem));
-		}
 		else if(ft_strncmp(elem[0], "L", 1) == 0)
-		{
-			
-		}
+			return (parse_light(elem));
 		else
 		{
 			ft_putstr_fd("Error\nObject type ", 2);
