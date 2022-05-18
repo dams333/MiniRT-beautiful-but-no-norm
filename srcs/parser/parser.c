@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 13:47:15 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:19:49 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ bool	parse_line(char *line)
 {
 	char	**elem;
 
-	if(ft_strchr(line, '\n'))
+	if (ft_strchr(line, '\n'))
 		line[ft_strchr(line, '\n') - line] = '\0';
 	elem = ft_split(line, ' ');
 	if (!elem)
@@ -78,7 +78,7 @@ int	read_file(int fd)
 	{
 		if (ft_strlen(line) > 1 && line[0] != '#')
 		{
-			if(!parse_line(line))
+			if (!parse_line(line))
 				return (1);
 		}
 		free(line);
