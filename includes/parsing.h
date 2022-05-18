@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:33:16 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 09:56:25 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:26:50 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ bool	parse_three_ints(char *str, int *value1, int *value2, int *value3);
 bool	parse_camera(char **args);
 bool	parse_ambient_lightning(char **args);
 bool	parse_light(char **args);
+bool	parse_sphere(char **args);
 
 #endif

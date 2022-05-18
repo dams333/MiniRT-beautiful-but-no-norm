@@ -6,7 +6,7 @@
 #    By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/06 09:16:50 by dhubleur          #+#    #+#              #
-#    Updated: 2022/05/17 12:42:27 by dhubleur         ###   ########.fr        #
+#    Updated: 2022/05/18 10:27:59 by dhubleur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ SRCS	=	$(addprefix srcs/, \
 				$(addprefix parser/, \
 					parser.c \
 					parse_util.c \
-					parser_c_a_l.c))
+					parser_c_a_l.c \
+					parse_sp_pl_cy.c))
 				
 OBJS	=	${SRCS:.c=.o}
 INCL	=	-I./includes -I./libft

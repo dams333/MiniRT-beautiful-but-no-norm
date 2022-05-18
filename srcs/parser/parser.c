@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 10:01:51 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:27:19 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,16 @@ bool	parse_line(char *line)
 			return (parse_light(elem));
 		else
 		{
-			ft_putstr_fd("Error\nObject type ", 2);
+			ft_putstr_fd("Error\nObject type [", 2);
 			ft_putstr_fd(elem[0], 2);
-			ft_putendl_fd(" unknown", 2);
+			ft_putendl_fd("] unknown", 2);
 			return (false);
 		}
 	}
 	else if (ft_strlen(elem[0]) == 2)
 	{
 		if(ft_strncmp(elem[0], "sp", 2) == 0)
-		{
-
-		}
+			return (parse_sphere(elem));
 		else if(ft_strncmp(elem[0], "pl", 2) == 0)
 		{
 
@@ -58,17 +56,17 @@ bool	parse_line(char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nObject type ", 2);
+			ft_putstr_fd("Error\nObject type [", 2);
 			ft_putstr_fd(elem[0], 2);
-			ft_putendl_fd(" unknown", 2);
+			ft_putendl_fd("] unknown", 2);
 			return (false);
 		}
 	}
 	else
 	{
-		ft_putstr_fd("Error\nObject type ", 2);
+		ft_putstr_fd("Error\nObject type [", 2);
 		ft_putstr_fd(elem[0], 2);
-		ft_putendl_fd(" unknown", 2);
+		ft_putendl_fd("] unknown", 2);
 		return (false);
 	}
 	return (true);
@@ -82,7 +80,7 @@ int	read_file(int fd)
 	res = get_next_line(fd, &line);
 	while (line != NULL)
 	{
-		if (ft_strlen(line) > 1)
+		if (ft_strlen(line) > 1 && line[0] != '#')
 		{
 			if(!parse_line(line))
 				return (1);
