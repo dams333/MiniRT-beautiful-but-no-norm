@@ -7,9 +7,12 @@ SRCS		=	main.c \
 					parse_sp_pl_cy.c \
 					parse_util.c \
 					generate_list.c \
-				), \
-				$(addprefix geometrc/, \
+				) \
+				$(addprefix geometric/, \
 					vector.c \
+				) \
+				$(addprefix render/, \
+					init_mlx.c \
 				)
 
 
@@ -21,7 +24,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 INCLUDE		=	-I includes/
 LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
-EXT_LIBS	=	-lm
+EXT_LIBS	=	-lm -lbsd -lX11 -lXext
 
 all		:	$(NAME)
 

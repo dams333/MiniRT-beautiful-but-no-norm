@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 14:00:13 by dhubleur         ###   ########.fr       */
+/*   Created: 2022/06/27 13:48:26 by dhubleur          #+#    #+#             */
+/*   Updated: 2022/06/27 13:57:55 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "parsing.h"
-#include "render.h"
-#include <stdio.h>
+#ifndef RENDER_H
+# define RENDER_H
 
-int main(int argc, char **argv)
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
+# define WINDOW_NAME "MiniRT"
+
+# include "mlx.h"
+# include <stdlib.h>
+# include <stdbool.h>
+
+typedef struct s_mlx
 {
-	t_generic_object	*object_list;
-	t_mlx				mlx;
+    void	*mlx;
+    void	*win;
+}   t_mlx;
 
-	object_list = NULL;
-	if(parse_map(argc, argv, &object_list) != 0)
-		return (1);
-	if(!init_mlx(&mlx))
-		return (1);
-	while(1)
-		;
-	return (0);
-}
+bool    init_mlx(t_mlx *mlx);
+
+#endif
