@@ -7,6 +7,9 @@ SRCS		=	main.c \
 					parse_sp_pl_cy.c \
 					parse_util.c \
 					generate_list.c \
+				), \
+				$(addprefix geometrc/, \
+					vector.c \
 				)
 
 
