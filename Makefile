@@ -17,7 +17,7 @@ OBJS_DEPEND	=	${OBJS:.o=.d}
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 INCLUDE		=	-I includes/
-LIBS		=	libs/libft/libft.a
+LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
 EXT_LIBS	=	-lm
 
 all		:	$(NAME)
@@ -36,6 +36,8 @@ $(LIBS)	:	FORCE
 		echo make -C $$(dirname $$lib);\
 		make -C $$(dirname $$lib);\
 	done
+
+FORCE	:
 
 clean	:	
 	rm -Rf build/
@@ -73,4 +75,4 @@ reall	: relibs re
 
 -include $(OBJS_DEPEND)
 
-.PHONY	:	all clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall FORCE
+.PHONY	:	all clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall libs
