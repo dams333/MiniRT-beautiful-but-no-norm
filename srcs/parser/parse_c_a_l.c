@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_c_a_l.c                                     :+:      :+:    :+:   */
+/*   parse_c_a_l.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:41:06 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 14:19:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:06:39 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	parse_camera(char **args)
+bool	parse_camera(char **args, t_generic_object **lst)
 {
 	t_camera_object *obj;
 	
@@ -43,11 +43,12 @@ bool	parse_camera(char **args)
 		ft_putendl_fd("Error\nImpossible to parse camera because FOV is not in [0;180]", 2);
 		return (false);
 	}
-	free(obj);
+	if (!add_item_to_list(lst, obj, CAMERA))
+		return (false);
 	return (true);
 }
 
-bool	parse_ambient_lightning(char **args)
+bool	parse_ambient_lightning(char **args, t_generic_object **lst)
 {
 	t_ambient_lightning_object *obj;
 
@@ -76,11 +77,12 @@ bool	parse_ambient_lightning(char **args)
 		ft_putendl_fd("Error\nImpossible to parse ambient lightning because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
-	free(obj);
+	if (!add_item_to_list(lst, obj, CAMERA))
+		return (false);
 	return (true);
 }
 
-bool	parse_light(char **args)
+bool	parse_light(char **args, t_generic_object **lst)
 {
 	t_light_object *obj;
 
@@ -111,6 +113,7 @@ bool	parse_light(char **args)
 		ft_putendl_fd("Error\nImpossible to parse light because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
-	free(obj);
+	if (!add_item_to_list(lst, obj, CAMERA))
+		return (false);
 	return (true);
 }

@@ -6,13 +6,13 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 14:19:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:04:41 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-bool	parse_line(char *line)
+bool	parse_line(char *line, t_generic_object **lst)
 {
 	char	**elem;
 
@@ -29,11 +29,11 @@ bool	parse_line(char *line)
 	if (ft_strlen(elem[0]) == 1)
 	{
 		if (ft_strncmp(elem[0], "C", 1) == 0)
-			return (parse_camera(elem));
+			return (parse_camera(elem, lst));
 		else if (ft_strncmp(elem[0], "A", 1) == 0)
-			return (parse_ambient_lightning(elem));
+			return (parse_ambient_lightning(elem, lst));
 		else if (ft_strncmp(elem[0], "L", 1) == 0)
-			return (parse_light(elem));
+			return (parse_light(elem, lst));
 		else
 		{
 			ft_putstr_fd("Error\nObject type [", 2);
@@ -45,11 +45,11 @@ bool	parse_line(char *line)
 	else if (ft_strlen(elem[0]) == 2)
 	{
 		if (ft_strncmp(elem[0], "sp", 2) == 0)
-			return (parse_sphere(elem));
+			return (parse_sphere(elem, lst));
 		else if (ft_strncmp(elem[0], "pl", 2) == 0)
-			return (parse_plane(elem));
+			return (parse_plane(elem, lst));
 		else if (ft_strncmp(elem[0], "cy", 2) == 0)
-			return (parse_cylinder(elem));
+			return (parse_cylinder(elem, lst));
 		else
 		{
 			ft_putstr_fd("Error\nObject type [", 2);
@@ -68,7 +68,7 @@ bool	parse_line(char *line)
 	return (true);
 }
 
-int	read_file(int fd)
+int	read_file(int fd, t_generic_object **lst)
 {
 	int		res;
 	char	*line;
@@ -78,7 +78,7 @@ int	read_file(int fd)
 	{
 		if (ft_strlen(line) > 1 && line[0] != '#')
 		{
-			if (!parse_line(line))
+			if (!parse_line(line, lst))
 				return (1);
 		}
 		free(line);
@@ -102,7 +102,7 @@ int	read_file(int fd)
 	}
 }
 
-int	parse_map(int argc, char **argv)
+int	parse_map(int argc, char **argv, t_generic_object **lst)
 {
 	char	*file_name;
 	int		fd;
@@ -126,5 +126,5 @@ int	parse_map(int argc, char **argv)
 		perror("The file cannot be open");
 		return (1);
 	}
-	return (read_file(fd));
+	return (read_file(fd, lst));
 }

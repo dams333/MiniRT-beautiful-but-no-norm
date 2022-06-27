@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 13:49:56 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/06/27 13:00:32 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ typedef enum e_object_type
 
 typedef struct s_generic_object
 {
-	t_object_type	type;
-	void			*specific_object;
+	t_object_type			type;
+	void					*specific_object;
+	struct s_generic_object	*next;
 }	t_generic_object;
 
 typedef struct s_ambient_lightning_object
