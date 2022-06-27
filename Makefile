@@ -1,52 +1,74 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/06 09:16:50 by dhubleur          #+#    #+#              #
-#    Updated: 2022/05/18 10:27:59 by dhubleur         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME		=	miniRT
 
-SRCS	=	$(addprefix srcs/, \
-				main.c \
+SRCS		=	main.c \
 				$(addprefix parser/, \
 					parser.c \
+					parse_c_a_l.c \
+					parse_sp_pl_cy.c \
 					parse_util.c \
-					parser_c_a_l.c \
-					parse_sp_pl_cy.c))
-				
-OBJS	=	${SRCS:.c=.o}
-INCL	=	-I./includes -I./libft
+				)
 
-NAME	=	miniRT
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
 
-RM		=	rm -f
+_OBJS		=	${SRCS:.c=.o}
+OBJS		=	$(addprefix build/, $(_OBJS))
 
-LIBFT	=	libft/libft.a
+CC			=	cc
+CFLAGS		=	-Wall -Werror -Wextra
+INCLUDE		=	-I includes/
+LIBS		=	libs/libft/libft.a
+EXT_LIBS	=	-lm
 
-.c.o:
-				${CC} ${CFLAGS} ${INCL} -c $< -o ${<:.c=.o}
 
-all:		${NAME}
-bonus:		${NAME}
+all		:	$(NAME)
 
-$(NAME):	${OBJS} ${LIBFT} ${LIBMLX}
-				${CC} -o ${NAME} ${OBJS} ${LIBFT} -lm
+build/%.o	:	srcs/%.c
+	@if [ ! -d $(dir $@) ]; then\
+		mkdir -p $(dir $@);\
+	fi
+	$(CC) ${CFLAGS} ${INCLUDE} -c $< -o $@
 
-$(LIBFT):
-				$(MAKE) -C libft all
+$(NAME)	:	$(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(EXT_LIBS) -o $(NAME)
 
-clean:
-				${RM} ${OBJS}
+$(LIBS)	:	FORCE
+	@for lib in $(LIBS); do\
+		echo make -C $$(dirname $$lib);\
+		make -C $$(dirname $$lib);\
+	done
 
-fclean:		clean
-				${RM} ${NAME}
+clean	:	
+	rm -Rf build/
 
-re:			fclean all
+cleanlibs	:
+	@for lib in $(LIBS); do\
+		echo make -C $$(dirname $$lib) clean;\
+		make -C $$(dirname $$lib) clean;\
+	done
 
-.PHONY:		all clean fclean re bonus
+cleanall	:	clean cleanlibs
+
+
+fclean	:	clean
+	rm -f ${NAME}
+
+fcleanlibs	:
+	@for lib in $(LIBS); do\
+		echo make -C $$(dirname $$lib) fclean;\
+		make -C $$(dirname $$lib) fclean;\
+	done
+
+fcleanall	:	fclean fcleanlibs
+
+
+re		:	fclean ${NAME}
+
+relibs	:
+	@for lib in $(LIBS); do\
+		echo make -C $$(dirname $$lib) re;\
+		make -C $$(dirname $$lib) re;\
+	done
+
+reall	: relibs re
+
+
+.PHONY	:	all clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall FORCE

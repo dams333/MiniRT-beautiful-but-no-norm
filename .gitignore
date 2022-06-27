@@ -1,2 +1,5 @@
 miniRT
 *.o
+*.a
+*.sw?
+.vscode/
