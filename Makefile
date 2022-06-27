@@ -13,7 +13,7 @@ SRCS		=	main.c \
 					vector.c \
 				) \
 				$(addprefix render/, \
-					init_mlx.c \
+					mlx_utils.c \
 				)
 
 
