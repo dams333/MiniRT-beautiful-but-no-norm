@@ -3,3 +3,4 @@ miniRT
 *.a
 *.sw?
 .vscode/
+build/

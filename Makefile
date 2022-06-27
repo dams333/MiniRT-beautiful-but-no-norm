@@ -11,6 +11,7 @@ SRCS		=	main.c \
 
 _OBJS		=	${SRCS:.c=.o}
 OBJS		=	$(addprefix build/, $(_OBJS))
+OBJS_DEPEND	=	${OBJS:.o=.d}
 
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
@@ -18,14 +19,13 @@ INCLUDE		=	-I includes/
 LIBS		=	libs/libft/libft.a
 EXT_LIBS	=	-lm
 
-
 all		:	$(NAME)
 
 build/%.o	:	srcs/%.c
 	@if [ ! -d $(dir $@) ]; then\
 		mkdir -p $(dir $@);\
 	fi
-	$(CC) ${CFLAGS} ${INCLUDE} -c $< -o $@
+	$(CC) ${CFLAGS} -MMD -MF $(@:.o=.d) ${INCLUDE} -c $< -o $@
 
 $(NAME)	:	$(OBJS) $(LIBS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(EXT_LIBS) -o $(NAME)
@@ -70,5 +70,6 @@ relibs	:
 
 reall	: relibs re
 
+-include $(OBJS_DEPEND)
 
 .PHONY	:	all clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall FORCE
