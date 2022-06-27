@@ -9,6 +9,7 @@ SRCS		=	main.c \
 					generate_list.c \
 				) \
 				$(addprefix geometric/, \
+					point.c \
 					vector.c \
 				) \
 				$(addprefix render/, \

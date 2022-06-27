@@ -6,18 +6,30 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:36:32 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 13:59:16 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/06/27 14:41:23 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "geometric.h"
 #include <math.h>
+
+void    from_point(t_vector *vector, t_point point1, t_point point2)
+{
+    vector->x = point2.x - point1.x;
+    vector->y = point2.y - point1.y;
+    vector->z = point2.z - point1.z;
+}
+
+double vector_length(t_vector vector)
+{
+    return (pow(vector.x, 2) + pow(vector.y, 2) + pow(vector.z, 2));
+}
 
 void normalize(t_vector *vector)
 {
     double length;
 
-    length = sqrt(pow(vector->x, 2) + pow(vector->y, 2) + pow(vector->z, 2));
+    length = vector_length(*vector);
     vector->x /= length;
     vector->y /= length;
     vector->z /= length;
