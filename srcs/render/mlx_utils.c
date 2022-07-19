@@ -6,11 +6,11 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:47:57 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 14:45:39 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:45:49 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "window_props.h"
 #include "libft.h"
 
 bool    init_mlx(t_mlx *mlx)

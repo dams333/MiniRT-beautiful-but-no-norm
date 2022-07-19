@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/07/19 15:44:34 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/07/19 16:45:39 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "events.h"
 #include "parsing.h"
-#include "render.h"
+#include "window_props.h"
 
 int	main(int argc, char **argv)
 {
