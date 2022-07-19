@@ -13,6 +13,7 @@ SRCS		=	main.c \
 					vector.c \
 				) \
 				$(addprefix render/, \
+					events.c \
 					mlx_utils.c \
 				)
 
@@ -23,7 +24,7 @@ OBJS_DEPEND	=	${OBJS:.o=.d}
 
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
-INCLUDE		=	-I includes/
+INCLUDE		=	-I includes/ -I libs/minilibx-linux/
 LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
 EXT_LIBS	=	-lm -lbsd -lX11 -lXext
 

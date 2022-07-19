@@ -6,26 +6,29 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 14:00:13 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:44:34 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "parsing.h"
-#include "render.h"
 #include <stdio.h>
 
-int main(int argc, char **argv)
+#include "libft.h"
+
+#include "events.h"
+#include "parsing.h"
+#include "render.h"
+
+int	main(int argc, char **argv)
 {
 	t_generic_object	*object_list;
 	t_mlx				mlx;
 
 	object_list = NULL;
-	if(parse_map(argc, argv, &object_list) != 0)
+	if (parse_map(argc, argv, &object_list) != 0)
 		return (1);
-	if(!init_mlx(&mlx))
+	if (!init_mlx(&mlx))
 		return (1);
-	while(1)
-		;
+	init_events(mlx.mlx, mlx.win);
+	mlx_loop(mlx.mlx);
 	return (0);
 }
