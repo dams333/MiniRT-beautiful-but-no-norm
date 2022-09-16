@@ -31,5 +31,5 @@ jobs:
       - name: Install norminette
         run: pip install norminette
       
-      - name: Check norminette
-        run: norminette
+      - name: Check norminette except on the minilibx
+        run: find . -path ./libs/*minilibx-linux -prune -o -name "mlx.h" -prune -o \( -name "*.c" -o -name "*.h" \) -exec norminette {} \+
