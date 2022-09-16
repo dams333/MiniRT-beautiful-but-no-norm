@@ -32,7 +32,7 @@ jobs:
         run: find . -path ./libs/*minilibx-linux -prune -o -name "mlx.h" -prune -o \( -name "*.c" -o -name "*.h" \) -exec norminette {} \+
 
       - name: Check absence of unwanted files
-        run: find . -name "*.o" -o -name "a.out" -o -name "*.a" -o -name "miniRT"
+        run: '! find . -name "*.o" -o -name "a.out" -o -name "*.a" -o -name "miniRT"'
 
       - name: Check compilation
         run: make reall
