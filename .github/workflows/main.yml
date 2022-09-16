@@ -33,3 +33,6 @@ jobs:
 
       - name: Check absence of unwanted files
         run: ! find . -name "*.o" -o -name "a.out" -o -name "*.a" -o -name "miniRT"
+
+      - name: Check compilation
+        run: make reall
