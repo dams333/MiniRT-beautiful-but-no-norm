@@ -33,7 +33,7 @@ jobs:
         continue-on-error: true
 
       - name: Check absence of unwanted files
-        run: 'find . -name "*.o" -o -name "a.out" -o -name "*.a" -o -name "miniRT"' | grep .
+        run: find . -name "*.o" -o -name "a.out" -o -name "*.a" -o -name "miniRT" | grep .
         continue-on-error: true
 
       - name: Check compilation
