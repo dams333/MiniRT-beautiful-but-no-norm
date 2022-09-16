@@ -74,10 +74,12 @@ EOF
 }
 
 clean(){
-	log_info 'Execute "make clean" from "makefile.gen"'
-	${MAKE} -f Makefile.gen clean
-	log_info 'Execute "make clean" from "test/makefile.gen"'
-	${MAKE} -f Makefile.gen -C test/ --no-print-directory clean
+	if [ -f Makefile.gen ]; then
+		log_info 'Execute "make clean" from "makefile.gen"'
+		${MAKE} -f Makefile.gen clean
+		log_info 'Execute "make clean" from "test/makefile.gen"'
+		${MAKE} -f Makefile.gen -C test/ --no-print-directory clean
+	fi
 }
 
 parse_args(){
