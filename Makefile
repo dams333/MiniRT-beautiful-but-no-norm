@@ -26,7 +26,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 INCLUDE		=	-I includes/ -I libs/minilibx-linux/
 LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
-EXT_LIBS	=	-lm -lbsd -lX11 -lXext
+EXT_LIBS	=	-lm -lX11 -lXext
 
 all		:	$(NAME)
 
