@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 14:41:02 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:02:02 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_vector
     double		y;
     double		z;
 }   t_vector;
+
+typedef struct s_ray
+{
+	t_point	base;
+	t_point	vec;
+}	t_ray;
 
 double vector_length(t_vector vector);
 void normalize(t_vector *vector);
