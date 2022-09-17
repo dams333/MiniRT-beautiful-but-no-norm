@@ -9,6 +9,7 @@ SRCS		=	main.c \
 					generate_list.c \
 				) \
 				$(addprefix geometric/, \
+					get_intersecting_obj.c \
 					point.c \
 					vector.c \
 				) \
