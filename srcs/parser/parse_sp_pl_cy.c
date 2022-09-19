@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sp_pl_cy.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:26:02 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 13:06:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:39:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	parse_sphere(char **args, t_generic_object **lst)
 		ft_putendl_fd("Error\nImpossible to parse sphere because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
-	if (!add_item_to_list(lst, obj, CAMERA))
+	if (!add_item_to_list(lst, obj, SPHERE))
 		return (false);
 	return (true);
 }
@@ -79,7 +79,7 @@ bool	parse_plane(char **args, t_generic_object **lst)
 		ft_putendl_fd("Error\nImpossible to parse plane because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
-	if (!add_item_to_list(lst, obj, CAMERA))
+	if (!add_item_to_list(lst, obj, PLANE))
 		return (false);
 	return (true);
 }
@@ -129,7 +129,7 @@ bool	parse_cylinder(char **args, t_generic_object **lst)
 		ft_putendl_fd("Error\nImpossible to parse cylinder because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
-	if (!add_item_to_list(lst, obj, CAMERA))
+	if (!add_item_to_list(lst, obj, CYLINDER))
 		return (false);
 	return (true);
 }

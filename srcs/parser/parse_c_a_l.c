@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_c_a_l.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:41:06 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 13:06:39 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:39:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool	parse_ambient_lightning(char **args, t_generic_object **lst)
 		ft_putendl_fd("Error\nImpossible to parse ambient lightning because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
-	if (!add_item_to_list(lst, obj, CAMERA))
+	if (!add_item_to_list(lst, obj, AMBIENT_LIGHTNING))
 		return (false);
 	return (true);
 }
@@ -113,7 +113,7 @@ bool	parse_light(char **args, t_generic_object **lst)
 		ft_putendl_fd("Error\nImpossible to parse light because one of the color composant in not in [0;255]", 2);
 		return (false);
 	}
-	if (!add_item_to_list(lst, obj, CAMERA))
+	if (!add_item_to_list(lst, obj, LIGHT))
 		return (false);
 	return (true);
 }
