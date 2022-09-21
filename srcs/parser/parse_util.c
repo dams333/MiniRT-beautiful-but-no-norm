@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:19:05 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/05/18 14:20:12 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:35:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@ int	get_split_size(char **str)
 	while (str[length] != NULL)
 		length++;
 	return (length);
+}
+
+void	free_split(char **elements)
+{
+	int i = 0;
+	while (elements[i] != NULL)
+	{
+		free(elements[i]);
+		i++;
+	}
+	free(elements);
 }
 
 static bool is_only_digit(char *str)
@@ -71,12 +82,14 @@ bool	parse_float(char *str, float *value)
 	{
 		ft_putstr_fd("Error\nImpossible to parse float: ", 2);
 		ft_putendl_fd(str, 2);
+		free_split(split);
 		return (false);
 	}
 	if (!get_part(split[0], &entire) || !get_part(split[1], &fractional))
 	{
 		ft_putstr_fd("Error\nImpossible to parse float: ", 2);
 		ft_putendl_fd(str, 2);
+		free_split(split);
 		return (false);
 	}
 	if (fractional == 0)
@@ -84,6 +97,7 @@ bool	parse_float(char *str, float *value)
 	else
 		*value = entire + (((float) fractional) / ((float) pow(10, ft_strlen(split[1]))));
 	*value *= sign;
+	free_split(split);
 	return (true);
 }
 
@@ -121,14 +135,25 @@ bool	parse_three_floats(char *str, float *value1, float *value2, float *value3)
 	if (get_split_size(split) != 3)
 	{
 		ft_putendl_fd("Error\nImpossible to parse 3 floats comma separated", 2);
+		free_split(split);
 		return (false);
 	}
 	if (!parse_float(split[0], value1))
+	{
+		free_split(split);
 		return (false);
+	}
 	if (!parse_float(split[1], value2))
+	{
+		free_split(split);
 		return (false);
+	}
 	if (!parse_float(split[2], value3))
+	{
+		free_split(split);
 		return (false);
+	}
+	free_split(split);
 	return (true);
 }
 
@@ -145,13 +170,24 @@ bool	parse_three_ints(char *str, int *value1, int *value2, int *value3)
 	if (get_split_size(split) != 3)
 	{
 		ft_putendl_fd("Error\nImpossible to parse 3 ints comma separated", 2);
+		free_split(split);
 		return (false);
 	}
 	if (!parse_int(split[0], value1))
+	{
+		free_split(split);
 		return (false);
+	}
 	if (!parse_int(split[1], value2))
+	{
+		free_split(split);
 		return (false);
+	}
 	if (!parse_int(split[2], value3))
+	{
+		free_split(split);
 		return (false);
+	}
+	free_split(split);
 	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 13:00:32 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:26:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,13 @@ typedef struct s_cylinder_object
 	int		color_g;
 	int		color_b;
 }	t_cylinder_object;
+
+typedef struct s_parsing
+{
+	t_camera_object *camera;
+	t_ambient_lightning_object *ambient_lightning;
+	t_generic_object *lights;
+	t_generic_object *hittables;
+} t_parsing;
 
 #endif

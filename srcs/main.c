@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/07/19 16:45:39 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/09/21 17:40:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,18 @@
 
 int	main(int argc, char **argv)
 {
-	t_generic_object	*object_list;
-	t_mlx				mlx;
+	t_parsing	parsing;
+	t_mlx		mlx;
 
-	object_list = NULL;
-	if (parse_map(argc, argv, &object_list) != 0)
+	parsing.camera = NULL;
+	parsing.ambient_lightning = NULL;
+	parsing.lights = NULL;
+	parsing.hittables = NULL;
+	if (parse_map(argc, argv, &parsing) == false)
+	{
+		//TODO free_parse(parsing)
 		return (1);
+	}
 	if (!init_mlx(&mlx))
 		return (1);
 	init_events(mlx.mlx, mlx.win);
