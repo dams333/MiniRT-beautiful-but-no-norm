@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 18:03:36 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/21 18:06:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool	read_file(int fd, t_parsing *parsing)
 			}
 		}
 		free(line);
-		res = get_next_line(fd, &line);
+		res = get_next_line(fd, &line, 0);
 	}
 	if (res == READ_ERROR)
 	{
