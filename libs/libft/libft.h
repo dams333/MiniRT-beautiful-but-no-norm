@@ -83,6 +83,6 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(
 					t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-t_gnl_result	get_next_line(int fd, char **ptr);
+t_gnl_result	get_next_line(int fd, char **ptr, int free);
 
 #endif

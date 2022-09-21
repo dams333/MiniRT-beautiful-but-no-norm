@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:33:16 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 17:51:25 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/21 17:59:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		get_split_size(char **str);
 bool	parse_three_floats(char *str, float *value1, float *value2, float *value3);
 bool	parse_three_ints(char *str, int *value1, int *value2, int *value3);
 void	free_split(char **elements);
+void    free_parse(t_parsing *parsing);
 
 bool	parse_camera(char **args, t_parsing *parsing);
 bool	parse_ambient_lightning(char **args, t_parsing *parsing);

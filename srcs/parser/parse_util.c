@@ -6,13 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:19:05 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 17:35:51 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/21 18:00:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdbool.h>
 #include <math.h>
+#include "structures.h"
 
 int	get_split_size(char **str)
 {
@@ -31,6 +32,31 @@ void	free_split(char **elements)
 		i++;
 	}
 	free(elements);
+}
+
+void free_parse(t_parsing *parsing)
+{
+	t_generic_object *current;
+	t_generic_object *tmp;
+
+	free(parsing->camera);
+	free(parsing->ambient_lightning);
+	current = parsing->lights;
+	while (current != NULL)
+	{
+		free(current->specific_object);
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	current = parsing->hittables;
+	while (current != NULL)
+	{
+		free(current->specific_object);
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
 }
 
 static bool is_only_digit(char *str)

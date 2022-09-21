@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 17:40:11 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/21 17:58:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int	main(int argc, char **argv)
 	parsing.hittables = NULL;
 	if (parse_map(argc, argv, &parsing) == false)
 	{
-		//TODO free_parse(parsing)
+		free_parse(&parsing);
 		return (1);
 	}
 	if (!init_mlx(&mlx))
 		return (1);
 	init_events(mlx.mlx, mlx.win);
 	mlx_loop(mlx.mlx);
+	free_parse(&parsing);
 	return (0);
 }
