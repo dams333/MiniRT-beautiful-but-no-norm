@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 17:40:20 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/21 17:50:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	parse_line(char *line, t_parsing *parsing)
 	return (ret);
 }
 
-bool	read_file(int fd, t_paraing *parsing)
+bool	read_file(int fd, t_parsing *parsing)
 {
 	int		res;
 	char	*line;
