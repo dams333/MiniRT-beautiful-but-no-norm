@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:26:02 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 17:53:54 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/22 22:20:29 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ bool	parse_plane(char **args, t_parsing *parsing)
 		free(obj);
 		return (false);
 	}
+	obj->d = -obj->orientation_x * obj->coord_x - obj->orientation_y * obj->coord_y - obj->orientation_z * obj->coord_z;
 	if (!parse_three_ints(args[3], &(obj->color_r), &(obj->color_g), &(obj->color_b)))
 	{
 		free(obj);

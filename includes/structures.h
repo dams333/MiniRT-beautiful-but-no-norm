@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 17:26:09 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/22 22:18:17 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_plane_object
 	float	coord_x;
 	float	coord_y;
 	float	coord_z;
+	float	d;
 	float	orientation_x;
 	float	orientation_y;
 	float	orientation_z;
