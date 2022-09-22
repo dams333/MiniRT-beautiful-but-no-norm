@@ -10,6 +10,7 @@ SRCS		=	main.c \
 				) \
 				$(addprefix geometric/, \
 					sec_degree_utils.c \
+					get_distance_through_ray_with_sphere.c \
 					get_intersecting_obj.c \
 					point.c \
 					vector.c \
