@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:26:02 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/06/27 13:06:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/22 22:25:40 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ bool	parse_plane(char **args, t_generic_object **lst)
 		ft_putendl_fd("Error\nImpossible to parse plane because one composant of the orientation vector is not in [-1;1]", 2);
 		return (false);
 	}
+	obj->d = -obj->orientation_x * obj->coord_x - obj->orientation_y * obj->coord_y - obj->orientation_z * obj->coord_z;
 	if (!parse_three_ints(args[3], &(obj->color_r), &(obj->color_g), &(obj->color_b)))
 		return (false);
 	if (obj->color_r < 0 || obj->color_r > 255 || obj->color_g < 0 || obj->color_g > 255 || obj->color_b < 0 || obj->color_b > 255)
