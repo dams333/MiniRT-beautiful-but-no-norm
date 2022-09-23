@@ -37,9 +37,9 @@ double	get_distance_through_ray_with_sphere(t_ray ray, t_sphere_object *sphere)
 	intersection.x = ray.vec.x * t + ray.base.x;
 	intersection.y = ray.vec.y * t + ray.base.y;
 	intersection.z = ray.vec.z * t + ray.base.z;
-	return (sqrt(pow(intersection.x, 2)
-			+ pow(intersection.y, 2)
-			+ pow(intersection.z, 2)));
+	return (sqrt(pow(intersection.x - ray.base.x, 2)
+			+ pow(intersection.y - ray.base.y, 2)
+			+ pow(intersection.z - ray.base.z, 2)));
 }
 
 static double	get_a(t_ray ray)
