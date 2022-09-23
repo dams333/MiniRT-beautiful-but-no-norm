@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 13:25:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/23 12:23:09 by jmaia            ###   ###               */
+/*   Updated: 2022/09/23 13:22:47 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ double	get_distance_through_ray_with_sphere(t_ray ray, t_sphere_object *sphere)
 	b = get_b(ray, sphere);
 	c = get_c(ray, sphere);
 	t = get_nearest_positive_intersection(a, b, c);
+	if (isnan(t))
+		return (NAN);
 	intersection.x = ray.vec.x * t + ray.base.x;
 	intersection.y = ray.vec.y * t + ray.base.y;
 	intersection.z = ray.vec.z * t + ray.base.z;
@@ -68,7 +70,7 @@ static double	get_nearest_positive_intersection(double a, double b, double c)
 	first_root = get_first_root(a, b, c);
 	second_root = get_second_root(a, b, c);
 	if (isnan(first_root) || (first_root < 0 && second_root < 0))
-		return (-1);
+		return (NAN);
 	if (first_root > 0 && first_root < second_root)
 		return (first_root);
 	else
