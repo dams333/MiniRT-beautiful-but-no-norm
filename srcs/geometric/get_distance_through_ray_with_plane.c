@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 21:25:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/23 12:28:07 by jmaia            ###   ###               */
+/*   Updated: 2022/09/23 13:42:58 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ double	get_distance_through_ray_with_plane(t_ray ray,
 	intersection.x = ray.vec.x * t + ray.base.x;
 	intersection.y = ray.vec.y * t + ray.base.y;
 	intersection.z = ray.vec.z * t + ray.base.z;
-	return (sqrt(pow(intersection.x, 2)
-			+ pow(intersection.y, 2)
-			+ pow(intersection.z, 2)));
+	return (sqrt(pow(intersection.x - ray.base.x, 2)
+			+ pow(intersection.y - ray.base.y, 2)
+			+ pow(intersection.z - ray.base.z, 2)));
 }
 
 static double	get_numerator(t_ray ray, t_plane_object *plane)
