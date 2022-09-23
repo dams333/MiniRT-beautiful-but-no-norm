@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 21:25:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/23 12:23:37 by jmaia            ###   ###               */
+/*   Updated: 2022/09/23 12:28:07 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static double	get_numerator(t_ray ray, t_plane_object *plane)
 	return (-plane->orientation_x * ray.base.x
 		- plane->orientation_y * ray.base.y
 		- plane->orientation_z * ray.base.z
-		- plane->color_r); // Need to be replaced by d
+		- plane->d);
 }
 
 static double	get_denominator(t_ray ray, t_plane_object *plane)
