@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 13:25:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/22 21:24:22 by jmaia            ###   ###               */
+/*   Updated: 2022/09/23 12:23:09 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ double	get_distance_through_ray_with_sphere(t_ray ray, t_sphere_object *sphere)
 	intersection.y = ray.vec.y * t + ray.base.y;
 	intersection.z = ray.vec.z * t + ray.base.z;
 	return (sqrt(pow(intersection.x, 2)
-		+ pow(intersection.y, 2)
-		+ pow(intersection.z, 2)));
+			+ pow(intersection.y, 2)
+			+ pow(intersection.z, 2)));
 }
 
 static double	get_a(t_ray ray)
@@ -48,8 +48,8 @@ static double	get_a(t_ray ray)
 static double	get_b(t_ray ray, t_sphere_object *sphere)
 {
 	return (2 * (ray.vec.x * (ray.base.x - sphere->coord_x)
-		+ ray.vec.y * (ray.base.y - sphere->coord_y)
-		+ ray.vec.z * (ray.base.z - sphere->coord_z)));
+			+ ray.vec.y * (ray.base.y - sphere->coord_y)
+			+ ray.vec.z * (ray.base.z - sphere->coord_z)));
 }
 
 static double	get_c(t_ray ray, t_sphere_object *sphere)
