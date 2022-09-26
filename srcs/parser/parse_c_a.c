@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_c_a_l.c                                      :+:      :+:    :+:   */
+/*   parse_c_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:41:06 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 13:29:19 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:55:12 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ because argument's count is not 3"
 #define AMBIANT_ERROR_RATIO "Error\nImpossible to parse ambiant light \
 because lightning ratio is not in [0;1]"
 #define AMBIANT_ERROR_COLOR "Error\nImpossible to parse ambiant light \
+because one of the color composant is not in [0;255]"
+#define LIGHT_ERROR_ARGS "Error\nImpossible to parse light \
+because argument's count is not 4"
+#define LIGHT_ERROR_RATIO "Error\nImpossible to parse light \
+because lightning ratio is not in [0;1]"
+#define LIGHT_ERROR_COLOR "Error\nImpossible to parse light \
 because one of the color composant is not in [0;255]"
 
 bool	parse_camera_2(char **args, t_parsing *parsing, t_camera_object *obj)
@@ -103,60 +109,4 @@ bool	parse_ambient_lightning(char **args, t_parsing *parsing)
 			&(obj->color_b)))
 		return (free(obj), false);
 	return (parse_ambien_lightning_2(parsing, obj));
-}
-
-bool	parse_light(char **args, t_parsing *parsing)
-{
-	t_light_object	*obj;
-
-	if (get_split_size(args) != 4)
-	{
-		ft_putendl_fd("Error\nImpossible to parse light because argument's", 2);
-		ft_putendl_fd("count is not 4", 2);
-		return (false);
-	}
-	obj = ft_calloc(1, sizeof(t_light_object));
-	if (!obj)
-	{
-		ft_putendl_fd("Error\nA malloc failed during parsing", 2);
-		return (false);
-	}
-	if (!parse_three_floats(args[1], &(obj->coord_x), &(obj->coord_y),
-			&(obj->coord_z)))
-	{
-		free(obj);
-		return (false);
-	}
-	if (!parse_float(args[2], &(obj->brightness_ratio)))
-	{
-		free(obj);
-		return (false);
-	}
-	if (obj->brightness_ratio < 0 || obj->brightness_ratio > 1)
-	{
-		ft_putendl_fd("Error\nImpossible to parse light because ", 2);
-		ft_putendl_fd("brightness ratio is not in [0;1]", 2);
-		free(obj);
-		return (false);
-	}
-	if (!parse_three_ints(args[3], &(obj->color_r), &(obj->color_g),
-			&(obj->color_b)))
-	{
-		free(obj);
-		return (false);
-	}
-	if (obj->color_r < 0 || obj->color_r > 255 || obj->color_g < 0
-		|| obj->color_g > 255 || obj->color_b < 0 || obj->color_b > 255)
-	{
-		ft_putendl_fd("Error\nImpossible to parse light because one ", 2);
-		ft_putendl_fd("of the color composant in not in [0;255]", 2);
-		free(obj);
-		return (false);
-	}
-	if (!add_item_to_list(&(parsing->lights), obj, LIGHT))
-	{
-		free(obj);
-		return (false);
-	}
-	return (true);
 }
