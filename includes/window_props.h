@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:48:26 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/07/19 16:46:03 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/09/26 12:51:10 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 typedef struct s_mlx
 {
-    void	*mlx;
-    void	*win;
-}   t_mlx;
+	void	*mlx;
+	void	*win;
+}	t_mlx;
 
-bool    init_mlx(t_mlx *mlx);
+bool	init_mlx(t_mlx *mlx);
 
 #endif
