@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:19:05 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/21 18:00:01 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/26 13:00:10 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 
 int	get_split_size(char **str)
 {
-	int length = 0;
+	int	length;
+
+	length = 0;
 	while (str[length] != NULL)
 		length++;
 	return (length);
@@ -25,7 +27,9 @@ int	get_split_size(char **str)
 
 void	free_split(char **elements)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (elements[i] != NULL)
 	{
 		free(elements[i]);
@@ -34,10 +38,10 @@ void	free_split(char **elements)
 	free(elements);
 }
 
-void free_parse(t_parsing *parsing)
+void	free_parse(t_parsing *parsing)
 {
-	t_generic_object *current;
-	t_generic_object *tmp;
+	t_generic_object	*current;
+	t_generic_object	*tmp;
 
 	free(parsing->camera);
 	free(parsing->ambient_lightning);
@@ -59,7 +63,7 @@ void free_parse(t_parsing *parsing)
 	}
 }
 
-static bool is_only_digit(char *str)
+static bool	is_only_digit(char *str)
 {
 	int	i;
 
@@ -72,7 +76,7 @@ static bool is_only_digit(char *str)
 	return (true);
 }
 
-static bool get_part(char *str, int *value)
+static bool	get_part(char *str, int *value)
 {
 	if (str == NULL)
 	{
@@ -121,7 +125,8 @@ bool	parse_float(char *str, float *value)
 	if (fractional == 0)
 		*value = entire;
 	else
-		*value = entire + (((float) fractional) / ((float) pow(10, ft_strlen(split[1]))));
+		*value = entire + (((float) fractional)
+				/ ((float) pow(10, ft_strlen(split[1]))));
 	*value *= sign;
 	free_split(split);
 	return (true);
@@ -129,7 +134,7 @@ bool	parse_float(char *str, float *value)
 
 bool	parse_int(char *str, int *value)
 {
-	int sign;
+	int	sign;
 
 	sign = 1;
 	if (str[0] == '-')
@@ -148,7 +153,8 @@ bool	parse_int(char *str, int *value)
 	return (true);
 }
 
-bool	parse_three_floats(char *str, float *value1, float *value2, float *value3)
+bool	parse_three_floats(char *str, float *value1,
+			float *value2, float *value3)
 {
 	char	**split;
 
@@ -183,7 +189,8 @@ bool	parse_three_floats(char *str, float *value1, float *value2, float *value3)
 	return (true);
 }
 
-bool	parse_three_ints(char *str, int *value1, int *value2, int *value3)
+bool	parse_three_ints(char *str, int *value1,
+			int *value2, int *value3)
 {
 	char	**split;
 
