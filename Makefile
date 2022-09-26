@@ -7,14 +7,6 @@ SRCS		=	main.c \
 					parse_sp_pl_cy.c \
 					parse_util.c \
 					generate_list.c \
-				) \
-				$(addprefix geometric/, \
-					point.c \
-					vector.c \
-				) \
-				$(addprefix render/, \
-					events.c \
-					mlx_utils.c \
 				)
 
 
