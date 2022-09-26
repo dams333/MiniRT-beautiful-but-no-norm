@@ -4,8 +4,8 @@ SRCS		=	main.c \
 				$(addprefix parser/, \
 					parser.c \
 					parse_c_a.c \
-					parse_l.c \
-					parse_sp_pl_cy.c \
+					parse_l_cy.c \
+					parse_sp_pl.c \
 					parse_util.c \
 					generate_list.c \
 				)
