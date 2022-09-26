@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:33:16 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 12:50:14 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/09/26 13:09:50 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <stdio.h>
+
+# define MALLOC_ERROR "Error\nA malloc failed during parsing"
 
 bool	parse_map(int argc, char **argv, t_parsing *parsing);
 bool	parse_float(char *str, float *value);

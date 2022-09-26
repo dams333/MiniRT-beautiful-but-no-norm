@@ -128,7 +128,7 @@ t_gnl_result	get_next_line(int fd, char **ptr, int need_to_free)
 	int			res;
 	char		*str;
 
-	if(need_to_free)
+	if (need_to_free)
 	{
 		free(storage_buffer[fd]);
 		storage_buffer[fd] = NULL;
