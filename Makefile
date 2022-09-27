@@ -3,9 +3,11 @@ NAME		=	miniRT
 SRCS		=	main.c \
 				$(addprefix parser/, \
 					parser.c \
-					parse_c_a_l.c \
-					parse_sp_pl_cy.c \
+					parse_c_a.c \
+					parse_l_cy.c \
+					parse_sp_pl.c \
 					parse_util.c \
+					parse_util2.c \
 					generate_list.c \
 				) \
 				$(addprefix geometric/, \
@@ -30,7 +32,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
 INCLUDE		=	-I includes/ -I libs/minilibx-linux/
 LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
-EXT_LIBS	=	-lm -lbsd -lX11 -lXext
+EXT_LIBS	=	-lm -lX11 -lXext
 
 all		:	$(NAME)
 

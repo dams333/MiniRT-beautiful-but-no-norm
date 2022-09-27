@@ -121,13 +121,19 @@ char	*clear_storage(char *storage_buffer)
 	return (buff2);
 }
 
-t_gnl_result	get_next_line(int fd, char **ptr)
+t_gnl_result	get_next_line(int fd, char **ptr, int need_to_free)
 {
 	char		*line;
 	static char	*storage_buffer[1024];
 	int			res;
 	char		*str;
 
+	if (need_to_free)
+	{
+		free(storage_buffer[fd]);
+		storage_buffer[fd] = NULL;
+		return (END_OF_READ);
+	}
 	*ptr = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 		return (READ_ERROR);

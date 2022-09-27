@@ -6,29 +6,27 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/07/19 16:45:39 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/09/26 14:23:08 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-
 #include "libft.h"
-
-#include "events.h"
 #include "parsing.h"
-#include "window_props.h"
 
 int	main(int argc, char **argv)
 {
-	t_generic_object	*object_list;
-	t_mlx				mlx;
+	t_parsing	parsing;
 
-	object_list = NULL;
-	if (parse_map(argc, argv, &object_list) != 0)
+	parsing.camera = NULL;
+	parsing.ambient_lightning = NULL;
+	parsing.lights = NULL;
+	parsing.hittables = NULL;
+	if (parse_map(argc, argv, &parsing) == false)
+	{
+		free_parse(&parsing);
 		return (1);
-	if (!init_mlx(&mlx))
-		return (1);
-	init_events(mlx.mlx, mlx.win);
-	mlx_loop(mlx.mlx);
+	}
+	free_parse(&parsing);
 	return (0);
 }
