@@ -17,6 +17,7 @@ SRCS		=	main.c \
 					get_intersecting_obj.c \
 					point.c \
 					vector.c \
+					vector_dot.c \
 				) \
 				$(addprefix render/, \
 					events.c \

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/27 17:52:24 by jmaia            ###   ###               */
+/*   Updated: 2022/09/29 13:40:11 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	vector_add(t_vector *vector, t_vector vector_add);
 void	vector_substract(t_vector *vector, t_vector vector_substract);
 void	multiply_by_scalar(t_vector *vector, double scalar);
 void	divide_by_scalar(t_vector *vector, double scalar);
+double	vector_dot(t_vector *v1, t_vector *v2);
 
 #endif
