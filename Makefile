@@ -11,11 +11,12 @@ SRCS		=	main.c \
 					generate_list.c \
 				) \
 				$(addprefix geometric/, \
-					sec_degree_utils.c \
+					cross_product.c \
 					get_distance_through_ray_with_plane.c \
 					get_distance_through_ray_with_sphere.c \
 					get_intersecting_obj.c \
 					point.c \
+					sec_degree_utils.c \
 					vector.c \
 					vector_dot.c \
 					vector_scalar_operation.c \

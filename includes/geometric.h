@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/29 17:37:15 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/09/29 17:56:39 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ double	vector_length(t_vector vector);
 void	normalize(t_vector *vector);
 void	vector_add(t_vector *result, t_vector *a, t_vector *b);
 void	vector_substract(t_vector *result, t_vector *a, t_vector *b);
+
 void	multiply_by_scalar(t_vector *vec, double scalar);
 void	divide_by_scalar(t_vector *vec, double scalar);
 double	vector_dot(t_vector *v1, t_vector *v2);
+
+void	cross_product(t_vector *result, t_vector *v1, t_vector *v2);
 
 #endif
