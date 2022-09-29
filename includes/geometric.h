@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/29 13:45:02 by jmaia            ###   ###               */
+/*   Updated: 2022/09/29 17:37:15 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct s_ray
 
 double	vector_length(t_vector vector);
 void	normalize(t_vector *vector);
-void	vector_add(t_vector *vector, t_vector vector_add);
-void	vector_substract(t_vector *vector, t_vector vector_substract);
-void	multiply_by_scalar(t_vector *vector, double scalar);
-void	divide_by_scalar(t_vector *vector, double scalar);
+void	vector_add(t_vector *result, t_vector *a, t_vector *b);
+void	vector_substract(t_vector *result, t_vector *a, t_vector *b);
+void	multiply_by_scalar(t_vector *vec, double scalar);
+void	divide_by_scalar(t_vector *vec, double scalar);
 double	vector_dot(t_vector *v1, t_vector *v2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:36:32 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/27 17:51:17 by jmaia            ###   ###               */
+/*   Updated: 2022/09/29 17:38:48 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void	normalize(t_vector *vector)
 	vector->z /= length;
 }
 
-void	vector_add(t_vector *vector, t_vector vector_add)
+void	vector_add(t_vector *result, t_vector *a, t_vector *b)
 {
-	vector->x += vector_add.x;
-	vector->y += vector_add.y;
-	vector->z += vector_add.z;
+	result->x = a->x + b->x;
+	result->y = a->y + b->y;
+	result->z = a->z + b->z;
 }
 
-void	vector_substract(t_vector *vector, t_vector vector_substract)
+void	vector_substract(t_vector *result, t_vector *a, t_vector *b)
 {
-	vector->x -= vector_substract.x;
-	vector->y -= vector_substract.y;
-	vector->z -= vector_substract.z;
+	result->x = a->x - b->x;
+	result->y = a->y - b->y;
+	result->z = a->z - b->z;
 }
