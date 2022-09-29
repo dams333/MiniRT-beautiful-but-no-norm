@@ -6,13 +6,13 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:34:33 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/29 13:38:40 by jmaia            ###   ###               */
+/*   Updated: 2022/09/29 18:15:35 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "geometric.h"
 
-double	vector_dot(t_vector *v1, t_vector *v2)
+double	dot_product(t_vector *v1, t_vector *v2)
 {
 	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
 }

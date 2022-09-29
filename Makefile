@@ -18,7 +18,7 @@ SRCS		=	main.c \
 					point.c \
 					sec_degree_utils.c \
 					vector.c \
-					vector_dot.c \
+					dot_product.c \
 					vector_scalar_operation.c \
 				) \
 				$(addprefix render/, \
