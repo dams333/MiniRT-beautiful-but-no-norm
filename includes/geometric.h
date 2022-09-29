@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/29 13:40:11 by jmaia            ###   ###               */
+/*   Updated: 2022/09/29 13:45:02 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,7 @@ typedef struct s_point
 
 double	distance(t_point point1, t_point point2);
 
-typedef struct s_vector
-{
-	double		x;
-	double		y;
-	double		z;
-}	t_vector;
+typedef t_point	t_vector;
 
 typedef struct s_ray
 {
