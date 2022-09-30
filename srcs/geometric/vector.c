@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:36:32 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/29 17:38:48 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/09/30 16:10:00 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	from_point(t_vector *vector, t_point point1, t_point point2)
 
 double	vector_length(t_vector vector)
 {
-	return (pow(vector.x, 2) + pow(vector.y, 2) + pow(vector.z, 2));
+	return (sqrt(pow(vector.x, 2) + pow(vector.y, 2) + pow(vector.z, 2)));
 }
 
 void	normalize(t_vector *vector)
