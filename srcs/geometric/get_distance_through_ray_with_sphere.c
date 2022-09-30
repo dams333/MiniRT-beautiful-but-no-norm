@@ -6,19 +6,19 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 13:25:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/23 13:22:47 by jmaia            ###   ###               */
+/*   Updated: 2022/09/29 19:17:36 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "get_intersecting_obj.h"
+#include "get_nearest_positive_intersection.h"
 #include "sec_degree_utils.h"
 
 static double	get_a(t_ray ray);
 static double	get_b(t_ray ray, t_sphere_object *sphere);
 static double	get_c(t_ray ray, t_sphere_object *sphere);
-static double	get_nearest_positive_intersection(double a, double b, double c);
 
 double	get_distance_through_ray_with_sphere(t_ray ray, t_sphere_object *sphere)
 {
@@ -60,19 +60,4 @@ static double	get_c(t_ray ray, t_sphere_object *sphere)
 		+ pow(ray.base.y - sphere->coord_y, 2)
 		+ pow(ray.base.z - sphere->coord_z, 2)
 		- pow(sphere->diameter / 2, 2));
-}
-
-static double	get_nearest_positive_intersection(double a, double b, double c)
-{
-	double	first_root;
-	double	second_root;
-
-	first_root = get_first_root(a, b, c);
-	second_root = get_second_root(a, b, c);
-	if (isnan(first_root) || (first_root < 0 && second_root < 0))
-		return (NAN);
-	if (first_root > 0 && first_root < second_root)
-		return (first_root);
-	else
-		return (second_root);
 }
