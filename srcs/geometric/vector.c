@@ -35,16 +35,16 @@ void	normalize(t_vector *vector)
 	vector->z /= length;
 }
 
-void	vector_add(t_vector *result, t_vector *a, t_vector *b)
+void	vector_add(t_vector *result, t_vector a, t_vector b)
 {
-	result->x = a->x + b->x;
-	result->y = a->y + b->y;
-	result->z = a->z + b->z;
+	result->x = a.x + b.x;
+	result->y = a.y + b.y;
+	result->z = a.z + b.z;
 }
 
-void	vector_substract(t_vector *result, t_vector *a, t_vector *b)
+void	vector_substract(t_vector *result, t_vector a, t_vector b)
 {
-	result->x = a->x - b->x;
-	result->y = a->y - b->y;
-	result->z = a->z - b->z;
+	result->x = a.x - b.x;
+	result->y = a.y - b.y;
+	result->z = a.z - b.z;
 }
