@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/23 12:23:57 by jmaia            ###   ###               */
+/*   Updated: 2022/10/01 22:22:12 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static double	get_distance_through_ray(t_ray ray, t_generic_object *obj)
 				(t_plane_object *) obj->specific_object));
 	else if (obj->type == CYLINDER)
 		return (get_distance_through_ray_with_cylinder(ray,
-				(t_cylinder_object *) obj->specific_object));
+				(t_cylinder *) obj->specific_object));
 	else
 		return (DBL_MAX);
 }

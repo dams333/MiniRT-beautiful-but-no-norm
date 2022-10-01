@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:44:25 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/17 13:19:14 by jmaia            ###   ###               */
+/*   Updated: 2022/10/01 23:19:36 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ double				get_distance_through_ray_with_sphere(t_ray ray,
 double				get_distance_through_ray_with_plane(t_ray ray,
 						t_plane_object *plane);
 double				get_distance_through_ray_with_cylinder(t_ray ray,
-						t_cylinder_object *cylinder);
+						t_cylinder *cylinder);
 
 #endif
