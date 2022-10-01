@@ -6,12 +6,14 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/27 17:31:25 by jmaia            ###   ###               */
+/*   Updated: 2022/10/01 22:12:41 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+# include "geometric.h"
 
 typedef enum e_object_type
 {
@@ -99,6 +101,15 @@ typedef struct s_cylinder_object
 	int		color_g;
 	int		color_b;
 }	t_cylinder_object;
+
+typedef struct s_cylinder
+{
+	t_point		pos;
+	t_vector	orientation;
+	double		diameter;
+	double		height;
+	int			color;
+}	t_cylinder;
 
 typedef struct s_parsing
 {
