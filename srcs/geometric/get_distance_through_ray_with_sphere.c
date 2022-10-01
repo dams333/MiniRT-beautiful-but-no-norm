@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 13:25:03 by jmaia             #+#    #+#             */
-/*   Updated: 2022/09/29 19:17:36 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:45:08 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ double	get_distance_through_ray_with_sphere(t_ray ray, t_sphere_object *sphere)
 	double	b;
 	double	c;
 	double	t;
-	t_point	intersection;
 
 	a = get_a(ray);
 	b = get_b(ray, sphere);
@@ -34,12 +33,7 @@ double	get_distance_through_ray_with_sphere(t_ray ray, t_sphere_object *sphere)
 	t = get_nearest_positive_intersection(a, b, c);
 	if (isnan(t))
 		return (NAN);
-	intersection.x = ray.vec.x * t + ray.base.x;
-	intersection.y = ray.vec.y * t + ray.base.y;
-	intersection.z = ray.vec.z * t + ray.base.z;
-	return (sqrt(pow(intersection.x - ray.base.x, 2)
-			+ pow(intersection.y - ray.base.y, 2)
-			+ pow(intersection.z - ray.base.z, 2)));
+	return (calc_distance_from_ray_and_time(ray, t));
 }
 
 static double	get_a(t_ray ray)
