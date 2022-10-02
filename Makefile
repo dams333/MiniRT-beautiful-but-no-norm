@@ -18,6 +18,7 @@ SRCS		=	main.c \
 					get_distance_through_ray_with_sphere.c \
 					get_intersecting_obj.c \
 					get_nearest_positive_intersection.c \
+					get_point_through_ray_at_time.c \
 					point.c \
 					sec_degree_utils.c \
 					vector.c \
