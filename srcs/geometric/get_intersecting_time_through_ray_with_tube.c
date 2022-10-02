@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_distance_through_ray_with_cylinder.c           :+:      :+:    :+:   */
+/*   get_intersecting_time_through_ray_with_tube.c      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:25:41 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/01 23:27:45 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/02 21:18:59 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static t_vector	get_ray_base_to_cylinder(t_vector cylinder_orientation,
 					t_vector ray_vec);
 static int		is_in_cylinder(t_ray ray, t_cylinder *cylinder, double t);
 
-double	get_distance_through_ray_with_cylinder(t_ray ray, t_cylinder *cylinder)
+double	get_intersecting_time_through_ray_with_tube(t_ray ray,
+		t_cylinder *cylinder)
 {
 	t_vector				cylinder_axis_to_ray_base;
 	t_sec_degree_factors	factors;
@@ -43,7 +44,7 @@ double	get_distance_through_ray_with_cylinder(t_ray ray, t_cylinder *cylinder)
 		return (NAN);
 	if (!is_in_cylinder(ray, cylinder, t))
 		return (NAN);
-	return (calc_distance_from_ray_and_time(ray, t));
+	return (t);
 }
 
 static t_vector	get_ray_base_to_cylinder(t_vector cylinder_orientation,

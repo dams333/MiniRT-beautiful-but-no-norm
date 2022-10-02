@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/01 22:22:12 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/02 21:05:22 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "geometric.h"
 #include "get_intersecting_obj.h"
+#include "sec_degree_utils.h"
 
 static double	get_distance_through_ray(t_ray ray, t_generic_object *obj);
 
@@ -42,15 +43,18 @@ t_generic_object	*get_intersecting_obj(t_ray ray, t_generic_object *objs)
 
 static double	get_distance_through_ray(t_ray ray, t_generic_object *obj)
 {
+	double	t;
+
 	if (obj->type == SPHERE)
-		return (get_distance_through_ray_with_sphere(ray,
-				(t_sphere_object *) obj->specific_object));
+		t = get_intersecting_time_through_ray_with_sphere(ray,
+				(t_sphere *) obj->specific_object);
 	else if (obj->type == PLANE)
-		return (get_distance_through_ray_with_plane(ray,
-				(t_plane_object *) obj->specific_object));
+		t = get_intersecting_time_through_ray_with_plane(ray,
+				(t_plane *) obj->specific_object);
 	else if (obj->type == CYLINDER)
-		return (get_distance_through_ray_with_cylinder(ray,
-				(t_cylinder *) obj->specific_object));
+		t = get_intersecting_time_through_ray_with_cylinder(ray,
+				(t_cylinder *) obj->specific_object);
 	else
 		return (DBL_MAX);
+	return (calc_distance_from_ray_and_time(ray, t));
 }
