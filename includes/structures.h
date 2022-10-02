@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/01 22:12:41 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/02 19:53:42 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ typedef struct s_sphere_object
 	int		color_b;
 }	t_sphere_object;
 
+typedef struct s_sphere
+{
+	t_point	pos;
+	double	diameter;
+	int		color;
+}	t_sphere;
+
 typedef struct s_plane_object
 {
 	float	coord_x;
@@ -86,6 +93,13 @@ typedef struct s_plane_object
 	int		color_g;
 	int		color_b;
 }	t_plane_object;
+
+typedef struct s_plane
+{
+	t_vector	orientation;
+	double		d;
+	int			color;
+}	t_plane;
 
 typedef struct s_cylinder_object
 {
