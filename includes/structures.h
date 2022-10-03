@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/02 19:53:42 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/03 14:29:50 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTURES_H
 
 # include "geometric.h"
+# include "sec_degree_factors.h"
 
 typedef enum e_object_type
 {
@@ -124,6 +125,13 @@ typedef struct s_cylinder
 	double		height;
 	int			color;
 }	t_cylinder;
+
+typedef struct s_ellipsoid
+{
+	t_point					pos;
+	t_sec_degree_factors	factors;
+	int						color;
+}	t_ellipsoid;
 
 typedef struct s_parsing
 {
