@@ -6,12 +6,15 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 12:50:48 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:29:50 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+
+# include "geometric.h"
+# include "sec_degree_factors.h"
 
 typedef enum e_object_type
 {
@@ -71,6 +74,13 @@ typedef struct s_sphere_object
 	int		color_b;
 }	t_sphere_object;
 
+typedef struct s_sphere
+{
+	t_point	pos;
+	double	diameter;
+	int		color;
+}	t_sphere;
+
 typedef struct s_plane_object
 {
 	float	coord_x;
@@ -84,6 +94,13 @@ typedef struct s_plane_object
 	int		color_g;
 	int		color_b;
 }	t_plane_object;
+
+typedef struct s_plane
+{
+	t_vector	orientation;
+	double		d;
+	int			color;
+}	t_plane;
 
 typedef struct s_cylinder_object
 {
@@ -99,6 +116,22 @@ typedef struct s_cylinder_object
 	int		color_g;
 	int		color_b;
 }	t_cylinder_object;
+
+typedef struct s_cylinder
+{
+	t_point		pos;
+	t_vector	orientation;
+	double		diameter;
+	double		height;
+	int			color;
+}	t_cylinder;
+
+typedef struct s_ellipsoid
+{
+	t_point					pos;
+	t_sec_degree_factors	factors;
+	int						color;
+}	t_ellipsoid;
 
 typedef struct s_parsing
 {

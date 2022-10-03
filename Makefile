@@ -9,6 +9,27 @@ SRCS		=	main.c \
 					parse_util.c \
 					parse_util2.c \
 					generate_list.c \
+				) \
+				$(addprefix geometric/, \
+					cross_product.c \
+					distance_between_points.c \
+					get_intersecting_time_through_ray_with_cylinder.c \
+					get_intersecting_time_through_ray_with_ellipsoid.c \
+					get_intersecting_time_through_ray_with_plane.c \
+					get_intersecting_time_through_ray_with_sphere.c \
+					get_intersecting_time_through_ray_with_tube.c \
+					get_intersecting_obj.c \
+					get_nearest_positive_intersection.c \
+					get_point_through_ray_at_time.c \
+					point.c \
+					sec_degree_utils.c \
+					vector.c \
+					dot_product.c \
+					vector_scalar_operation.c \
+				) \
+				$(addprefix render/, \
+					events.c \
+					mlx_utils.c \
 				)
 
 
