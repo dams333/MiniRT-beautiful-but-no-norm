@@ -14,6 +14,7 @@ SRCS		=	main.c \
 					cross_product.c \
 					distance_between_points.c \
 					get_intersecting_time_through_ray_with_cylinder.c \
+					get_intersecting_time_through_ray_with_ellipsoid.c \
 					get_intersecting_time_through_ray_with_plane.c \
 					get_intersecting_time_through_ray_with_sphere.c \
 					get_intersecting_time_through_ray_with_tube.c \
