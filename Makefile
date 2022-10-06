@@ -26,6 +26,8 @@ SRCS		=	main.c \
 					vector.c \
 					dot_product.c \
 					vector_scalar_operation.c \
+					matrix.c \
+					angle.c \
 				) \
 				$(addprefix render/, \
 					events.c \

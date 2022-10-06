@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:48:26 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/06 14:42:50 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:09:13 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define WINDOW_NAME "MiniRT"
 
 # include "mlx.h"
+# include "mlx_int.h"
 # include <stdlib.h>
 # include <stdbool.h>
 
@@ -28,5 +29,6 @@ typedef struct s_mlx
 }	t_mlx;
 
 bool	init_mlx(t_mlx *mlx);
+void	init_events(t_xvar *xvar, t_win_list *win);
 
 #endif
