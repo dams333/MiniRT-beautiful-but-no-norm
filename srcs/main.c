@@ -6,17 +6,20 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 14:23:08 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/06 14:42:47 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 #include "parsing.h"
+#include "render.h"
 
 int	main(int argc, char **argv)
 {
 	t_parsing	parsing;
+	t_mlx		mlx;
+	t_params	params;
 
 	parsing.camera = NULL;
 	parsing.ambient_lightning = NULL;
@@ -27,6 +30,13 @@ int	main(int argc, char **argv)
 		free_parse(&parsing);
 		return (1);
 	}
+	params.parsing = &parsing;
+	if (init_mlx(&mlx) == false)
+	{
+		free_parse(&parsing);
+		return (1);
+	}
+	params.mlx = &mlx;
 	free_parse(&parsing);
 	return (0);
 }

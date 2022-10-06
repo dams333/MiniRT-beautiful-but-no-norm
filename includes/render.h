@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_props.h                                     :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 13:48:26 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/06 14:42:50 by dhubleur         ###   ########.fr       */
+/*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
+/*   Updated: 2022/10/06 14:43:35 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WINDOW_PROPS_H
-# define WINDOW_PROPS_H
+#ifndef RENDER_H
+# define RENDER_H
 
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
-# define WINDOW_NAME "MiniRT"
+# include "structures.h"
+# include "window_props.h"
 
-# include "mlx.h"
-# include <stdlib.h>
-# include <stdbool.h>
-
-typedef struct s_mlx
+typedef struct s_params
 {
-	void	*mlx;
-	void	*win;
-}	t_mlx;
-
-bool	init_mlx(t_mlx *mlx);
+	t_parsing	*parsing;
+	t_mlx		*mlx;
+}	t_params;
 
 #endif

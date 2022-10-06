@@ -30,6 +30,7 @@ SRCS		=	main.c \
 				$(addprefix render/, \
 					events.c \
 					mlx_utils.c \
+					render_manager.c \
 				)
 
 
