@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/06 15:49:23 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:15:11 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_point	canvas_to_viewport(float x, float y, t_render_infos	render_infos)
 {
 	t_point	p;
 
+	x -= WINDOW_WIDTH / 2;
+	y -= WINDOW_HEIGHT / 2;
 	p = (t_point){x * render_infos.vw / WINDOW_WIDTH, y
 		* render_infos.vh / WINDOW_HEIGHT, render_infos.distance};
 	return (p);
@@ -77,11 +79,11 @@ void	render_image(t_params *params)
 	t_generic_object	*intersect;
 
 	init_render(&render_infos, params);
-	canvas_x = -(WINDOW_WIDTH / 2) - 1;
-	canvas_y = -(WINDOW_HEIGHT / 2) - 1;
-	while (++canvas_x <= WINDOW_WIDTH / 2)
+	canvas_x = -1;
+	canvas_y = -1;
+	while (++canvas_x <= WINDOW_WIDTH)
 	{
-		while (++canvas_y <= WINDOW_HEIGHT / 2)
+		while (++canvas_y <= WINDOW_HEIGHT)
 		{
 			ray.base = render_infos.origin;
 			ray.vec = matrix_mult_point(render_infos.rotation_matrix,
@@ -92,7 +94,7 @@ void	render_image(t_params *params)
 			{
 				printf("Hitted\n");
 				t_sphere_object *sphere = intersect->specific_object;
-				my_pixel_put(params->mlx, canvas_x + WINDOW_WIDTH/2, canvas_y + WINDOW_HEIGHT/2, encode_rgb(sphere->color_r, sphere->color_g, sphere->color_b), false);
+				my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(sphere->color_r, sphere->color_g, sphere->color_b), false);
 			}
 		}
 		canvas_y = -(WINDOW_HEIGHT / 2) - 1;
