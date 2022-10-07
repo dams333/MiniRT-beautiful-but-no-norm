@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/07 16:15:11 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:16:28 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	render_image(t_params *params)
 				my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(sphere->color_r, sphere->color_g, sphere->color_b), false);
 			}
 		}
-		canvas_y = -(WINDOW_HEIGHT / 2) - 1;
+		canvas_y = -1;
 	}
 	my_pixel_put(params->mlx, 0, 0, 0, true);
 	printf("End of render !\n");
