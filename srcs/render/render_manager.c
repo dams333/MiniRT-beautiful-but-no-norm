@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/07 16:16:28 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:08:07 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,24 @@ void	render_image(t_params *params)
 	int					canvas_x;
 	int					canvas_y;
 	t_ray				ray;
-	t_generic_object	*intersect;
+	t_obj_intersection	intersect;
 
 	init_render(&render_infos, params);
 	canvas_x = -1;
 	canvas_y = -1;
+	
+	//TEST
+	t_generic_object *obj = params->parsing->hittables;
+	int	i = 0;
+	while(obj)
+	{
+		printf("%i\n", obj->type);
+		i++;
+		obj = obj->next;
+	}
+	printf("There is %i hittables\n", i);
+	//
+
 	while (++canvas_x <= WINDOW_WIDTH)
 	{
 		while (++canvas_y <= WINDOW_HEIGHT)
@@ -90,10 +103,10 @@ void	render_image(t_params *params)
 					canvas_to_viewport(canvas_x, canvas_y, render_infos));
 			normalize(&(ray.vec));
 			intersect = get_intersecting_obj(ray, params->parsing->hittables);
-			if (intersect != NULL)
+			if (intersect.intersected != NULL)
 			{
 				printf("Hitted\n");
-				t_sphere_object *sphere = intersect->specific_object;
+				t_sphere_object *sphere = intersect.intersected->specific_object;
 				my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(sphere->color_r, sphere->color_g, sphere->color_b), false);
 			}
 		}
