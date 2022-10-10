@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:11:31 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:23:18 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,28 @@ void	compute_specular_lightning(t_obj_intersection intersection,
 		eye_direction);
 }
 
+bool	in_shadow(t_obj_intersection intersection,
+	t_parsing *parsing, t_light_object *light)
+{
+	t_ray				ray;
+	t_obj_intersection	shadow_intersect;
+
+	ray.base = intersection.intersection;
+	vector_substract(&(ray.vec),
+		(t_point){light->coord_x, light->coord_y, light->coord_z},
+		intersection.intersection);
+	shadow_intersect = get_intersecting_obj(ray, parsing->hittables);
+	if (shadow_intersect.intersected)
+	{
+		if (distance(shadow_intersect.intersection, intersection.intersection)
+			< distance((t_point){light->coord_x, light->coord_y,
+				light->coord_z},
+			intersection.intersection))
+			return (true);
+	}
+	return (false);
+}
+
 void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 	float obj[3], float res[3], t_vector normal)
 {
@@ -134,10 +156,13 @@ void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 	{
 		if (light->type == LIGHT)
 		{
-			compute_diffuse_lightning(intersection, normal,
-				light->specific_object, obj, res);
-			compute_specular_lightning(intersection, normal,
-				light->specific_object, parsing->camera, obj, res);
+			if (!in_shadow(intersection, parsing, light->specific_object))
+			{
+				compute_diffuse_lightning(intersection, normal,
+					light->specific_object, obj, res);
+				compute_specular_lightning(intersection, normal,
+					light->specific_object, parsing->camera, obj, res);
+			}
 		}
 		light = light->next;
 	}
