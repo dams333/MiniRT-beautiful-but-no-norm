@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 14:01:14 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:12:00 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	get_obj_color(float color[3], t_generic_object *intersected)
 t_vector	compute_normal(t_obj_intersection intersection)
 {
 	t_sphere_object	*sphere;
+	t_plane_object	*plane;
 	t_vector		normal;
 
 	if (intersection.intersected->type == SPHERE)
@@ -47,6 +48,12 @@ t_vector	compute_normal(t_obj_intersection intersection)
 		sphere = intersection.intersected->specific_object;
 		vector_substract(&normal, intersection.intersection,
 			(t_point){sphere->coord_x, sphere->coord_y, sphere->coord_z});
+	}
+	if (intersection.intersected->type == PLANE)
+	{
+		plane = intersection.intersected->specific_object;
+		normal = (t_vector){plane->orientation_x, plane->orientation_y,
+			plane->orientation_z};
 	}
 	normalize(&normal);
 	return (normal);
