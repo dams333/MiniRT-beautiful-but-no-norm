@@ -30,6 +30,9 @@ SRCS		=	main.c \
 				$(addprefix render/, \
 					events.c \
 					mlx_utils.c \
+				) \
+				$(addprefix checkerboard/, \
+					is_filled.c \
 				)
 
 

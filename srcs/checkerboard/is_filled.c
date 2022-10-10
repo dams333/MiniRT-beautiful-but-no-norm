@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkerboard.h                                     :+:      :+:    :+:   */
+/*   is_filled.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 17:16:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/10 17:30:56 by jmaia            ###   ###               */
+/*   Created: 2022/10/10 17:32:05 by jmaia             #+#    #+#             */
+/*   Updated: 2022/10/10 17:38:42 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKERBOARD_H
-# define CHECKERBOARD_H
+#include "checkerboard.h"
 
-typedef struct s_checkerboard
+int	is_filled(t_checkerboard checkerboard, double x, double y)
 {
-	int	height;
-	int	width;
-	int	color_r;
-	int	color_g;
-	int	color_b;
-}	t_checkerboard;
+	int	check_x;
+	int	check_y;
 
-int	is_filled(t_checkerboard checkerboard, double x, double y);
-
-#endif
+	check_x = x * checkerboard.width;
+	check_y = y * checkerboard.height;
+	return ((check_x + check_y) % 2);
+}
