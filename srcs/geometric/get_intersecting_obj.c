@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/04 13:22:09 by jmaia            ###   ###               */
+/*   Updated: 2022/10/10 14:00:00 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_obj_intersection	get_intersecting_obj(t_ray ray, t_generic_object *objs)
 		}
 		cur_obj = cur_obj->next;
 	}
+	if (!obj_intersection.intersected)
+		return (obj_intersection);
 	t = get_intersecting_time_through_ray(ray, obj_intersection.intersected);
 	obj_intersection.intersection = get_point_through_ray_at_time(ray, t);
 	return (obj_intersection);
