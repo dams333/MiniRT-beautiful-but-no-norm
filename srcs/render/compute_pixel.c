@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 15:50:13 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:56:14 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ void	compute_specular_lightning(t_obj_intersection intersection,
 	t_vector	light_direction;
 	t_vector	eye_direction;
 
-	vector_substract(&light_direction, (t_point){light->coord_x, light->coord_y,
-		light->coord_z}, intersection.intersection);
+	vector_substract(&light_direction, intersection.intersection, (t_point){light->coord_x, light->coord_y, light->coord_z});
 	normalize(&light_direction);
 	multiply_by_scalar(&(intersection.normal),
 		2 * dot_product(light_direction, intersection.normal));
