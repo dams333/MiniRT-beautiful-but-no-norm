@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:35:42 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:42:35 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	compute_pixel(t_params *params, t_obj_intersection intersection,
 	color[0] = 0;
 	color[1] = 0;
 	color[2] = 0;
-	get_obj_color(color, intersection.intersected);
+	get_obj_color(obj, intersection.intersected);
 	normal = compute_normal(intersection);
 	compute_color(params->parsing, intersection, obj, color, normal);
 	my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(obj[0] * color[0], obj[1] * color[1], obj[2] * color[2]), false);

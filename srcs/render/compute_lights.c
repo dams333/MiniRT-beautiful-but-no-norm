@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:37:30 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:41:49 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void	get_obj_color(float color[3], t_generic_object *intersected)
 {
 	if (intersected->type == SPHERE)
 	{
-		color[0] = ((t_sphere_object *) intersected->specific_object)->color_r;
-		color[1] = ((t_sphere_object *) intersected->specific_object)->color_g;
-		color[2] = ((t_sphere_object *) intersected->specific_object)->color_b;
+		color[0] = ((t_sphere_object *)intersected->specific_object)->color_r;
+		color[1] = ((t_sphere_object *)intersected->specific_object)->color_g;
+		color[2] = ((t_sphere_object *)intersected->specific_object)->color_b;
 	}
 	if (intersected->type == CYLINDER)
 	{
-		color[0] = ((t_cylinder_object *) intersected->specific_object)->color_r;
-		color[1] = ((t_cylinder_object *) intersected->specific_object)->color_g;
-		color[2] = ((t_cylinder_object *) intersected->specific_object)->color_b;
+		color[0] = ((t_cylinder_object *)intersected->specific_object)->color_r;
+		color[1] = ((t_cylinder_object *)intersected->specific_object)->color_g;
+		color[2] = ((t_cylinder_object *)intersected->specific_object)->color_b;
 	}
 	if (intersected->type == PLANE)
 	{
-		color[0] = ((t_plane_object *) intersected->specific_object)->color_r;
-		color[1] = ((t_plane_object *) intersected->specific_object)->color_g;
-		color[2] = ((t_plane_object *) intersected->specific_object)->color_b;
+		color[0] = ((t_plane_object *)intersected->specific_object)->color_r;
+		color[1] = ((t_plane_object *)intersected->specific_object)->color_g;
+		color[2] = ((t_plane_object *)intersected->specific_object)->color_b;
 	}
 	color[0] /= 255;
 	color[1] /= 255;
