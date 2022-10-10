@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/03 14:29:50 by jmaia            ###   ###               */
+/*   Updated: 2022/10/10 13:57:12 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_generic_object
 
 typedef struct s_ambient_lightning_object
 {
-	float	lightning_ratio;
+	double	lightning_ratio;
 	int		color_r;
 	int		color_g;
 	int		color_b;
@@ -43,21 +43,21 @@ typedef struct s_ambient_lightning_object
 
 typedef struct s_camera_object
 {
-	float	coord_x;
-	float	coord_y;
-	float	coord_z;
-	float	orientation_x;
-	float	orientation_y;
-	float	orientation_z;
+	double	coord_x;
+	double	coord_y;
+	double	coord_z;
+	double	orientation_x;
+	double	orientation_y;
+	double	orientation_z;
 	int		horizontal_fov;
 }	t_camera_object;
 
 typedef struct s_light_object
 {
-	float	coord_x;
-	float	coord_y;
-	float	coord_z;
-	float	brightness_ratio;
+	double	coord_x;
+	double	coord_y;
+	double	coord_z;
+	double	brightness_ratio;
 	int		color_r;
 	int		color_g;
 	int		color_b;
@@ -65,10 +65,10 @@ typedef struct s_light_object
 
 typedef struct s_sphere_object
 {
-	float	coord_x;
-	float	coord_y;
-	float	coord_z;
-	float	diameter;
+	double	coord_x;
+	double	coord_y;
+	double	coord_z;
+	double	diameter;
 	int		color_r;
 	int		color_g;
 	int		color_b;
@@ -83,13 +83,13 @@ typedef struct s_sphere
 
 typedef struct s_plane_object
 {
-	float	coord_x;
-	float	coord_y;
-	float	coord_z;
-	float	d;
-	float	orientation_x;
-	float	orientation_y;
-	float	orientation_z;
+	double	coord_x;
+	double	coord_y;
+	double	coord_z;
+	double	d;
+	double	orientation_x;
+	double	orientation_y;
+	double	orientation_z;
 	int		color_r;
 	int		color_g;
 	int		color_b;
@@ -104,14 +104,14 @@ typedef struct s_plane
 
 typedef struct s_cylinder_object
 {
-	float	coord_x;
-	float	coord_y;
-	float	coord_z;
-	float	orientation_x;
-	float	orientation_y;
-	float	orientation_z;
-	float	diameter;
-	float	height;
+	double	coord_x;
+	double	coord_y;
+	double	coord_z;
+	double	orientation_x;
+	double	orientation_y;
+	double	orientation_z;
+	double	diameter;
+	double	height;
 	int		color_r;
 	int		color_g;
 	int		color_b;

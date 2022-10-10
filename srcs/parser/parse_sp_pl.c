@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:26:02 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 14:09:13 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:58:25 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ bool	parse_sphere(char **args, t_parsing *parsing)
 	obj = ft_calloc(1, sizeof(t_sphere_object));
 	if (!obj)
 		return (ft_putendl_fd(MALLOC_ERROR, 2), false);
-	if (!parse_three_floats(args[1], &(obj->coord_x), &(obj->coord_y),
+	if (!parse_three_doubles(args[1], &(obj->coord_x), &(obj->coord_y),
 			&(obj->coord_z)))
 		return (free(obj), false);
-	if (!parse_float(args[2], &(obj->diameter)))
+	if (!parse_double(args[2], &(obj->diameter)))
 		return (free(obj), false);
 	if (obj->diameter < 0)
 	{
@@ -90,10 +90,10 @@ bool	parse_plane(char **args, t_parsing *parsing)
 	obj = ft_calloc(1, sizeof(t_plane_object));
 	if (!obj)
 		return (ft_putendl_fd(MALLOC_ERROR, 2), false);
-	if (!parse_three_floats(args[1], &(obj->coord_x), &(obj->coord_y),
+	if (!parse_three_doubles(args[1], &(obj->coord_x), &(obj->coord_y),
 			&(obj->coord_z)))
 		return (free(obj), false);
-	if (!parse_three_floats(args[2], &(obj->orientation_x),
+	if (!parse_three_doubles(args[2], &(obj->orientation_x),
 			&(obj->orientation_y), &(obj->orientation_z)))
 		return (free(obj), false);
 	if (obj->orientation_x < -1 || obj->orientation_x > 1

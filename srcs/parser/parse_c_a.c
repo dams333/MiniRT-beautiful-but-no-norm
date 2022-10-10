@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:41:06 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 13:55:12 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:58:02 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ bool	parse_camera(char **args, t_parsing *parsing)
 	obj = ft_calloc(1, sizeof(t_camera_object));
 	if (!obj)
 		return (ft_putendl_fd(MALLOC_ERROR, 2), false);
-	if (!parse_three_floats(args[1], &(obj->coord_x), &(obj->coord_y),
+	if (!parse_three_doubles(args[1], &(obj->coord_x), &(obj->coord_y),
 			&(obj->coord_z)))
 		return (free(obj), false);
-	if (!parse_three_floats(args[2], &(obj->orientation_x),
+	if (!parse_three_doubles(args[2], &(obj->orientation_x),
 			&(obj->orientation_y), &(obj->orientation_z)))
 		return (free(obj), false);
 	if (obj->orientation_x < -1 || obj->orientation_x > 1
@@ -98,7 +98,7 @@ bool	parse_ambient_lightning(char **args, t_parsing *parsing)
 	obj = ft_calloc(1, sizeof(t_ambient_lightning_object));
 	if (!obj)
 		return (ft_putendl_fd(MALLOC_ERROR, 2), false);
-	if (!parse_float(args[1], &(obj->lightning_ratio)))
+	if (!parse_double(args[1], &(obj->lightning_ratio)))
 		return (free(obj), false);
 	if (obj->lightning_ratio < 0 || obj->lightning_ratio > 1)
 	{
