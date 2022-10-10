@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 16:51:09 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:57:53 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,5 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 			* n_dot_l * tables->obj[1];
 		tables->res[2] += light->brightness_ratio * (light->color_b / 255)
 			* n_dot_l * tables->obj[2];
-	}
-	else if(intersection.intersected->type == SPHERE)
-	{
-		t_sphere	*sphere = intersection.intersected->specific_object;
-		printf("%i %i %i\n", sphere->color_r, sphere->color_g, sphere->color_b);
 	}
 }
