@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 12:06:36 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:11:31 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,50 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 	}
 }
 
+void	compute_specular_lightning_2(t_light_object light, float obj[3],
+	float res[3], t_vector	reflected_directions, t_vector	eye_direction)
+{
+	float	specular_color[3];
+	float	p;
+	float	n;
+
+	p = 0.5;
+	n = 400;
+	specular_color[0] = (1 - p) * obj[0] + p;
+	specular_color[1] = (1 - p) * obj[1] + p;
+	specular_color[2] = (1 - p) * obj[2] + p;
+	res[0] += light.brightness_ratio * (light.color_r / 255)
+		* powf(dot_product(reflected_directions, eye_direction), n)
+		* specular_color[0];
+	res[1] += light.brightness_ratio * (light.color_g / 255)
+		* powf(dot_product(reflected_directions, eye_direction), n)
+		* specular_color[1];
+	res[2] += light.brightness_ratio * (light.color_b / 255)
+		* powf(dot_product(reflected_directions, eye_direction), n)
+		* specular_color[2];
+}
+
+void	compute_specular_lightning(t_obj_intersection intersection,
+	t_vector normal, t_light_object light, t_camera_object camera,
+	float obj[3], float res[3])
+{
+	t_vector	reflected_directions;
+	t_vector	light_direction;
+	t_vector	eye_direction;
+
+	vector_substract(&light_direction, (t_point){light.coord_x, light.coord_y,
+		light.coord_z}, intersection.intersection);
+	normalize(&light_direction);
+	vector_add(&reflected_directions, light_direction,
+		multiply_by_scalar(normal, 2 * dot_product(light_direction, normal)));
+	normalize(&reflected_directions);
+	vector_substract(&eye_direction, (t_point){camera.coord_x,
+		camera.coord_y, camera.coord_z}, intersection.intersection);
+	normalize(&eye_direction);
+	compute_specular_lightning_2(light, obj, res, reflected_directions,
+		eye_direction);
+}
+
 void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 	float obj[3], float res[3], t_vector normal)
 {
@@ -92,6 +136,8 @@ void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 		{
 			compute_diffuse_lightning(intersection, normal,
 				light->specific_object, obj, res);
+			compute_specular_lightning(intersection, normal,
+				light->specific_object, parsing->camera, obj, res);
 		}
 		light = light->next;
 	}
