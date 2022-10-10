@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 16:57:53 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:20:43 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 	float		n_dot_l;
 	t_vector	light_direction;
 
-	vector_substract(&light_direction, intersection.intersection, (t_point){light->coord_x, light->coord_y, light->coord_z});
+	vector_substract(&light_direction, intersection.intersection,
+		(t_point){light->coord_x, light->coord_y, light->coord_z});
 	normalize(&light_direction);
 	n_dot_l = dot_product(normal, light_direction);
 	if (n_dot_l > 0)
