@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:31:26 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:03:50 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct s_params
 	t_mlx		*mlx;
 }	t_params;
 
+typedef struct s_tables
+{
+	float	res[3];
+	float	obj[3];
+}	t_tables;
+
 void		render_image(t_params *params);
 void		compute_pixel(t_params *params, t_obj_intersection intersection,
 				int canvas_x, int canvas_y);
@@ -43,6 +49,6 @@ void		get_obj_color(float color[3], t_generic_object *intersected);
 t_vector	compute_normal(t_obj_intersection intersection);
 void		compute_diffuse_lightning(t_obj_intersection intersection,
 				t_vector normal, t_light_object *light,
-				float obj[3], float res[3]);
+				t_tables tables);
 
 #endif

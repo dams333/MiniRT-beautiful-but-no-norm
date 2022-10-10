@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:41:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:01:14 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_vector	compute_normal(t_obj_intersection intersection)
 }
 
 void	compute_diffuse_lightning(t_obj_intersection intersection,
-	t_vector normal, t_light_object *light, float obj[3], float res[3])
+	t_vector normal, t_light_object *light, t_tables tables)
 {
 	float		n_dot_l;
 	t_vector	light_direction;
@@ -65,11 +65,11 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 	n_dot_l = dot_product(normal, light_direction);
 	if (n_dot_l > 0)
 	{
-		res[0] += light->brightness_ratio * (light->color_r / 255)
-			* n_dot_l * obj[0];
-		res[1] += light->brightness_ratio * (light->color_g / 255)
-			* n_dot_l * obj[1];
-		res[2] += light->brightness_ratio * (light->color_b / 255)
-			* n_dot_l * obj[2];
+		tables.res[0] += light->brightness_ratio * (light->color_r / 255)
+			* n_dot_l * tables.obj[0];
+		tables.res[1] += light->brightness_ratio * (light->color_g / 255)
+			* n_dot_l * tables.obj[1];
+		tables.res[2] += light->brightness_ratio * (light->color_b / 255)
+			* n_dot_l * tables.obj[2];
 	}
 }

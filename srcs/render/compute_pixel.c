@@ -6,14 +6,14 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:42:35 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:06:48 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	compute_specular_lightning_2(t_light_object *light, float obj[3],
-	float res[3], t_vector	reflected_directions, t_vector	eye_direction)
+void	compute_specular_lightning_2(t_light_object *light, t_tables tables,
+	t_vector	reflected_directions, t_vector	eye_direction)
 {
 	float	specular_color[3];
 	float	p;
@@ -21,23 +21,23 @@ void	compute_specular_lightning_2(t_light_object *light, float obj[3],
 
 	p = 0.5;
 	n = 400;
-	specular_color[0] = (1 - p) * obj[0] + p;
-	specular_color[1] = (1 - p) * obj[1] + p;
-	specular_color[2] = (1 - p) * obj[2] + p;
-	res[0] += light->brightness_ratio * (light->color_r / 255)
+	specular_color[0] = (1 - p) * tables.obj[0] + p;
+	specular_color[1] = (1 - p) * tables.obj[1] + p;
+	specular_color[2] = (1 - p) * tables.obj[2] + p;
+	tables.res[0] += light->brightness_ratio * (light->color_r / 255)
 		* powf(dot_product(reflected_directions, eye_direction), n)
 		* specular_color[0];
-	res[1] += light->brightness_ratio * (light->color_g / 255)
+	tables.res[1] += light->brightness_ratio * (light->color_g / 255)
 		* powf(dot_product(reflected_directions, eye_direction), n)
 		* specular_color[1];
-	res[2] += light->brightness_ratio * (light->color_b / 255)
+	tables.res[2] += light->brightness_ratio * (light->color_b / 255)
 		* powf(dot_product(reflected_directions, eye_direction), n)
 		* specular_color[2];
 }
 
 void	compute_specular_lightning(t_obj_intersection intersection,
-	t_vector normal, t_light_object *light, t_camera_object *camera,
-	float obj[3], float res[3])
+	t_light_object *light, t_camera_object *camera,
+	t_tables tables)
 {
 	t_vector	reflected_directions;
 	t_vector	light_direction;
@@ -46,13 +46,14 @@ void	compute_specular_lightning(t_obj_intersection intersection,
 	vector_substract(&light_direction, (t_point){light->coord_x, light->coord_y,
 		light->coord_z}, intersection.intersection);
 	normalize(&light_direction);
-	multiply_by_scalar(&normal, 2 * dot_product(light_direction, normal));
-	vector_add(&reflected_directions, light_direction, normal);
+	multiply_by_scalar(&(intersection.normal),
+		2 * dot_product(light_direction, intersection.normal));
+	vector_add(&reflected_directions, light_direction, intersection.normal);
 	normalize(&reflected_directions);
 	vector_substract(&eye_direction, (t_point){camera->coord_x,
 		camera->coord_y, camera->coord_z}, intersection.intersection);
 	normalize(&eye_direction);
-	compute_specular_lightning_2(light, obj, res, reflected_directions,
+	compute_specular_lightning_2(light, tables, reflected_directions,
 		eye_direction);
 }
 
@@ -79,16 +80,16 @@ bool	in_shadow(t_obj_intersection intersection,
 }
 
 void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
-	float obj[3], float res[3], t_vector normal)
+	t_tables tables, t_vector normal)
 {
 	t_generic_object	*light;
 
-	res[0] += parsing->ambient_lightning->lightning_ratio
-		* (parsing->ambient_lightning->color_r / 255) * res[0];
-	res[1] += parsing->ambient_lightning->lightning_ratio
-		* (parsing->ambient_lightning->color_g / 255) * res[1];
-	res[2] += parsing->ambient_lightning->lightning_ratio
-		* (parsing->ambient_lightning->color_b / 255) * res[2];
+	tables.res[0] += parsing->ambient_lightning->lightning_ratio
+		* (parsing->ambient_lightning->color_r / 255) * tables.obj[0];
+	tables.res[1] += parsing->ambient_lightning->lightning_ratio
+		* (parsing->ambient_lightning->color_g / 255) * tables.obj[1];
+	tables.res[2] += parsing->ambient_lightning->lightning_ratio
+		* (parsing->ambient_lightning->color_b / 255) * tables.obj[2];
 	light = parsing->lights;
 	while (light)
 	{
@@ -97,10 +98,10 @@ void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 			if (!in_shadow(intersection, parsing, light->specific_object))
 			{
 				compute_diffuse_lightning(intersection, normal,
-					(t_light_object *) light->specific_object, obj, res);
-				compute_specular_lightning(intersection, normal,
+					(t_light_object *) light->specific_object, tables);
+				compute_specular_lightning(intersection,
 					(t_light_object *) light->specific_object, parsing->camera,
-					obj, res);
+					tables);
 			}
 		}
 		light = light->next;
@@ -138,15 +139,15 @@ static void my_pixel_put(t_mlx *mlx_object, int x, int y, int color, bool put)
 void	compute_pixel(t_params *params, t_obj_intersection intersection,
 	int canvas_x, int canvas_y)
 {
-	float		color[3];
-	float		obj[3];
 	t_vector	normal;
+	t_tables	tables;
 
-	color[0] = 0;
-	color[1] = 0;
-	color[2] = 0;
-	get_obj_color(obj, intersection.intersected);
+	tables.res[0] = 0;
+	tables.res[1] = 0;
+	tables.res[2] = 0;
+	get_obj_color(tables.obj, intersection.intersected);
 	normal = compute_normal(intersection);
-	compute_color(params->parsing, intersection, obj, color, normal);
-	my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(obj[0] * color[0], obj[1] * color[1], obj[2] * color[2]), false);
+	intersection.normal = normal;
+	compute_color(params->parsing, intersection, tables, normal);
+	my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(tables.obj[0] * tables.res[0], tables.obj[1] * tables.res[1], tables.obj[2] * tables.res[2]), false);
 }
