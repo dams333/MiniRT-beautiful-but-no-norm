@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:19:32 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 14:21:32 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:57:47 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	split_error(char **split, char *str, int *entire, int *fractional)
 	return (true);
 }
 
-bool	parse_float(char *str, float *value)
+bool	parse_double(char *str, double *value)
 {
 	char	**split;
 	int		entire;
@@ -62,8 +62,8 @@ bool	parse_float(char *str, float *value)
 	if (fractional == 0)
 		*value = entire;
 	else
-		*value = entire + (((float) fractional)
-				/ ((float) pow(10, ft_strlen(split[1]))));
+		*value = entire + (((double) fractional)
+				/ ((double) pow(10, ft_strlen(split[1]))));
 	*value *= sign;
 	free_split(split);
 	return (true);
@@ -90,8 +90,8 @@ bool	parse_int(char *str, int *value)
 	return (true);
 }
 
-bool	parse_three_floats(char *str, float *value1,
-			float *value2, float *value3)
+bool	parse_three_doubles(char *str, double *value1,
+			double *value2, double *value3)
 {
 	char	**split;
 
@@ -104,11 +104,11 @@ bool	parse_three_floats(char *str, float *value1,
 		ft_putendl_fd("Error\nImpossible to parse 3 floats comma separated", 2);
 		return (free_split(split), false);
 	}
-	if (!parse_float(split[0], value1))
+	if (!parse_double(split[0], value1))
 		return (free_split(split), false);
-	if (!parse_float(split[1], value2))
+	if (!parse_double(split[1], value2))
 		return (free_split(split), false);
-	if (!parse_float(split[2], value3))
+	if (!parse_double(split[2], value3))
 		return (free_split(split), false);
 	free_split(split);
 	return (true);

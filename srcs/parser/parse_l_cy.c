@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 13:55:21 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 14:09:43 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:04:45 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ bool	parse_light(char **args, t_parsing *parsing)
 	obj = ft_calloc(1, sizeof(t_light_object));
 	if (!obj)
 		return (ft_putendl_fd(MALLOC_ERROR, 2), false);
-	if (!parse_three_floats(args[1], &(obj->coord_x), &(obj->coord_y),
+	if (!parse_three_doubles(args[1], &(obj->coord_x), &(obj->coord_y),
 			&(obj->coord_z)))
 		return (free(obj), false);
-	if (!parse_float(args[2], &(obj->brightness_ratio)))
+	if (!parse_double(args[2], &(obj->brightness_ratio)))
 		return (free(obj), false);
 	if (obj->brightness_ratio < 0 || obj->brightness_ratio > 1)
 	{
@@ -70,14 +70,14 @@ bool	parse_light(char **args, t_parsing *parsing)
 }
 
 bool	parse_cylinder_2(char **args, t_parsing *parsing,
-			t_cylinder_object *obj)
+			t_cylinder *obj)
 {
 	if (obj->diameter < 0)
 	{
 		free(obj);
 		return (ft_putendl_fd(CYLINDER_ERROR_DIAMETER, 2), false);
 	}
-	if (!parse_float(args[4], &(obj->height)))
+	if (!parse_double(args[4], &(obj->height)))
 		return (free(obj), false);
 	if (obj->height < 0)
 	{
@@ -100,27 +100,27 @@ bool	parse_cylinder_2(char **args, t_parsing *parsing,
 
 bool	parse_cylinder(char **args, t_parsing *parsing)
 {
-	t_cylinder_object	*obj;
+	t_cylinder	*obj;
 
 	if (get_split_size(args) != 6)
 		return (ft_putendl_fd(CYLINDER_ERROR_ARGS, 2), false);
-	obj = ft_calloc(1, sizeof(t_cylinder_object));
+	obj = ft_calloc(1, sizeof(t_cylinder));
 	if (!obj)
 		return (ft_putendl_fd(MALLOC_ERROR, 2), false);
-	if (!parse_three_floats(args[1], &(obj->coord_x), &(obj->coord_y),
-			&(obj->coord_z)))
+	if (!parse_three_doubles(args[1], &(obj->pos.x), &(obj->pos.y),
+			&(obj->pos.z)))
 		return (free(obj), false);
-	if (!parse_three_floats(args[2], &(obj->orientation_x),
-			&(obj->orientation_y), &(obj->orientation_z)))
+	if (!parse_three_doubles(args[2], &(obj->orientation.x),
+			&(obj->orientation.y), &(obj->orientation.z)))
 		return (free(obj), false);
-	if (obj->orientation_x < -1 || obj->orientation_x > 1
-		|| obj->orientation_y < -1 || obj->orientation_y > 1
-		|| obj->orientation_z < -1 || obj->orientation_z > 1)
+	if (obj->orientation.x < -1 || obj->orientation.x > 1
+		|| obj->orientation.y < -1 || obj->orientation.y > 1
+		|| obj->orientation.z < -1 || obj->orientation.z > 1)
 	{
 		free(obj);
 		return (ft_putendl_fd(CYLINDER_ERROR_ORIENTATION, 2), false);
 	}
-	if (!parse_float(args[3], &(obj->diameter)))
+	if (!parse_double(args[3], &(obj->diameter)))
 		return (free(obj), false);
 	return (parse_cylinder_2(args, parsing, obj));
 }
