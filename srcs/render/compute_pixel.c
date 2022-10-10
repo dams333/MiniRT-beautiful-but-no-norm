@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 14:58:28 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:06:30 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,17 +112,12 @@ void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 	}
 }
 
-static int	encode_rgb(int red, int green, int blue)
-{
-	return (red << 16 | green << 8 | blue);
-}
-
 void	compute_pixel(t_params *params, t_obj_intersection intersection,
 	int canvas_x, int canvas_y)
 {
 	t_vector	normal;
 	t_tables	tables;
-	
+
 	tables.res[0] = 0;
 	tables.res[1] = 0;
 	tables.res[2] = 0;
@@ -130,11 +125,13 @@ void	compute_pixel(t_params *params, t_obj_intersection intersection,
 	normal = compute_normal(intersection);
 	intersection.normal = normal;
 	compute_color(params->parsing, intersection, &tables, normal);
-	if(tables.res[0] > 1)
+	if (tables.res[0] > 1)
 		tables.res[0] = 1;
-	if(tables.res[1] > 1)
+	if (tables.res[1] > 1)
 		tables.res[1] = 1;
-	if(tables.res[2] > 1)
+	if (tables.res[2] > 1)
 		tables.res[2] = 1;
-	my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(tables.obj[0] * tables.res[0] * 255, tables.obj[1] * tables.res[1] * 255, tables.obj[2] * tables.res[2] * 255), false);
+	register_pixel(params->mlx, canvas_x, canvas_y, encode_rgb(tables.obj[0]
+			* tables.res[0] * 255, tables.obj[1] * tables.res[1] * 255,
+			tables.obj[2] * tables.res[2] * 255));
 }

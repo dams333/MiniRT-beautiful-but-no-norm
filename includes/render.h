@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 14:21:13 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:08:49 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_vector	compute_normal(t_obj_intersection intersection);
 void		compute_diffuse_lightning(t_obj_intersection intersection,
 				t_vector normal, t_light_object *light,
 				t_tables *tables);
-void		my_pixel_put(t_mlx *mlx_object, int x, int y, int color, bool put);
+int			encode_rgb(int red, int green, int blue);
+void		register_pixel(t_mlx *mlx, int x, int y, int color);
+void		put_image(t_mlx *mlx);
 
 #endif
