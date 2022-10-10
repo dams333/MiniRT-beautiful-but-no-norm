@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:35:35 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:57:23 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_point	canvas_to_viewport(float x, float y, t_render_infos	render_infos)
 	return (p);
 }
 
-static void my_pixel_put(t_mlx *mlx_object, int x, int y, int color, bool put)
+void my_pixel_put(t_mlx *mlx_object, int x, int y, int color, bool put)
 {
 	int useless;
 
@@ -92,9 +92,9 @@ void	render_image(t_params *params)
 			intersect = get_intersecting_obj(ray, params->parsing->hittables);
 			if (intersect.intersected != NULL)
 			{
-				printf("Hitted\n");
-				t_sphere_object *sphere = intersect.intersected->specific_object;
-				my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(sphere->color_r, sphere->color_g, sphere->color_b), false);
+				compute_pixel(params, intersect, canvas_x, canvas_y);
+				//t_plane *plane = intersect.intersected->specific_object;
+				//my_pixel_put(params->mlx, canvas_x, canvas_y, encode_rgb(plane->color_r, plane->color_g, plane->color_b), false);
 			}
 		}
 		canvas_y = -1;

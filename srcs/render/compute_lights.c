@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 14:12:00 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:54:24 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void	get_obj_color(float color[3], t_generic_object *intersected)
 {
 	if (intersected->type == SPHERE)
 	{
-		color[0] = ((t_sphere_object *)intersected->specific_object)->color_r;
-		color[1] = ((t_sphere_object *)intersected->specific_object)->color_g;
-		color[2] = ((t_sphere_object *)intersected->specific_object)->color_b;
+		color[0] = ((t_sphere *)intersected->specific_object)->color_r;
+		color[1] = ((t_sphere *)intersected->specific_object)->color_g;
+		color[2] = ((t_sphere *)intersected->specific_object)->color_b;
 	}
 	if (intersected->type == CYLINDER)
 	{
-		color[0] = ((t_cylinder_object *)intersected->specific_object)->color_r;
-		color[1] = ((t_cylinder_object *)intersected->specific_object)->color_g;
-		color[2] = ((t_cylinder_object *)intersected->specific_object)->color_b;
+		color[0] = ((t_cylinder *)intersected->specific_object)->color_r;
+		color[1] = ((t_cylinder *)intersected->specific_object)->color_g;
+		color[2] = ((t_cylinder *)intersected->specific_object)->color_b;
 	}
 	if (intersected->type == PLANE)
 	{
-		color[0] = ((t_plane_object *)intersected->specific_object)->color_r;
-		color[1] = ((t_plane_object *)intersected->specific_object)->color_g;
-		color[2] = ((t_plane_object *)intersected->specific_object)->color_b;
+		color[0] = ((t_plane *)intersected->specific_object)->color_r;
+		color[1] = ((t_plane *)intersected->specific_object)->color_g;
+		color[2] = ((t_plane *)intersected->specific_object)->color_b;
 	}
 	color[0] /= 255;
 	color[1] /= 255;
@@ -39,28 +39,28 @@ void	get_obj_color(float color[3], t_generic_object *intersected)
 
 t_vector	compute_normal(t_obj_intersection intersection)
 {
-	t_sphere_object	*sphere;
-	t_plane_object	*plane;
-	t_vector		normal;
+	t_sphere	*sphere;
+	t_plane		*plane;
+	t_vector	normal;
 
 	if (intersection.intersected->type == SPHERE)
 	{
 		sphere = intersection.intersected->specific_object;
 		vector_substract(&normal, intersection.intersection,
-			(t_point){sphere->coord_x, sphere->coord_y, sphere->coord_z});
+			(t_point){sphere->pos.x, sphere->pos.y, sphere->pos.z});
 	}
 	if (intersection.intersected->type == PLANE)
 	{
 		plane = intersection.intersected->specific_object;
-		normal = (t_vector){plane->orientation_x, plane->orientation_y,
-			plane->orientation_z};
+		normal = (t_vector){plane->orientation.x, plane->orientation.y,
+			plane->orientation.z};
 	}
 	normalize(&normal);
 	return (normal);
 }
 
 void	compute_diffuse_lightning(t_obj_intersection intersection,
-	t_vector normal, t_light_object *light, t_tables tables)
+	t_vector normal, t_light_object *light, t_tables *tables)
 {
 	float		n_dot_l;
 	t_vector	light_direction;
@@ -72,11 +72,11 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 	n_dot_l = dot_product(normal, light_direction);
 	if (n_dot_l > 0)
 	{
-		tables.res[0] += light->brightness_ratio * (light->color_r / 255)
-			* n_dot_l * tables.obj[0];
-		tables.res[1] += light->brightness_ratio * (light->color_g / 255)
-			* n_dot_l * tables.obj[1];
-		tables.res[2] += light->brightness_ratio * (light->color_b / 255)
-			* n_dot_l * tables.obj[2];
+		tables->res[0] += light->brightness_ratio * (light->color_r / 255)
+			* n_dot_l * tables->obj[0];
+		tables->res[1] += light->brightness_ratio * (light->color_g / 255)
+			* n_dot_l * tables->obj[1];
+		tables->res[2] += light->brightness_ratio * (light->color_b / 255)
+			* n_dot_l * tables->obj[2];
 	}
 }
