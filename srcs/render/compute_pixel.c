@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 15:06:30 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:30:04 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	compute_specular_lightning_2(t_light_object *light, t_tables *tables,
 	float	n;
 
 	p = 0.5;
-	n = 400;
+	n = 300;
 	specular_color[0] = (1 - p) * tables->obj[0] + p;
 	specular_color[1] = (1 - p) * tables->obj[1] + p;
 	specular_color[2] = (1 - p) * tables->obj[2] + p;
