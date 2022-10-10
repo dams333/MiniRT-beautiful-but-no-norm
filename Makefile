@@ -34,6 +34,7 @@ SRCS		=	main.c \
 					mlx_utils.c \
 					render_manager.c \
 					compute_pixel.c \
+					compute_lights.c \
 				)
 
 

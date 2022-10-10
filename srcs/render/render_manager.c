@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 11:19:56 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:35:35 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_point	canvas_to_viewport(float x, float y, t_render_infos	render_infos)
 	return (p);
 }
 
-void my_pixel_put(t_mlx *mlx_object, int x, int y, int color, bool put)
+static void my_pixel_put(t_mlx *mlx_object, int x, int y, int color, bool put)
 {
 	int useless;
 
@@ -65,7 +65,7 @@ void my_pixel_put(t_mlx *mlx_object, int x, int y, int color, bool put)
 	data[y * WINDOW_WIDTH + x] = color;
 }
 
-int	encode_rgb(int red, int green, int blue)
+static int	encode_rgb(int red, int green, int blue)
 {
 	return (red << 16 | green << 8 | blue);
 }
