@@ -6,11 +6,12 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/10 14:00:00 by jmaia            ###   ###               */
+/*   Updated: 2022/10/10 15:21:39 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <float.h>
+#include <math.h>
 
 #include "geometric.h"
 #include "get_intersecting_obj.h"
@@ -73,5 +74,7 @@ static double	get_intersecting_time_through_ray(t_ray ray,
 	else if (obj->type == CYLINDER)
 		t = get_intersecting_time_through_ray_with_cylinder(ray,
 				(t_cylinder *) obj->specific_object);
+	if (t < 0)
+		return (NAN);
 	return (t);
 }
