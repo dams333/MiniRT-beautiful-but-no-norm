@@ -33,6 +33,7 @@ SRCS		=	main.c \
 					events.c \
 					mlx_utils.c \
 					render_manager.c \
+					compute_pixel.c \
 				)
 
 
