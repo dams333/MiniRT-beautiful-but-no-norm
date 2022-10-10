@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 14:54:24 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:04:39 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ t_vector	compute_normal(t_obj_intersection intersection)
 	if (intersection.intersected->type == SPHERE)
 	{
 		sphere = intersection.intersected->specific_object;
-		vector_substract(&normal, intersection.intersection,
-			(t_point){sphere->pos.x, sphere->pos.y, sphere->pos.z});
+		vector_substract(&normal, sphere->pos, intersection.intersection);
 	}
 	if (intersection.intersected->type == PLANE)
 	{
@@ -65,8 +64,7 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 	float		n_dot_l;
 	t_vector	light_direction;
 
-	vector_substract(&light_direction, (t_point){light->coord_x, light->coord_y,
-		light->coord_z}, intersection.intersection);
+	vector_substract(&light_direction, intersection.intersection, (t_point){light->coord_x, light->coord_y, light->coord_z});
 	normalize(&light_direction);
 	normalize(&normal);
 	n_dot_l = dot_product(normal, light_direction);

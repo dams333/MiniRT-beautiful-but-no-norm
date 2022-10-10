@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 15:30:04 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:50:13 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 			{
 				compute_diffuse_lightning(intersection, normal,
 					(t_light_object *) light->specific_object, tables);
-				compute_specular_lightning(intersection,
+				/*compute_specular_lightning(intersection,
 					(t_light_object *) light->specific_object, parsing->camera,
-					tables);
+					tables);*/
 			}
 		}
 		light = light->next;
