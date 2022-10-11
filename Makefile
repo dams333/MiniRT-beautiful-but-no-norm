@@ -34,6 +34,7 @@ SRCS		=	main.c \
 				) \
 				$(addprefix checkerboard/, \
 					is_filled.c \
+					is_sp_filled.c \
 					to_checkerboard_pos.c \
 				)
 

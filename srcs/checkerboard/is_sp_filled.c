@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkerboard.h                                     :+:      :+:    :+:   */
+/*   is_sp_filled.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 17:16:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 12:09:55 by jmaia            ###   ########.fr       */
+/*   Created: 2022/10/11 12:07:44 by jmaia             #+#    #+#             */
+/*   Updated: 2022/10/11 12:10:17 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKERBOARD_H
-# define CHECKERBOARD_H
+#include "checkerboard.h"
 
-# include "geometric.h"
-
-typedef struct s_checkerboard
+int	is_sp_filled(t_checkerboard checkerboard, t_point point)
 {
-	int	height;
-	int	width;
-	int	color_r;
-	int	color_g;
-	int	color_b;
-}	t_checkerboard;
+	t_point2d	board_pos;
 
-int			is_filled(t_checkerboard checkerboard, double x, double y);
-int			is_sp_filled(t_checkerboard checkerboard, t_point point);
-t_point2d	to_checkerboard_pos(t_point point);
-
-#endif
+	board_pos = to_checkerboard_pos(point);
+	return (is_filled(checkerboard, board_pos.x, board_pos.y));
+}
