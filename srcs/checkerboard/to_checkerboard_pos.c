@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checkerboard.h                                     :+:      :+:    :+:   */
+/*   to_checkerboard_pos.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 17:16:28 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 12:09:55 by jmaia            ###   ########.fr       */
+/*   Created: 2022/10/11 11:57:42 by jmaia             #+#    #+#             */
+/*   Updated: 2022/10/11 12:10:35 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKERBOARD_H
-# define CHECKERBOARD_H
+#include <math.h>
 
-# include "geometric.h"
+#include "checkerboard.h"
 
-typedef struct s_checkerboard
+t_point2d	to_checkerboard_pos(t_point point)
 {
-	int	height;
-	int	width;
-	int	color_r;
-	int	color_g;
-	int	color_b;
-}	t_checkerboard;
+	t_spherical_point	sp_point;
+	t_point2d			board_point;
 
-int			is_filled(t_checkerboard checkerboard, double x, double y);
-t_point2d	to_checkerboard_pos(t_point point);
-
-#endif
+	sp_point = to_spherical(point);
+	board_point.x = sp_point.azimuth / (2 * M_PI);
+	board_point.y = sp_point.inclination / M_PI;
+	return (board_point);
+}
