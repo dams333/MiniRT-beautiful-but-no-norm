@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 14:46:42 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:19:08 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "parsing.h"
 #include "render.h"
 #include "window_props.h"
+#include "events.h"
 
 int	main(int argc, char **argv)
 {
@@ -38,7 +39,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	params.mlx = &mlx;
-	init_events(mlx.mlx, mlx.win);
+	params.selected = NULL;
+	init_events(&params);
 	render_image(&params);
 	mlx_loop(params.mlx->mlx);
 	free_parse(&parsing);
