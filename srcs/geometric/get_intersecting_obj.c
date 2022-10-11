@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                                            */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 16:29:04 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/11 17:28:19 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_obj_intersection	get_intersecting_obj(t_ray ray, t_generic_object *objs)
 	{
 		cur_obj_distance = get_distance_through_ray(ray, cur_obj);
 		if (cur_obj_distance < nearest_obj_distance)
-			nearest_obj_distance = cur_obj_distance;
-		if (cur_obj_distance < nearest_obj_distance)
 			obj_intersection.intersected = cur_obj;
+		if (cur_obj_distance < nearest_obj_distance)
+			nearest_obj_distance = cur_obj_distance;
 		cur_obj = cur_obj->next;
 	}
 	if (!obj_intersection.intersected)
