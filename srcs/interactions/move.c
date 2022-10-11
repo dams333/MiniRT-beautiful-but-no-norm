@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:41:53 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 15:21:05 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:27:46 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	extract_obj_coord(t_params *params, double *coords[3])
 		point = &(((t_sphere *)params->selected->specific_object)->pos);
 	if (params->selected->type == CYLINDER)
 		point = &(((t_cylinder *)params->selected->specific_object)->pos);
+	if (params->selected->type == SPHERE || params->selected->type == CYLINDER)
+	{
+		coords[0] = &(point->x);
+		coords[1] = &(point->y);
+		coords[2] = &(point->z);
+	}
 	if (params->selected->type == PLANE)
 	{
 		coords[0] = &(((t_plane *)params->selected->specific_object)->d);
 		coords[1] = &(((t_plane *)params->selected->specific_object)->d);
 		coords[2] = &(((t_plane *)params->selected->specific_object)->d);
-	}
-	else
-	{
-		coords[0] = &(point->x);
-		coords[1] = &(point->y);
-		coords[2] = &(point->z);
 	}
 }
 
