@@ -40,6 +40,8 @@ SRCS		=	main.c \
 					interactions_manager.c \
 					move.c \
 					resize.c \
+					view.c \
+					rotate.c \
 				)
 
 

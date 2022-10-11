@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:22:15 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 14:09:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:48:26 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,9 @@ void	key_pressed(int keycode, t_params *params)
 	if (keycode == XK_f || keycode == XK_g || keycode == XK_e
 		|| keycode == XK_r)
 		resize(keycode, params);
+	if (keycode == XK_z || keycode == XK_x)
+		view(keycode, params);
+	if (keycode == XK_i || keycode == XK_j
+		|| keycode == XK_k || keycode == XK_l)
+		rotate(keycode, params);
 }
