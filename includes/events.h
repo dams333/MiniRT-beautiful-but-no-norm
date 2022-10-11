@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:57:09 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 13:45:06 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:11:40 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	init_events(t_params *params);
 void	click_on_screen(int x, int y, t_params *params);
 void	key_pressed(int keycode, t_params *params);
 void	move(int keycode, t_params *params);
+void	resize(int keycode, t_params *params);
 
 #endif

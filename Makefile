@@ -39,6 +39,7 @@ SRCS		=	main.c \
 				$(addprefix interactions/, \
 					interactions_manager.c \
 					move.c \
+					resize.c \
 				)
 
 
