@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 15:07:04 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:11:42 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	render_image(t_params *params)
 					canvas_to_viewport(canvas_x, canvas_y, render_infos));
 			normalize(&(ray.vec));
 			intersect = get_intersecting_obj(ray, params->parsing->hittables);
-			if (intersect.intersected != NULL)
-				compute_pixel(params, intersect, canvas_x, canvas_y);
+			compute_pixel(params, intersect, canvas_x, canvas_y);
 		}
 		canvas_y = -1;
 	}

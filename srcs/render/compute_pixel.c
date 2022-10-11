@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 17:17:05 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:12:03 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,20 +123,25 @@ void	compute_pixel(t_params *params, t_obj_intersection intersection,
 	t_vector	normal;
 	t_tables	tables;
 
-	tables.res[0] = 0;
-	tables.res[1] = 0;
-	tables.res[2] = 0;
-	get_obj_color(tables.obj, intersection.intersected);
-	normal = compute_normal(intersection);
-	intersection.normal = normal;
-	compute_color(params->parsing, intersection, &tables, normal);
-	if (tables.res[0] > 1)
-		tables.res[0] = 1;
-	if (tables.res[1] > 1)
-		tables.res[1] = 1;
-	if (tables.res[2] > 1)
-		tables.res[2] = 1;
-	register_pixel(params->mlx, canvas_x, canvas_y, encode_rgb(tables.obj[0]
-			* tables.res[0] * 255, tables.obj[1] * tables.res[1] * 255,
-			tables.obj[2] * tables.res[2] * 255));
+	if (intersection.intersected)
+	{
+		tables.res[0] = 0;
+		tables.res[1] = 0;
+		tables.res[2] = 0;
+		get_obj_color(tables.obj, intersection.intersected);
+		normal = compute_normal(intersection);
+		intersection.normal = normal;
+		compute_color(params->parsing, intersection, &tables, normal);
+		if (tables.res[0] > 1)
+			tables.res[0] = 1;
+		if (tables.res[1] > 1)
+			tables.res[1] = 1;
+		if (tables.res[2] > 1)
+			tables.res[2] = 1;
+		register_pixel(params->mlx, canvas_x, canvas_y, encode_rgb(tables.obj[0]
+				* tables.res[0] * 255, tables.obj[1] * tables.res[1] * 255,
+				tables.obj[2] * tables.res[2] * 255));
+	}
+	else
+		register_pixel(params->mlx, canvas_x, canvas_y, encode_rgb(0, 0, 0));
 }
