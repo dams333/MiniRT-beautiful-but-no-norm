@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 17:20:43 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:16:08 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ t_vector	compute_normal(t_obj_intersection intersection)
 		plane = intersection.intersected->specific_object;
 		normal = (t_vector){plane->orientation.x, plane->orientation.y,
 			plane->orientation.z};
+	}
+	if (intersection.intersected->type == CYLINDER)
+	{
+		normal = (t_vector){intersection.intersection.x,
+			intersection.intersection.y, 0};
 	}
 	normalize(&normal);
 	return (normal);
