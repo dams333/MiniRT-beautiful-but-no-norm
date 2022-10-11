@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 15:16:08 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:48:25 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 		(t_point){light->coord_x, light->coord_y, light->coord_z});
 	normalize(&light_direction);
 	n_dot_l = dot_product(normal, light_direction);
+	if (n_dot_l <= 0 && intersection.intersected->type == PLANE)
+		n_dot_l = dot_product((t_vector)
+			{-normal.x, -normal.y, -normal.z}, light_direction);
 	if (n_dot_l > 0)
 	{
 		tables->res[0] += light->brightness_ratio * (light->color_r / 255)
