@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 17:01:57 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:04:46 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_vector	compute_cylinder_body_normal(t_cylinder *cylinder,
 	multiply_by_scalar(&vector, t);
 	vector_add(&pt, cylinder->pos, vector);
 	vector_substract(&(normal), intersection.intersection, pt);
-	printf("normal: %f %f %f\n", normal.x, normal.y, normal.z);
 	return (normal);
 }
 
@@ -74,8 +73,6 @@ t_vector	compute_normal(t_obj_intersection intersection)
 	}
 	if (intersection.intersected->type == CYLINDER)
 	{
-		printf("Normal cylinder %f %f %f\n", intersection.normal.x,
-			intersection.normal.y, intersection.normal.z);
 		if (vector_length(intersection.normal) == 0)
 			normal = compute_cylinder_body_normal(
 					intersection.intersected->specific_object, intersection);
