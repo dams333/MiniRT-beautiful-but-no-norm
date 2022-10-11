@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 21:25:21 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/02 21:19:17 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/11 16:06:48 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ double	get_intersecting_time_through_ray_with_plane(t_ray ray, t_plane *plane)
 	if (denominator == 0)
 		return (NAN);
 	t = numerator / denominator;
+	if (t < 0)
+		return (NAN);
 	return (t);
 }
 
