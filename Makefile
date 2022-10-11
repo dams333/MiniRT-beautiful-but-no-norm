@@ -35,6 +35,10 @@ SRCS		=	main.c \
 					render_manager.c \
 					compute_pixel.c \
 					compute_lights.c \
+				) \
+				$(addprefix interactions/, \
+					interactions_manager.c \
+					move.c \
 				)
 
 
@@ -43,7 +47,7 @@ OBJS		=	$(addprefix build/, $(_OBJS))
 OBJS_DEPEND	=	${OBJS:.o=.d}
 
 CC			=	cc
-CFLAGS		=	#-Wall -Werror -Wextra -g3
+CFLAGS		=	-Wall -Werror -Wextra -O3
 INCLUDE		=	-I includes/ -I libs/minilibx-linux/
 LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
 EXT_LIBS	=	-lm -lX11 -lXext

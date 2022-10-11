@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:56:56 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 13:20:43 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:41:38 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static int	on_key_press(int keycode, void *param)
 	params = (t_params *) param;
 	if (keycode == XK_Escape)
 		mlx_loop_end(params->mlx->mlx);
+	else
+	{
+		key_pressed(keycode, params);
+		render_image(params);
+	}
 	return (0);
 }
 
@@ -31,9 +36,20 @@ static int	on_close_window(void *param)
 	return (0);
 }
 
+static int	on_mouse_press(int code, int x, int y, void *param)
+{
+	t_params	*params;
+
+	params = (t_params *)param;
+	if (code == 1)
+		click_on_screen(x, y, params);
+	return (0);
+}
+
 void	init_events(t_params *params)
 {
 	mlx_hook(params->mlx->win, 33, 1L << 17,
 		&on_close_window, params->mlx->mlx);
 	mlx_key_hook(params->mlx->win, &on_key_press, params);
+	mlx_mouse_hook(params->mlx->win, &on_mouse_press, params);
 }

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 13:16:01 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:34:45 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ void		compute_diffuse_lightning(t_obj_intersection intersection,
 int			encode_rgb(int red, int green, int blue);
 void		register_pixel(t_mlx *mlx, int x, int y, int color);
 void		put_image(t_mlx *mlx);
+void		init_render(t_render_infos *render_infos, t_params *params);
+t_point		canvas_to_viewport(float x, float y, t_render_infos	render_infos);
 
 #endif
