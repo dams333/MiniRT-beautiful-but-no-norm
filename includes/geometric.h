@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 10:38:48 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/11 11:56:15 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct s_spherical_point
 	double	azimuth;
 	double	inclination;
 }	t_spherical_point;
+
+typedef struct s_point2d
+{
+	double	x;
+	double	y;
+}	t_point2d;
 
 double				vector_length(t_vector vector);
 void				normalize(t_vector *vector);
