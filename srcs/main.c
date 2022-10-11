@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 13:19:08 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:56:06 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,10 @@ int	main(int argc, char **argv)
 	parsing.lights = NULL;
 	parsing.hittables = NULL;
 	if (parse_map(argc, argv, &parsing) == false)
-	{
-		free_parse(&parsing);
-		return (1);
-	}
+		return (free_parse(&parsing), 1);
 	params.parsing = &parsing;
 	if (init_mlx(&mlx) == false)
-	{
-		free_parse(&parsing);
-		return (1);
-	}
+		return (free_parse(&parsing), 1);
 	params.mlx = &mlx;
 	params.selected = NULL;
 	init_events(&params);
