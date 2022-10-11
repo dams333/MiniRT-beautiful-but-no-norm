@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:41:53 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 15:27:46 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:29:38 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	extract_obj_coord(t_params *params, double *coords[3])
 		coords[1] = &(point->y);
 		coords[2] = &(point->z);
 	}
-	if (params->selected->type == PLANE)
+	else if (params->selected->type == PLANE)
 	{
 		coords[0] = &(((t_plane *)params->selected->specific_object)->d);
 		coords[1] = &(((t_plane *)params->selected->specific_object)->d);
@@ -79,7 +79,12 @@ void	move(int keycode, t_params *params)
 {
 	t_vector	ori;
 	double		*coords[3];
+	double		tmp;
 
+	tmp = 0;
+	coords[0] = &tmp;
+	coords[1] = &tmp;
+	coords[2] = &tmp;
 	ori = (t_vector){params->parsing->camera->orientation_x,
 		0, params->parsing->camera->orientation_z};
 	normalize(&ori);
