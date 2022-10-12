@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:39:22 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 17:51:49 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/12 14:58:20 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static double	get_inclination(t_point point)
 		inclination = M_PI_2;
 	if (point.x == 0 && point.y < 0)
 		inclination = -M_PI_2;
+	if (point.x == 0 && point.y == 0)
+		inclination = 0;
 	inclination += M_PI;
 	return (inclination);
 }
