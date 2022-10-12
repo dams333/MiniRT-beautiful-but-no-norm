@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 17:44:40 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:58:12 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,12 @@ bool	in_shadow(t_obj_intersection intersection,
 {
 	t_ray				ray;
 	t_obj_intersection	shadow_intersect;
-	t_vector			modifier;
 
-	ray.base = intersection.intersection;
-	vector_substract(&(ray.vec),
-		(t_point){light->coord_x, light->coord_y, light->coord_z},
-		intersection.intersection);
-	modifier = ray.vec;
-	multiply_by_scalar(&modifier, 0.1);
-	vector_add(&(ray.base), ray.base, modifier);
+	ray.base = (t_point){light->coord_x, light->coord_y, light->coord_z};
+	vector_substract(&(ray.vec), intersection.intersection, ray.base);
 	shadow_intersect = get_intersecting_obj(ray, parsing->hittables);
-	if (shadow_intersect.intersected)
-	{
-		if (distance(shadow_intersect.intersection, intersection.intersection)
-			< distance((t_point){light->coord_x, light->coord_y,
-				light->coord_z},
-			intersection.intersection))
-			return (true);
-	}
+	if (shadow_intersect.intersected != intersection.intersected)
+		return (true);
 	return (false);
 }
 
