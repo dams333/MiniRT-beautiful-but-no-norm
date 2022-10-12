@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 17:44:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:37:05 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ t_vector	compute_cylinder_body_normal(t_cylinder *cylinder,
 	multiply_by_scalar(&vector, t);
 	vector_add(&pt, cylinder->pos, vector);
 	vector_substract(&(normal), intersection.intersection, pt);
+	normal.x = -normal.x;
+	normal.y = -normal.y;
+	normal.z = -normal.z;
 	return (normal);
 }
 
@@ -73,11 +76,11 @@ t_vector	compute_normal(t_obj_intersection intersection)
 	}
 	if (intersection.intersected->type == CYLINDER)
 	{
-		if (vector_length(intersection.normal) == 0)
+		if (vector_length(intersection.normal) != 0)
+			normal = intersection.normal;
+		else
 			normal = compute_cylinder_body_normal(
 					intersection.intersected->specific_object, intersection);
-		else
-			normal = intersection.normal;
 	}
 	normalize(&normal);
 	return (normal);
@@ -93,7 +96,7 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 		(t_point){light->coord_x, light->coord_y, light->coord_z});
 	normalize(&light_direction);
 	n_dot_l = dot_product(normal, light_direction);
-	if (n_dot_l <= 0 && intersection.intersected->type != SPHERE)
+	if (n_dot_l <= 0 && intersection.intersected->type == PLANE)
 		n_dot_l = dot_product((t_vector)
 			{-normal.x, -normal.y, -normal.z}, light_direction);
 	if (n_dot_l > 0)

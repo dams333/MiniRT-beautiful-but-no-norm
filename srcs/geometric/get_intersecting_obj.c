@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_intersecting_obj.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
-/*                                                                            */
+/*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 17:28:19 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/12 12:32:31 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ static t_vector	get_fake_normal(t_generic_object *obj, double t)
 
 	ft_bzero(&normal, sizeof(normal));
 	if (t < 0)
-		normal = ((t_cylinder *) obj)->orientation;
+		normal = ((t_cylinder *) obj->specific_object)->orientation;
 	return (normal);
 }
