@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:22:15 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 14:48:26 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:13:29 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	click_on_screen(int x, int y, t_params *params)
 	init_render(&render_infos, params);
 	ray.base = (t_point){params->parsing->camera->coord_x,
 		params->parsing->camera->coord_y, params->parsing->camera->coord_z};
-	ray.vec = matrix_mult_point(render_infos.rotation_matrix,
+	ray.vec = matrix_mult(render_infos.rotation_matrix,
 			canvas_to_viewport(x, y, render_infos));
 	normalize(&(ray.vec));
 	intersect = get_intersecting_obj(ray, params->parsing->hittables);

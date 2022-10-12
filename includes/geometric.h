@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 17:55:14 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/12 16:13:29 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_matrix3
 }	t_matrix3;
 
 t_matrix3			rotation_matrix_from_orientation(t_vector target);
-t_point				matrix_mult_point(t_matrix3 matrix, t_point point);
+t_point				matrix_mult(t_matrix3 matrix, t_point point);
 
 float				degrees_to_radian(float degrees);
 

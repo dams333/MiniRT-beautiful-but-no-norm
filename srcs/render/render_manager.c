@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 15:11:42 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:13:29 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	render_image(t_params *params)
 		while (++canvas_y <= WINDOW_HEIGHT)
 		{
 			ray.base = render_infos.origin;
-			ray.vec = matrix_mult_point(render_infos.rotation_matrix,
+			ray.vec = matrix_mult(render_infos.rotation_matrix,
 					canvas_to_viewport(canvas_x, canvas_y, render_infos));
 			normalize(&(ray.vec));
 			intersect = get_intersecting_obj(ray, params->parsing->hittables);

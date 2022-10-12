@@ -6,14 +6,14 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:49:49 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/06 14:55:16 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:13:29 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "geometric.h"
 
-t_point	matrix_mult_point(t_matrix3 matrix, t_point point)
+t_point	matrix_mult(t_matrix3 matrix, t_point point)
 {
 	t_point	result;
 
