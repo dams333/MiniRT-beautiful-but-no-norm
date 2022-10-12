@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 13:34:45 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:30:14 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ typedef struct s_tables
 	float	obj[3];
 }	t_tables;
 
+typedef struct s_texture
+{
+	int	*data;
+	int	width;
+	int	height;
+}	t_texture;
+
 void		render_image(t_params *params);
 void		compute_pixel(t_params *params, t_obj_intersection intersection,
 				int canvas_x, int canvas_y);
@@ -56,5 +63,8 @@ void		register_pixel(t_mlx *mlx, int x, int y, int color);
 void		put_image(t_mlx *mlx);
 void		init_render(t_render_infos *render_infos, t_params *params);
 t_point		canvas_to_viewport(float x, float y, t_render_infos	render_infos);
+t_texture	load_map(t_mlx *mlx, char *file);
+void		perturb_normal(t_params *params, t_obj_intersection intersection,
+				t_vector *normal);
 
 #endif
