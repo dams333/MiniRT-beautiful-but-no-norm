@@ -13,6 +13,7 @@ SRCS		=	main.c \
 				$(addprefix geometric/, \
 					cross_product.c \
 					distance_between_points.c \
+					dot_product.c \
 					get_intersecting_time_through_ray_with_cylinder.c \
 					get_intersecting_time_through_ray_with_ellipsoid.c \
 					get_intersecting_time_through_ray_with_plane.c \
@@ -23,8 +24,8 @@ SRCS		=	main.c \
 					get_point_through_ray_at_time.c \
 					point.c \
 					sec_degree_utils.c \
+					to_spherical.c \
 					vector.c \
-					dot_product.c \
 					vector_scalar_operation.c \
 					matrix.c \
 					angle.c \
@@ -42,6 +43,11 @@ SRCS		=	main.c \
 					resize.c \
 					view.c \
 					rotate.c \
+				) \
+				$(addprefix checkerboard/, \
+					is_3d_filled.c \
+					is_filled.c \
+					to_checkerboard_pos.c \
 				)
 
 

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 13:33:25 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:16:16 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ typedef struct s_sphere_object
 
 typedef struct s_sphere
 {
-	t_point	pos;
-	double	diameter;
-	int		color_r;
-	int		color_g;
-	int		color_b;
+	t_point			pos;
+	double			diameter;
+	int				color_r;
+	int				color_g;
+	int				color_b;
 }	t_sphere;
 
 typedef struct s_plane_object
@@ -99,11 +99,11 @@ typedef struct s_plane_object
 
 typedef struct s_plane
 {
-	t_vector	orientation;
-	double		d;
-	int			color_r;
-	int			color_g;
-	int			color_b;
+	t_vector		orientation;
+	double			d;
+	int				color_r;
+	int				color_g;
+	int				color_b;
 }	t_plane;
 
 typedef struct s_cylinder_object
@@ -123,13 +123,13 @@ typedef struct s_cylinder_object
 
 typedef struct s_cylinder
 {
-	t_point		pos;
-	t_vector	orientation;
-	double		diameter;
-	double		height;
-	int			color_r;
-	int			color_g;
-	int			color_b;
+	t_point			pos;
+	t_vector		orientation;
+	double			diameter;
+	double			height;
+	int				color_r;
+	int				color_g;
+	int				color_b;
 }	t_cylinder;
 
 typedef struct s_ellipsoid
