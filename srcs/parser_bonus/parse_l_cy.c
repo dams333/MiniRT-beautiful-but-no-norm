@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 13:55:21 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 17:44:15 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:53:08 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,20 @@ bool	parse_light(char **args, t_parsing *parsing)
 	return (parse_light_2(parsing, obj));
 }
 
+bool	parse_cylinder_3(char **args, t_parsing *parsing,
+			t_cylinder *obj)
+{
+	if (parse_textures(args, 6, &(obj->texture_infos)))
+		return (free(obj), false);
+	if (!add_item_to_list(&(parsing->hittables), obj, CYLINDER))
+	{
+		free(obj->texture_infos.normal_map_file);
+		free(obj->texture_infos.texture_file);
+		return (free(obj), false);
+	}
+	return (true);
+}
+
 bool	parse_cylinder_2(char **args, t_parsing *parsing,
 			t_cylinder *obj)
 {
@@ -93,16 +107,15 @@ bool	parse_cylinder_2(char **args, t_parsing *parsing,
 		free(obj);
 		return (ft_putendl_fd(CYLINDER_ERROR_COLOR, 2), false);
 	}
-	if (!add_item_to_list(&(parsing->hittables), obj, CYLINDER))
-		return (free(obj), false);
-	return (true);
+	return (parse_cylinder_3(args, parsing, obj));
 }
 
 bool	parse_cylinder(char **args, t_parsing *parsing)
 {
 	t_cylinder	*obj;
 
-	if (get_split_size(args) != 6)
+	if (get_split_size(args) != 6 && get_split_size(args) != 8
+		&& get_split_size(args) != 10)
 		return (ft_putendl_fd(CYLINDER_ERROR_ARGS, 2), false);
 	obj = ft_calloc(1, sizeof(t_cylinder));
 	if (!obj)

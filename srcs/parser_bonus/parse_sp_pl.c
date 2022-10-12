@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:26:02 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 17:56:08 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:49:49 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,14 @@ bool	parse_sphere_2(char **args, t_parsing *parsing, t_sphere *obj)
 		free(obj);
 		return (ft_putendl_fd(SPHERE_ERROR_COLOR, 2), false);
 	}
-	if (!add_item_to_list(&(parsing->hittables), obj, SPHERE))
+	if (parse_textures(args, 4, &(obj->texture_infos)))
 		return (free(obj), false);
+	if (!add_item_to_list(&(parsing->hittables), obj, SPHERE))
+	{
+		free(obj->texture_infos.normal_map_file);
+		free(obj->texture_infos.texture_file);
+		return (free(obj), false);
+	}
 	return (true);
 }
 
@@ -78,8 +84,14 @@ bool	parse_plane_2(char **args, t_parsing *parsing, t_plane *obj,
 		free(obj);
 		return (ft_putendl_fd(PLANE_ERROR_COLOR, 2), false);
 	}
-	if (!add_item_to_list(&(parsing->hittables), obj, PLANE))
+	if (parse_textures(args, 4, &(obj->texture_infos)))
 		return (free(obj), false);
+	if (!add_item_to_list(&(parsing->hittables), obj, PLANE))
+	{
+		free(obj->texture_infos.normal_map_file);
+		free(obj->texture_infos.texture_file);
+		return (free(obj), false);
+	}
 	return (true);
 }
 
@@ -88,7 +100,8 @@ bool	parse_plane(char **args, t_parsing *parsing)
 	t_plane	*obj;
 	t_point	point;
 
-	if (get_split_size(args) != 4)
+	if (get_split_size(args) != 4 && get_split_size(args) != 6
+		&& get_split_size(args) != 8)
 		return (ft_putendl_fd(PLANE_ERROR_ARGS, 2), false);
 	obj = ft_calloc(1, sizeof(t_plane));
 	if (!obj)

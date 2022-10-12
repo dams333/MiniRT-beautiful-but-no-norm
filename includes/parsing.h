@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:33:16 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/10 13:58:46 by jmaia            ###   ###               */
+/*   Updated: 2022/10/12 18:48:09 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ bool	parse_light(char **args, t_parsing *parsing);
 bool	parse_sphere(char **args, t_parsing *parsing);
 bool	parse_plane(char **arg, t_parsing *parsings);
 bool	parse_cylinder(char **args, t_parsing *parsing);
+bool	parse_textures(char **args, int first, t_texture_infos *texture);
 
 bool	add_item_to_list(t_generic_object **parsing, void *item,
 			t_object_type type);
