@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sp_filled.c                                     :+:      :+:    :+:   */
+/*   is_3d_filled.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 12:07:44 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/11 17:50:30 by jmaia            ###   ########.fr       */
+/*   Created: 2022/10/12 12:24:47 by jmaia             #+#    #+#             */
+/*   Updated: 2022/10/12 12:28:59 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checkerboard.h"
 
-int	is_sp_filled(t_checkerboard checkerboard, t_point point, t_point center)
+int	is_3d_filled(t_checkerboard board, t_generic_object *obj,
+		t_point intersection)
 {
 	t_point2d	board_pos;
 
-	vector_substract(&point, point, center);
-	board_pos = to_checkerboard_pos(point);
-	return (is_filled(checkerboard, board_pos.x, board_pos.y));
+	board_pos = to_checkerboard_pos(obj, intersection);
+	return (is_filled(board, board_pos));
 }

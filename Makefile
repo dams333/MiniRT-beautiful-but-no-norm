@@ -45,8 +45,8 @@ SRCS		=	main.c \
 					rotate.c \
 				) \
 				$(addprefix checkerboard/, \
+					is_3d_filled.c \
 					is_filled.c \
-					is_sp_filled.c \
 					to_checkerboard_pos.c \
 				)
 

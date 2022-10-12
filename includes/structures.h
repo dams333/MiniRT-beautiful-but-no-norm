@@ -6,14 +6,13 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 17:55:34 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/12 12:16:16 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-# include "checkerboard.h"
 # include "geometric.h"
 # include "sec_degree_factors.h"
 
@@ -82,7 +81,6 @@ typedef struct s_sphere
 	int				color_r;
 	int				color_g;
 	int				color_b;
-	t_checkerboard	checkerboard;
 }	t_sphere;
 
 typedef struct s_plane_object
@@ -106,7 +104,6 @@ typedef struct s_plane
 	int				color_r;
 	int				color_g;
 	int				color_b;
-	t_checkerboard	checkerboard;
 }	t_plane;
 
 typedef struct s_cylinder_object
@@ -133,7 +130,6 @@ typedef struct s_cylinder
 	int				color_r;
 	int				color_g;
 	int				color_b;
-	t_checkerboard	checkerboard;
 }	t_cylinder;
 
 typedef struct s_ellipsoid
@@ -143,7 +139,6 @@ typedef struct s_ellipsoid
 	int						color_r;
 	int						color_g;
 	int						color_b;
-	t_checkerboard			checkerboard;
 }	t_ellipsoid;
 
 typedef struct s_parsing
