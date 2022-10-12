@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:26:02 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 18:49:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:54:30 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	parse_sphere_2(char **args, t_parsing *parsing, t_sphere *obj)
 		free(obj);
 		return (ft_putendl_fd(SPHERE_ERROR_COLOR, 2), false);
 	}
-	if (parse_textures(args, 4, &(obj->texture_infos)))
+	if (!parse_textures(args, 4, &(obj->texture_infos)))
 		return (free(obj), false);
 	if (!add_item_to_list(&(parsing->hittables), obj, SPHERE))
 	{
@@ -84,7 +84,7 @@ bool	parse_plane_2(char **args, t_parsing *parsing, t_plane *obj,
 		free(obj);
 		return (ft_putendl_fd(PLANE_ERROR_COLOR, 2), false);
 	}
-	if (parse_textures(args, 4, &(obj->texture_infos)))
+	if (!parse_textures(args, 4, &(obj->texture_infos)))
 		return (free(obj), false);
 	if (!add_item_to_list(&(parsing->hittables), obj, PLANE))
 	{

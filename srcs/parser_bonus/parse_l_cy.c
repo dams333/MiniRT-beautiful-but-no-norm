@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 13:55:21 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 18:53:08 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:54:37 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ bool	parse_light(char **args, t_parsing *parsing)
 bool	parse_cylinder_3(char **args, t_parsing *parsing,
 			t_cylinder *obj)
 {
-	if (parse_textures(args, 6, &(obj->texture_infos)))
+	if (!parse_textures(args, 6, &(obj->texture_infos)))
 		return (free(obj), false);
 	if (!add_item_to_list(&(parsing->hittables), obj, CYLINDER))
 	{

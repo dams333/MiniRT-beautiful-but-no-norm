@@ -24,7 +24,7 @@
 
 #      X,Y,Z         Lightning       direction        fov     diameter    height     color
 C      0,0,-13                         0,0,1         53
-sp     0,0,0                                                  8                      255,0,0
+sp     0,0,0                                                  8                      255,0,0        checkerboard lol
 A                     0.3                                                            255,255,255
 L      0,0,-13          0.4                                                          255,255,255
 
