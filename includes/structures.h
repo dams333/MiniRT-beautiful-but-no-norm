@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 12:16:16 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/12 18:12:33 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # include "geometric.h"
 # include "sec_degree_factors.h"
 
+typedef struct s_checkerboard
+{
+	int	height;
+	int	width;
+	int	color_r;
+	int	color_g;
+	int	color_b;
+}	t_checkerboard;
+
 typedef enum e_object_type
 {
 	CAMERA,
@@ -23,7 +32,8 @@ typedef enum e_object_type
 	LIGHT,
 	SPHERE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
+	ELLIPSOID
 }	t_object_type;
 
 typedef struct s_generic_object
@@ -32,6 +42,13 @@ typedef struct s_generic_object
 	void					*specific_object;
 	struct s_generic_object	*next;
 }	t_generic_object;
+
+typedef struct s_texture_infos
+{
+	t_checkerboard	checkerboard;
+	char			*texture_file;
+	char			*normal_map_file;
+}	t_texture_infos;
 
 typedef struct s_ambient_lightning_object
 {
@@ -63,17 +80,6 @@ typedef struct s_light_object
 	int		color_b;
 }	t_light_object;
 
-typedef struct s_sphere_object
-{
-	double	coord_x;
-	double	coord_y;
-	double	coord_z;
-	double	diameter;
-	int		color_r;
-	int		color_g;
-	int		color_b;
-}	t_sphere_object;
-
 typedef struct s_sphere
 {
 	t_point			pos;
@@ -81,21 +87,8 @@ typedef struct s_sphere
 	int				color_r;
 	int				color_g;
 	int				color_b;
+	t_texture_infos	texture_infos;
 }	t_sphere;
-
-typedef struct s_plane_object
-{
-	double	coord_x;
-	double	coord_y;
-	double	coord_z;
-	double	d;
-	double	orientation_x;
-	double	orientation_y;
-	double	orientation_z;
-	int		color_r;
-	int		color_g;
-	int		color_b;
-}	t_plane_object;
 
 typedef struct s_plane
 {
@@ -104,22 +97,8 @@ typedef struct s_plane
 	int				color_r;
 	int				color_g;
 	int				color_b;
+	t_texture_infos	texture_infos;
 }	t_plane;
-
-typedef struct s_cylinder_object
-{
-	double	coord_x;
-	double	coord_y;
-	double	coord_z;
-	double	orientation_x;
-	double	orientation_y;
-	double	orientation_z;
-	double	diameter;
-	double	height;
-	int		color_r;
-	int		color_g;
-	int		color_b;
-}	t_cylinder_object;
 
 typedef struct s_cylinder
 {
@@ -130,6 +109,7 @@ typedef struct s_cylinder
 	int				color_r;
 	int				color_g;
 	int				color_b;
+	t_texture_infos	texture_infos;
 }	t_cylinder;
 
 typedef struct s_ellipsoid
@@ -139,6 +119,7 @@ typedef struct s_ellipsoid
 	int						color_r;
 	int						color_g;
 	int						color_b;
+	t_texture_infos			texture_infos;
 }	t_ellipsoid;
 
 typedef struct s_parsing

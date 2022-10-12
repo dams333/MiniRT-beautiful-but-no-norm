@@ -1,14 +1,16 @@
 NAME		=	miniRT
 
 SRCS		=	main.c \
-				$(addprefix parser/, \
+				$(addprefix parser_bonus/, \
 					parser.c \
 					parse_c_a.c \
 					parse_l_cy.c \
 					parse_sp_pl.c \
 					parse_util.c \
 					parse_util2.c \
+					parse_util3.c \
 					generate_list.c \
+					parse_bonus.c \
 				) \
 				$(addprefix geometric/, \
 					cross_product.c \
@@ -57,7 +59,7 @@ OBJS		=	$(addprefix build/, $(_OBJS))
 OBJS_DEPEND	=	${OBJS:.o=.d}
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -O3 -g3
+CFLAGS		=   -O3 -g3 #-Wall -Werror -Wextra
 INCLUDE		=	-I includes/ -I libs/minilibx-linux/
 LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
 EXT_LIBS	=	-lm -lX11 -lXext
