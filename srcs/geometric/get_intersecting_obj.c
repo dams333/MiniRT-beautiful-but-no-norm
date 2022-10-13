@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/12 12:32:31 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:56:22 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ static double	get_intersecting_time_through_ray(t_ray ray,
 	else if (obj->type == CYLINDER)
 		t = get_intersecting_time_through_ray_with_cylinder(ray,
 				(t_cylinder *) obj->specific_object);
+	else if (obj->type == ELLIPSOID)
+		t = get_intersecting_time_through_ray_with_ellipsoid(ray,
+				(t_ellipsoid *) obj->specific_object);
 	return (t);
 }
 
