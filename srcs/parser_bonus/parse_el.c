@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:20:00 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 13:28:05 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:38:50 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ bool	parse_ellipsoid_2(char **args, t_ellipsoid *obj, t_parsing *parsing)
 		free(obj->texture_infos.texture_file);
 		return (free(obj), false);
 	}
+	obj->bump_map.img = NULL;
 	return (true);
 }
 

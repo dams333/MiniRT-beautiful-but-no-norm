@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:18:39 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 16:53:03 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:15:25 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ t_texture	load_map(t_mlx *mlx, char *file)
 	int			unused;
 
 	texture.data = NULL;
-	img = mlx_xpm_file_to_image(mlx->mlx, file, &(texture.width),
-			&(texture.height));
-	if (img == NULL)
-		return (texture);
-	texture.data = (int *)mlx_get_data_addr(img, &unused, &unused, &unused);
+	if (file != NULL)
+	{
+		img = mlx_xpm_file_to_image(mlx->mlx, file, &(texture.width),
+				&(texture.height));
+		if (img == NULL)
+			return (texture);
+		texture.data = (int *)mlx_get_data_addr(img, &unused, &unused, &unused);
+	}
 	return (texture);
 }
 
@@ -53,17 +56,31 @@ t_matrix3	create_tbn_matrix(t_vector object_normal)
 	return (tbn);
 }
 
+t_texture	get_map(t_generic_object *obj)
+{
+	t_texture	texture;
+
+	if (obj->type == SPHERE)
+		texture = ((t_sphere *)obj->specific_object)->bump_map;
+	else if (obj->type == PLANE)
+		texture = ((t_plane *)obj->specific_object)->bump_map;
+	else if (obj->type == CYLINDER)
+		texture = ((t_cylinder *)obj->specific_object)->bump_map;
+	else
+		texture = ((t_ellipsoid *)obj->specific_object)->bump_map;
+	return (texture);
+}
+
 void	perturb_normal(t_params *params, t_obj_intersection intersection,
 	t_vector *normal)
 {
-	static t_texture	texture = {NULL, 0, 0};
 	t_point2d			board_pos;
 	int					map_color;
 	t_vector			colors;
 	t_vector			normal_map;
+	t_texture			texture;
 
-	if (texture.data == NULL)
-		texture = load_map(params->mlx, "moon_normal_map.xpm");
+	texture = get_map(intersection.intersected);
 	if (texture.data == NULL)
 		return ;
 	board_pos = to_checkerboard_pos(intersection.intersected,

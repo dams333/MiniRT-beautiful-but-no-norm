@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 10:26:02 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 18:54:30 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:10:37 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ bool	parse_sphere_2(char **args, t_parsing *parsing, t_sphere *obj)
 		free(obj->texture_infos.texture_file);
 		return (free(obj), false);
 	}
+	obj->bump_map.img = NULL;
 	return (true);
 }
 
@@ -92,6 +93,7 @@ bool	parse_plane_2(char **args, t_parsing *parsing, t_plane *obj,
 		free(obj->texture_infos.texture_file);
 		return (free(obj), false);
 	}
+	obj->bump_map.img = NULL;
 	return (true);
 }
 

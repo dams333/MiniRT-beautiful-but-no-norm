@@ -6,11 +6,55 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 16:13:29 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:16:25 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
+
+void	extract_texture(t_generic_object *obj, t_texture **bump_map,
+	t_texture_infos *texture_infos)
+{
+	if (obj->type == SPHERE)
+	{
+		*bump_map = &(((t_sphere *)obj->specific_object)->bump_map);
+		*texture_infos = ((t_sphere *)obj->specific_object)->texture_infos;
+	}
+	else if (obj->type == PLANE)
+	{
+		*bump_map = &(((t_plane *)obj->specific_object)->bump_map);
+		*texture_infos = ((t_plane *)obj->specific_object)->texture_infos;
+	}
+	else if (obj->type == CYLINDER)
+	{
+		*bump_map = &(((t_cylinder *)obj->specific_object)->bump_map);
+		*texture_infos = ((t_cylinder *)obj->specific_object)->texture_infos;
+	}
+	else
+	{
+		*bump_map = &(((t_ellipsoid *)obj->specific_object)->bump_map);
+		*texture_infos
+			= ((t_ellipsoid *)obj->specific_object)->texture_infos;
+	}
+}
+
+void	init_textures(t_parsing *parsing, t_mlx *mlx)
+{
+	t_generic_object	*obj;
+	t_texture			*bump_map;
+	t_texture_infos		texture_infos;
+
+	obj = parsing->hittables;
+	while (obj)
+	{
+		extract_texture(obj, &bump_map, &texture_infos);
+		if (bump_map->img == NULL && texture_infos.normal_map_file != NULL)
+		{
+			*bump_map = load_map(mlx, texture_infos.normal_map_file);
+		}
+		obj = obj->next;
+	}
+}
 
 void	init_render(t_render_infos *render_infos, t_params *params)
 {
@@ -28,6 +72,7 @@ void	init_render(t_render_infos *render_infos, t_params *params)
 	normalize(&camera_orientation);
 	render_infos->rotation_matrix
 		= rotation_matrix_from_orientation(camera_orientation);
+	init_textures(params->parsing, params->mlx);
 }
 
 t_point	canvas_to_viewport(float x, float y, t_render_infos	render_infos)

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 18:12:33 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:34:00 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ typedef struct s_checkerboard
 	int	color_g;
 	int	color_b;
 }	t_checkerboard;
+
+typedef struct s_texture
+{
+	int		*data;
+	void	*img;
+	int		width;
+	int		height;
+}	t_texture;
 
 typedef enum e_object_type
 {
@@ -88,6 +96,7 @@ typedef struct s_sphere
 	int				color_g;
 	int				color_b;
 	t_texture_infos	texture_infos;
+	t_texture		bump_map;
 }	t_sphere;
 
 typedef struct s_plane
@@ -98,6 +107,7 @@ typedef struct s_plane
 	int				color_g;
 	int				color_b;
 	t_texture_infos	texture_infos;
+	t_texture		bump_map;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -110,6 +120,7 @@ typedef struct s_cylinder
 	int				color_g;
 	int				color_b;
 	t_texture_infos	texture_infos;
+	t_texture		bump_map;
 }	t_cylinder;
 
 typedef struct s_ellipsoid
@@ -120,6 +131,7 @@ typedef struct s_ellipsoid
 	int						color_g;
 	int						color_b;
 	t_texture_infos			texture_infos;
+	t_texture				bump_map;
 }	t_ellipsoid;
 
 typedef struct s_parsing

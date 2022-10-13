@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 13:55:21 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 18:54:37 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:38:56 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ bool	parse_cylinder_3(char **args, t_parsing *parsing,
 		free(obj->texture_infos.texture_file);
 		return (free(obj), false);
 	}
+	obj->bump_map.img = NULL;
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 14:30:14 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:56:57 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,6 @@ typedef struct s_tables
 	float	res[3];
 	float	obj[3];
 }	t_tables;
-
-typedef struct s_texture
-{
-	int	*data;
-	int	width;
-	int	height;
-}	t_texture;
 
 void		render_image(t_params *params);
 void		compute_pixel(t_params *params, t_obj_intersection intersection,
