@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/09/26 14:14:24 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:27:40 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	parse_two_letters(char **elem, bool *ret, t_parsing *parsing)
 		*ret = parse_plane(elem, parsing);
 	else if (ft_strncmp(elem[0], "cy", 2) == 0)
 		*ret = parse_cylinder(elem, parsing);
+	else if (ft_strncmp(elem[0], "el", 2) == 0)
+		*ret = parse_ellipsoid(elem, parsing);
 	else
 	{
 		ft_putstr_fd("Error\nObject type [", 2);

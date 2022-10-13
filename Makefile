@@ -6,6 +6,7 @@ SRCS		=	main.c \
 					parse_c_a.c \
 					parse_l_cy.c \
 					parse_sp_pl.c \
+					parse_el.c \
 					parse_util.c \
 					parse_util2.c \
 					parse_util3.c \
