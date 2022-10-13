@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 16:13:29 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:30:06 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ typedef struct s_spherical_point
 	double	inclination;
 }	t_spherical_point;
 
+typedef struct s_cylindrical_point
+{
+	double	radius;
+	double	azimuth;
+	double	z;
+}	t_cylindrical_point;
+
 typedef struct s_point2d
 {
 	double	x;
@@ -67,5 +74,7 @@ double				dot_product(t_vector v1, t_vector v2);
 void				cross_product(t_vector *result, t_vector v1, t_vector v2);
 
 t_spherical_point	to_spherical(t_point point);
+t_cylindrical_point	to_cylindrical(t_point base, t_vector orientation,
+						double radius, t_point point);
 
 #endif
