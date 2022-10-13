@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 13:34:00 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 21:32:38 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_cylinder
 	int				color_b;
 	t_texture_infos	texture_infos;
 	t_texture		bump_map;
+	int				last_cap_hitted;
 }	t_cylinder;
 
 typedef struct s_ellipsoid
