@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 13:31:34 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/13 19:24:31 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ double				dot_product(t_vector v1, t_vector v2);
 void				cross_product(t_vector *result, t_vector v1, t_vector v2);
 
 t_spherical_point	to_spherical(t_point point);
-t_cylindrical_point	to_cylindrical(t_point point);
+t_cylindrical_point	to_cylindrical(t_point base, t_vector orientation,
+						double radius, t_point point);
 
 #endif
