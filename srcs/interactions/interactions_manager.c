@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:22:15 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 16:13:29 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:17:20 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "render.h"
 #include "geometric.h"
 
-static const char	g_object_type[6][99] = {
+static const char	g_object_type[7][99] = {
 	"camera",
 	"ambient_lightning",
 	"light",
 	"sphere",
 	"plane",
-	"cylinder"
+	"cylinder",
+	"ellipsoid"
 };
 
 void	click_on_screen(int x, int y, t_params *params)

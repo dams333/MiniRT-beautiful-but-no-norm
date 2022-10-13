@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:18:39 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 15:21:49 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:17:07 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	perturb_normal(t_params *params, t_obj_intersection intersection,
 	t_vector			normal_map;
 	t_texture			texture;
 
+	(void)params;
 	texture = get_map(intersection.intersected);
 	if (texture.data == NULL)
 		return ;

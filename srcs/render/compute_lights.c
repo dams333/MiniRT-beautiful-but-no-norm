@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 12:37:05 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:29:27 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	get_obj_color(float color[3], t_generic_object *intersected)
 		color[0] = ((t_plane *)intersected->specific_object)->color_r;
 		color[1] = ((t_plane *)intersected->specific_object)->color_g;
 		color[2] = ((t_plane *)intersected->specific_object)->color_b;
+	}
+	if (intersected->type == ELLIPSOID)
+	{
+		color[0] = ((t_ellipsoid *)intersected->specific_object)->color_r;
+		color[1] = ((t_ellipsoid *)intersected->specific_object)->color_g;
+		color[2] = ((t_ellipsoid *)intersected->specific_object)->color_b;
 	}
 	color[0] /= 255;
 	color[1] /= 255;
@@ -61,6 +67,7 @@ t_vector	compute_normal(t_obj_intersection intersection)
 {
 	t_sphere	*sphere;
 	t_plane		*plane;
+	t_ellipsoid	*ellipsoid;
 	t_vector	normal;
 
 	if (intersection.intersected->type == SPHERE)
@@ -81,6 +88,13 @@ t_vector	compute_normal(t_obj_intersection intersection)
 		else
 			normal = compute_cylinder_body_normal(
 					intersection.intersected->specific_object, intersection);
+	}
+	if (intersection.intersected->type == ELLIPSOID)
+	{
+		ellipsoid = intersection.intersected->specific_object;
+		normal = (t_vector){-intersection.intersection.x / pow(ellipsoid->factors.a, 2),
+			-intersection.intersection.y / pow(ellipsoid->factors.b, 2),
+			-intersection.intersection.z / pow(ellipsoid->factors.c, 2)};
 	}
 	normalize(&normal);
 	return (normal);
