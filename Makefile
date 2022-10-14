@@ -27,6 +27,7 @@ SRCS		=	main.c \
 					get_point_through_ray_at_time.c \
 					point.c \
 					sec_degree_utils.c \
+					to_cylindrical.c \
 					to_spherical.c \
 					vector.c \
 					vector_scalar_operation.c \
@@ -60,7 +61,7 @@ OBJS		=	$(addprefix build/, $(_OBJS))
 OBJS_DEPEND	=	${OBJS:.o=.d}
 
 CC			=	cc
-CFLAGS		=   -g3 -O3 #-Wall -Werror -Wextra
+CFLAGS		=   -O3 -g3 -Wall -Wextra
 INCLUDE		=	-I includes/ -I libs/minilibx-linux/
 LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
 EXT_LIBS	=	-lm -lX11 -lXext

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/13 15:56:22 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/13 21:41:50 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ static t_vector	get_fake_normal(t_generic_object *obj, double t)
 
 	ft_bzero(&normal, sizeof(normal));
 	if (t < 0)
+	{
 		normal = ((t_cylinder *) obj->specific_object)->orientation;
+		if (((t_cylinder *) obj->specific_object)->last_cap_hitted)
+			multiply_by_scalar(&normal, -1);
+	}
 	return (normal);
 }
