@@ -6,31 +6,13 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:18:39 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:01:25 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:09:13 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "checkerboard.h"
 #include "mlx.h"
-
-t_texture	load_map(t_mlx *mlx, char *file)
-{
-	t_texture	texture;
-	void		*img;
-	int			unused;
-
-	texture.data = NULL;
-	if (file != NULL)
-	{
-		img = mlx_xpm_file_to_image(mlx->mlx, file, &(texture.width),
-				&(texture.height));
-		if (img == NULL)
-			return (texture);
-		texture.data = (int *)mlx_get_data_addr(img, &unused, &unused, &unused);
-	}
-	return (texture);
-}
 
 t_matrix3	create_tbn_matrix(t_vector object_normal)
 {

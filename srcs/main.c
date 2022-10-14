@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 13:19:35 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:20:39 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int	main(int argc, char **argv)
 		return (free_parse(&parsing), 1);
 	params.mlx = &mlx;
 	params.selected = NULL;
+	load_textures(params.mlx, params.parsing);
 	init_events(&params);
 	render_image(&params);
 	mlx_loop(params.mlx->mlx);
+	free_textures(&params);
 	free_parse(&parsing);
 	return (0);
 }

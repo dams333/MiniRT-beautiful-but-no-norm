@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:19:05 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/12 18:10:34 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:17:21 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_parse(t_parsing *parsing)
 {
 	t_generic_object	*current;
 	t_generic_object	*tmp;
-	t_texture_infos		*texture;
+	t_texture_infos		*texture_infos;
 
 	free(parsing->camera);
 	free(parsing->ambient_lightning);
@@ -59,9 +59,9 @@ void	free_parse(t_parsing *parsing)
 	current = parsing->hittables;
 	while (current != NULL)
 	{
-		texture = extract_texture_infos(current);
-		free(texture->normal_map_file);
-		free(texture->texture_file);
+		texture_infos = extract_texture_infos(current);
+		free(texture_infos->normal_map_file);
+		free(texture_infos->texture_file);
 		free(current->specific_object);
 		tmp = current->next;
 		free(current);

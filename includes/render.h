@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 14:56:57 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:32:51 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ typedef struct s_tables
 void		render_image(t_params *params);
 void		compute_pixel(t_params *params, t_obj_intersection intersection,
 				int canvas_x, int canvas_y);
-void		get_obj_color(float color[3], t_generic_object *intersected);
+void		get_obj_color(float color[3], t_generic_object *intersected,
+				t_point intersection);
 t_vector	compute_normal(t_obj_intersection intersection);
 void		compute_diffuse_lightning(t_obj_intersection intersection,
 				t_vector normal, t_light_object *light,
@@ -59,5 +60,9 @@ t_point		canvas_to_viewport(float x, float y, t_render_infos	render_infos);
 t_texture	load_map(t_mlx *mlx, char *file);
 void		perturb_normal(t_params *params, t_obj_intersection intersection,
 				t_vector *normal);
+void		load_textures(t_mlx *mlx, t_parsing *parsing);
+void		free_textures(t_params *params);
+void		load_texture_color(float c[3], t_generic_object *intersected,
+				t_point intersection);
 
 #endif

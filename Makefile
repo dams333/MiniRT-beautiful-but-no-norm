@@ -41,6 +41,7 @@ SRCS		=	main.c \
 					compute_pixel.c \
 					compute_lights.c \
 					bump_map.c \
+					textures.c \
 				) \
 				$(addprefix interactions/, \
 					interactions_manager.c \

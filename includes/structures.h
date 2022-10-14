@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 21:32:38 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/14 13:18:57 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_sphere
 	int				color_b;
 	t_texture_infos	texture_infos;
 	t_texture		bump_map;
+	t_texture		texture;
 }	t_sphere;
 
 typedef struct s_plane
@@ -108,6 +109,7 @@ typedef struct s_plane
 	int				color_b;
 	t_texture_infos	texture_infos;
 	t_texture		bump_map;
+	t_texture		texture;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -121,6 +123,7 @@ typedef struct s_cylinder
 	int				color_b;
 	t_texture_infos	texture_infos;
 	t_texture		bump_map;
+	t_texture		texture;
 	int				last_cap_hitted;
 }	t_cylinder;
 
@@ -133,6 +136,7 @@ typedef struct s_ellipsoid
 	int						color_b;
 	t_texture_infos			texture_infos;
 	t_texture				bump_map;
+	t_texture				texture;
 }	t_ellipsoid;
 
 typedef struct s_parsing

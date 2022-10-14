@@ -6,13 +6,14 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:07:29 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:32:28 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	get_obj_color(float c[3], t_generic_object *intersected)
+void	get_obj_color(float c[3], t_generic_object *intersected,
+	t_point intersection)
 {
 	if (intersected->type == SPHERE)
 	{
@@ -38,6 +39,7 @@ void	get_obj_color(float c[3], t_generic_object *intersected)
 		c[1] = ((t_ellipsoid *)intersected->specific_object)->color_g / 255.0;
 		c[2] = ((t_ellipsoid *)intersected->specific_object)->color_b / 255.0;
 	}
+	load_texture_color(c, intersected, intersection);
 }
 
 t_vector	compute_cylinder_body_normal(t_cylinder *cylinder,
