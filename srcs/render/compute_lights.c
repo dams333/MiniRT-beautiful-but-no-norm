@@ -6,41 +6,38 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 16:29:27 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:07:29 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void	get_obj_color(float color[3], t_generic_object *intersected)
+void	get_obj_color(float c[3], t_generic_object *intersected)
 {
 	if (intersected->type == SPHERE)
 	{
-		color[0] = ((t_sphere *)intersected->specific_object)->color_r;
-		color[1] = ((t_sphere *)intersected->specific_object)->color_g;
-		color[2] = ((t_sphere *)intersected->specific_object)->color_b;
+		c[0] = ((t_sphere *)intersected->specific_object)->color_r / 255.0;
+		c[1] = ((t_sphere *)intersected->specific_object)->color_g / 255.0;
+		c[2] = ((t_sphere *)intersected->specific_object)->color_b / 255.0;
 	}
 	if (intersected->type == CYLINDER)
 	{
-		color[0] = ((t_cylinder *)intersected->specific_object)->color_r;
-		color[1] = ((t_cylinder *)intersected->specific_object)->color_g;
-		color[2] = ((t_cylinder *)intersected->specific_object)->color_b;
+		c[0] = ((t_cylinder *)intersected->specific_object)->color_r / 255.0;
+		c[1] = ((t_cylinder *)intersected->specific_object)->color_g / 255.0;
+		c[2] = ((t_cylinder *)intersected->specific_object)->color_b / 255.0;
 	}
 	if (intersected->type == PLANE)
 	{
-		color[0] = ((t_plane *)intersected->specific_object)->color_r;
-		color[1] = ((t_plane *)intersected->specific_object)->color_g;
-		color[2] = ((t_plane *)intersected->specific_object)->color_b;
+		c[0] = ((t_plane *)intersected->specific_object)->color_r / 255.0;
+		c[1] = ((t_plane *)intersected->specific_object)->color_g / 255.0;
+		c[2] = ((t_plane *)intersected->specific_object)->color_b / 255.0;
 	}
 	if (intersected->type == ELLIPSOID)
 	{
-		color[0] = ((t_ellipsoid *)intersected->specific_object)->color_r;
-		color[1] = ((t_ellipsoid *)intersected->specific_object)->color_g;
-		color[2] = ((t_ellipsoid *)intersected->specific_object)->color_b;
+		c[0] = ((t_ellipsoid *)intersected->specific_object)->color_r / 255.0;
+		c[1] = ((t_ellipsoid *)intersected->specific_object)->color_g / 255.0;
+		c[2] = ((t_ellipsoid *)intersected->specific_object)->color_b / 255.0;
 	}
-	color[0] /= 255;
-	color[1] /= 255;
-	color[2] /= 255;
 }
 
 t_vector	compute_cylinder_body_normal(t_cylinder *cylinder,
@@ -63,11 +60,10 @@ t_vector	compute_cylinder_body_normal(t_cylinder *cylinder,
 	return (normal);
 }
 
-t_vector	compute_normal(t_obj_intersection intersection)
+t_vector	get_sp_pl_normal(t_obj_intersection intersection)
 {
 	t_sphere	*sphere;
 	t_plane		*plane;
-	t_ellipsoid	*ellipsoid;
 	t_vector	normal;
 
 	if (intersection.intersected->type == SPHERE)
@@ -75,12 +71,24 @@ t_vector	compute_normal(t_obj_intersection intersection)
 		sphere = intersection.intersected->specific_object;
 		vector_substract(&normal, sphere->pos, intersection.intersection);
 	}
-	if (intersection.intersected->type == PLANE)
+	else
 	{
 		plane = intersection.intersected->specific_object;
 		normal = (t_vector){plane->orientation.x, plane->orientation.y,
 			plane->orientation.z};
 	}
+	return (normal);
+}
+
+t_vector	compute_normal(t_obj_intersection intersection)
+{
+	t_ellipsoid	*ellipsoid;
+	t_vector	normal;
+
+	if (intersection.intersected->type == SPHERE)
+		normal = get_sp_pl_normal(intersection);
+	if (intersection.intersected->type == PLANE)
+		normal = get_sp_pl_normal(intersection);
 	if (intersection.intersected->type == CYLINDER)
 	{
 		if (vector_length(intersection.normal) != 0)
@@ -92,7 +100,8 @@ t_vector	compute_normal(t_obj_intersection intersection)
 	if (intersection.intersected->type == ELLIPSOID)
 	{
 		ellipsoid = intersection.intersected->specific_object;
-		normal = (t_vector){-intersection.intersection.x / pow(ellipsoid->factors.a, 2),
+		normal = (t_vector){-intersection.intersection.x
+			/ pow(ellipsoid->factors.a, 2),
 			-intersection.intersection.y / pow(ellipsoid->factors.b, 2),
 			-intersection.intersection.z / pow(ellipsoid->factors.c, 2)};
 	}

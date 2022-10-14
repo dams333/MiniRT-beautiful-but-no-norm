@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 16:21:08 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:06:40 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ void	compute_color(t_parsing *parsing, t_obj_intersection intersection,
 	}
 }
 
-#define DEBUG 0
-
 void	compute_pixel(t_params *params, t_obj_intersection intersection,
 	int canvas_x, int canvas_y)
 {
@@ -122,14 +120,7 @@ void	compute_pixel(t_params *params, t_obj_intersection intersection,
 		normal = compute_normal(intersection);
 		perturb_normal(params, intersection, &normal);
 		intersection.normal = normal;
-		if (DEBUG)
-		{
-			tables.res[0] = 1;
-			tables.res[1] = 1;
-			tables.res[2] = 1;
-		}
-		else
-			compute_color(params->parsing, intersection, &tables, normal);
+		compute_color(params->parsing, intersection, &tables, normal);
 		if (tables.res[0] > 1)
 			tables.res[0] = 1;
 		if (tables.res[1] > 1)
