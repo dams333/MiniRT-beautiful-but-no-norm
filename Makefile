@@ -35,12 +35,13 @@ SRCS		=	main.c \
 					angle.c \
 				) \
 				$(addprefix render/, \
+					bump_map.c \
+					compute_lights.c \
+					compute_pixel.c \
 					events.c \
+					load_checkerboard_color.c \
 					mlx_utils.c \
 					render_manager.c \
-					compute_pixel.c \
-					compute_lights.c \
-					bump_map.c \
 					textures.c \
 				) \
 				$(addprefix interactions/, \

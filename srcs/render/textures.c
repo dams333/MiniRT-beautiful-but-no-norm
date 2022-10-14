@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:18:39 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:38:11 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:31:26 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,7 @@ void	load_texture_color(float c[3], t_generic_object *intersected,
 		c[1] = (double)((map_color & 0xFF00) >> 8) / 255.0;
 		c[2] = (double)((map_color & 0xFF)) / 255.0;
 	}
+	if (infos.checkerboard.height > 0)
+		load_checkerboard_color(c, infos.checkerboard, intersected,
+			intersection);
 }

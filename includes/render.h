@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:32:51 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:31:47 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void		load_textures(t_mlx *mlx, t_parsing *parsing);
 void		free_textures(t_params *params);
 void		load_texture_color(float c[3], t_generic_object *intersected,
 				t_point intersection);
+void		load_checkerboard_color(float c[3], t_checkerboard board,
+				t_generic_object *obj, t_point intersection);
 
 #endif
