@@ -25,6 +25,7 @@ SRCS		=	main.c \
 					get_intersecting_obj.c \
 					get_nearest_positive_intersection.c \
 					get_point_through_ray_at_time.c \
+					get_rotation_angles.c \
 					point.c \
 					sec_degree_utils.c \
 					to_cylindrical.c \
