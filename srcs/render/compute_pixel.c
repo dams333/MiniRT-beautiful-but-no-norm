@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/17 16:06:12 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/17 18:53:47 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	compute_pixel(t_params *params, t_obj_intersection i,
 	{
 		ft_bzero(tables.res, sizeof(*tables.res) * 3);
 		get_obj_color(tables.obj, i.intersected, i.intersection,
-			vector_length(i.normal));
+			vector_length(i.normal) != 0);
 		normal = compute_normal(i);
 		perturb_normal(params, i, &normal, vector_length(i.normal));
 		i.normal = normal;
