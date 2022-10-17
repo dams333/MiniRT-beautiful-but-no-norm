@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:18:39 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 16:31:26 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:04:10 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	free_textures(t_params *params)
 }
 
 void	load_texture_color(float c[3], t_generic_object *intersected,
-	t_point intersection)
+	t_point intersection, int is_cap)
 {
 	t_texture			*texture;
 	t_texture			*normal_map;
@@ -112,7 +112,7 @@ void	load_texture_color(float c[3], t_generic_object *intersected,
 	extract_texture(intersected, &normal_map, &texture, &infos);
 	if (texture->img != NULL)
 	{
-		board_pos = to_checkerboard_pos(intersected, intersection);
+		board_pos = to_checkerboard_pos(intersected, intersection, is_cap);
 		board_pos.x = (int)(board_pos.x * texture->width) % texture->width;
 		board_pos.y = (int)(board_pos.y * texture->height) % texture->height;
 		map_color
@@ -122,6 +122,7 @@ void	load_texture_color(float c[3], t_generic_object *intersected,
 		c[2] = (double)((map_color & 0xFF)) / 255.0;
 	}
 	if (infos.checkerboard.height > 0)
-		load_checkerboard_color(c, infos.checkerboard, intersected,
+		load_checkerboard_color(c, infos.checkerboard,
+			(t_generic_object_metaed){.obj = intersected, .is_cap = is_cap},
 			intersection);
 }

@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:18:57 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:04:28 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,9 @@ typedef struct s_parsing
 	t_generic_object			*hittables;
 }	t_parsing;
 
+typedef struct s_generic_object_metaed
+{
+	t_generic_object	*obj;
+	int					is_cap;
+}	t_generic_object_metaed;
 #endif

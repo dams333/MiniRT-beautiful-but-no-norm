@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 16:31:47 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:00:47 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		render_image(t_params *params);
 void		compute_pixel(t_params *params, t_obj_intersection intersection,
 				int canvas_x, int canvas_y);
 void		get_obj_color(float color[3], t_generic_object *intersected,
-				t_point intersection);
+				t_point intersection, int is_cap);
 t_vector	compute_normal(t_obj_intersection intersection);
 void		compute_diffuse_lightning(t_obj_intersection intersection,
 				t_vector normal, t_light_object *light,
@@ -59,12 +59,12 @@ void		init_render(t_render_infos *render_infos, t_params *params);
 t_point		canvas_to_viewport(float x, float y, t_render_infos	render_infos);
 t_texture	load_map(t_mlx *mlx, char *file);
 void		perturb_normal(t_params *params, t_obj_intersection intersection,
-				t_vector *normal);
+				t_vector *normal, int is_cap);
 void		load_textures(t_mlx *mlx, t_parsing *parsing);
 void		free_textures(t_params *params);
 void		load_texture_color(float c[3], t_generic_object *intersected,
-				t_point intersection);
+				t_point intersection, int is_cap);
 void		load_checkerboard_color(float c[3], t_checkerboard board,
-				t_generic_object *obj, t_point intersection);
+				t_generic_object_metaed obj, t_point intersection);
 
 #endif

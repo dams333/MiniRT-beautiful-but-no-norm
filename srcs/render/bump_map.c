@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:18:39 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:09:13 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:39:56 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_texture	get_map(t_generic_object *obj)
 }
 
 void	perturb_normal(t_params *params, t_obj_intersection intersection,
-	t_vector *normal)
+	t_vector *normal, int is_cap)
 {
 	t_point2d			board_pos;
 	int					map_color;
@@ -67,7 +67,7 @@ void	perturb_normal(t_params *params, t_obj_intersection intersection,
 	if (texture.data == NULL)
 		return ;
 	board_pos = to_checkerboard_pos(intersection.intersected,
-			intersection.intersection);
+			intersection.intersection, is_cap);
 	board_pos.x = (int)(board_pos.x * texture.width) % texture.width;
 	board_pos.y = (int)(board_pos.y * texture.height) % texture.height;
 	map_color = texture.data[(int)(board_pos.y * texture.width + board_pos.x)];

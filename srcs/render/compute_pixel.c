@@ -6,10 +6,11 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:31:26 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:06:12 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "render.h"
 
 void	compute_specular_lightning_2(t_light_object *light, t_tables *tables,
@@ -113,12 +114,11 @@ void	compute_pixel(t_params *params, t_obj_intersection i,
 
 	if (i.intersected)
 	{
-		tables.res[0] = 0;
-		tables.res[1] = 0;
-		tables.res[2] = 0;
-		get_obj_color(tables.obj, i.intersected, i.intersection);
+		ft_bzero(tables.res, sizeof(*tables.res) * 3);
+		get_obj_color(tables.obj, i.intersected, i.intersection,
+			vector_length(i.normal));
 		normal = compute_normal(i);
-		perturb_normal(params, i, &normal);
+		perturb_normal(params, i, &normal, vector_length(i.normal));
 		i.normal = normal;
 		compute_color(params->parsing, i, &tables, normal);
 		if (tables.res[0] > 1)
