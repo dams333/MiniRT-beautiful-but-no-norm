@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:45:03 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 15:10:40 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:20:48 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ checkerboard because one of the color composant is not in [0;255]"
 
 bool	parse_checkerboard_2(char **elem, t_checkerboard *checkerboard)
 {
-	if (parse_int(elem[0], &checkerboard->width) == false)
+	if (parse_int(elem[1], &checkerboard->width) == false)
 		return (free_split(elem), false);
 	if (checkerboard->width < 0)
 		return (free_split(elem), ft_putendl_fd(CHECKERBOARD_ERROR_WIDTH, 2),
