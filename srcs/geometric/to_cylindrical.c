@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:26:19 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/13 19:19:08 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/17 14:55:10 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 #include "geometric.h"
 #include "get_point_through_ray_at_time.h"
+#include "get_rotation_angles.h"
+#include "rotate.h"
 #include "sec_degree_utils.h"
 #include "structures.h"
 
-static double	get_z(t_point base, t_vector orientation, t_point point);
+static t_point	rotate_to_z_axis(t_point point, t_vector orientation);
 
 static double	get_inclination(t_point point)
 {
@@ -42,33 +44,28 @@ t_cylindrical_point	to_cylindrical(t_point base, t_vector orientation,
 						double radius, t_point point)
 {
 	t_cylindrical_point	cy_point;
-	t_ray				ray;
-	double				t;
 
-	cy_point.radius = radius;
-	cy_point.z = get_z(base, orientation, point);
-	t = (-orientation.x * point.x - orientation.y * point.y - orientation.z
-			* point.z + orientation.x * base.x + orientation.y * base.y
-			+ orientation.z * base.z) / (-orientation.x * orientation.x
-			- orientation.y * orientation.y - orientation.z * orientation.z);
-	ray.base = base;
-	ray.vec = orientation;
-	base = get_point_through_ray_at_time(ray, t);
 	vector_substract(&point, point, base);
+	point = rotate_to_z_axis(point, orientation);
+	cy_point.radius = radius;
+	cy_point.z = point.z;
 	cy_point.azimuth = get_inclination(point);
 	return (cy_point);
 }
 
-static double	get_z(t_point base, t_vector orientation, t_point point)
+static t_point	rotate_to_z_axis(t_point point, t_vector orientation)
 {
-	t_ray	ray;
-	double	t;
+	double				x_angle;
+	double				y_angle;
+	t_vector			z;
 
-	t = (-orientation.x * point.x - orientation.y * point.y - orientation.z
-			* point.z + orientation.x * base.x + orientation.y * base.y
-			+ orientation.z * base.z) / (-orientation.x * orientation.x
-			- orientation.y * orientation.y - orientation.z * orientation.z);
-	ray.base = base;
-	ray.vec = orientation;
-	return (calc_distance_from_ray_and_time(ray, t));
+	z.x = 0;
+	z.y = 0;
+	z.z = 1;
+	x_angle = get_x_rotation_angle(orientation, z);
+	rotate_around_x(&point, x_angle);
+	rotate_around_x(&orientation, x_angle);
+	y_angle = get_y_rotation_angle(orientation, z);
+	rotate_around_y(&point, y_angle);
+	return (point);
 }
