@@ -6,19 +6,21 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:57:42 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/17 15:53:32 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/17 18:22:30 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "checkerboard.h"
+#include "rotate.h"
 
 static t_point2d	to_checkerboard_pos_from_cylinder(t_cylinder *cylinder,
 						t_point point);
 static t_point2d	to_checkerboard_pos_from_sphere(t_point center,
 						t_point point);
-static t_point2d	to_checkerboard_pos_from_plane(t_point point);
+static t_point2d	to_checkerboard_pos_from_plane(t_point point,
+						t_vector orientation);
 
 t_point2d	to_checkerboard_pos(t_generic_object *obj, t_point intersection,
 				int is_cap)
@@ -31,8 +33,15 @@ t_point2d	to_checkerboard_pos(t_generic_object *obj, t_point intersection,
 	else if (obj->type == CYLINDER && !is_cap)
 		board_pos = to_checkerboard_pos_from_cylinder(
 				((t_cylinder *)obj->specific_object), intersection);
-	else if (obj->type == PLANE || is_cap)
-		board_pos = to_checkerboard_pos_from_plane(intersection);
+	else if (obj->type == PLANE)
+		board_pos = to_checkerboard_pos_from_plane(intersection,
+				((t_plane *) obj->specific_object)->orientation);
+	else if (is_cap)
+		board_pos = to_checkerboard_pos_from_plane(intersection,
+				((t_cylinder *) obj->specific_object)->orientation);
+	else if (obj->type == ELLIPSOID)
+		board_pos = to_checkerboard_pos_from_sphere(
+				((t_ellipsoid *)obj->specific_object)->pos, intersection);
 	return (board_pos);
 }
 
@@ -62,10 +71,12 @@ static t_point2d	to_checkerboard_pos_from_cylinder(t_cylinder *cylinder,
 	return (board_point);
 }
 
-static t_point2d	to_checkerboard_pos_from_plane(t_point point)
+static t_point2d	to_checkerboard_pos_from_plane(t_point point,
+						t_vector orientation)
 {
 	t_point2d	board_point;
 
+	point = rotate_to_z_axis(point, orientation);
 	board_point.x = point.x;
 	board_point.y = point.y;
 	return (board_point);
