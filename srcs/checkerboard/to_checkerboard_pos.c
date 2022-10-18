@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:57:42 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/18 14:37:27 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/18 14:58:33 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ static t_point2d	to_checkerboard_pos_from_plane(t_point point,
 	t_point2d	board_point;
 
 	point = rotate_to_z_axis(point, orientation);
-	board_point.x = point.x - (int) point.x;
-	board_point.y = point.y - (int) point.y;
+	board_point.x = point.x - (int) point.x * 2;
+	board_point.y = point.y - (int) point.y * 2;
 	if (board_point.x < 0.0)
-		board_point.x = 1 + board_point.x;
+		board_point.x = 2 + board_point.x;
 	if (board_point.y < 0.0)
-		board_point.y = 1 + board_point.y;
+		board_point.y = 2 + board_point.y;
 	return (board_point);
 }
