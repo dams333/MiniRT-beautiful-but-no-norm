@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 19:30:06 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/19 15:21:00 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ typedef struct s_cylindrical_point
 	double	azimuth;
 	double	z;
 }	t_cylindrical_point;
+
+typedef struct s_ellipsoidal_point
+{
+	double	longitude;
+	double	lattitude;
+	double	height;
+}
 
 typedef struct s_point2d
 {
