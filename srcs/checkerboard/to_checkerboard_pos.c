@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:57:42 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/18 14:58:33 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/20 13:31:11 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_point2d	to_checkerboard_pos_from_sphere(t_point center,
 						t_point point);
 static t_point2d	to_checkerboard_pos_from_plane(t_point point,
 						t_vector orientation);
+static t_point2d	to_checkerboard_pos_from_ellipsoid(t_ellipsoid *ellipsoid,
+						t_point point);
 
 t_point2d	to_checkerboard_pos(t_generic_object *obj, t_point intersection,
 				int is_cap)
@@ -40,8 +42,8 @@ t_point2d	to_checkerboard_pos(t_generic_object *obj, t_point intersection,
 		board_pos = to_checkerboard_pos_from_plane(intersection,
 				((t_cylinder *) obj->specific_object)->orientation);
 	else if (obj->type == ELLIPSOID)
-		board_pos = to_checkerboard_pos_from_sphere(
-				((t_ellipsoid *)obj->specific_object)->pos, intersection);
+		board_pos = to_checkerboard_pos_from_ellipsoid(
+				((t_ellipsoid *)obj->specific_object), intersection);
 	return (board_pos);
 }
 
@@ -83,5 +85,17 @@ static t_point2d	to_checkerboard_pos_from_plane(t_point point,
 		board_point.x = 2 + board_point.x;
 	if (board_point.y < 0.0)
 		board_point.y = 2 + board_point.y;
+	return (board_point);
+}
+
+static t_point2d	to_checkerboard_pos_from_ellipsoid(t_ellipsoid *ellipsoid,
+						t_point point)
+{
+	t_point2d			board_point;
+	t_ellipsoidal_point	el_point;
+
+	el_point = to_ellipsoidal(*ellipsoid, point);
+	board_point.x = el_point.longitude / (2 * M_PI);
+	board_point.y = el_point.lattitude / (M_PI);
 	return (board_point);
 }
