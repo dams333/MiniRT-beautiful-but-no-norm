@@ -6,14 +6,14 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/17 16:04:28 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/20 12:30:12 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-# include "geometric.h"
+# include "geometric_structs.h"
 # include "sec_degree_factors.h"
 
 typedef struct s_checkerboard

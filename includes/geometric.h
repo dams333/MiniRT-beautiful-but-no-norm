@@ -6,68 +6,21 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/19 15:21:00 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/20 12:31:16 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GEOMETRIC_H
 # define GEOMETRIC_H
 
-typedef struct s_point
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_point;
+# include "structures.h"
+# include "geometric_structs.h"
 
 double				distance(t_point point1, t_point point2);
-
-typedef t_point	t_vector;
-
-typedef struct s_ray
-{
-	t_point	base;
-	t_point	vec;
-}	t_ray;
-
-typedef struct s_matrix3
-{
-	t_vector	a1;
-	t_vector	a2;
-	t_vector	a3;
-}	t_matrix3;
-
 t_matrix3			rotation_matrix_from_orientation(t_vector target);
 t_point				matrix_mult(t_matrix3 matrix, t_point point);
-
 float				degrees_to_radian(float degrees);
 
-typedef struct s_spherical_point
-{
-	double	radius;
-	double	azimuth;
-	double	inclination;
-}	t_spherical_point;
-
-typedef struct s_cylindrical_point
-{
-	double	radius;
-	double	azimuth;
-	double	z;
-}	t_cylindrical_point;
-
-typedef struct s_ellipsoidal_point
-{
-	double	longitude;
-	double	lattitude;
-	double	height;
-}
-
-typedef struct s_point2d
-{
-	double	x;
-	double	y;
-}	t_point2d;
 
 double				vector_length(t_vector vector);
 void				normalize(t_vector *vector);
