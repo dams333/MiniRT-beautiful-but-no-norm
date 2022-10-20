@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:35:07 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/20 12:31:16 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/20 14:01:49 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ double				distance(t_point point1, t_point point2);
 t_matrix3			rotation_matrix_from_orientation(t_vector target);
 t_point				matrix_mult(t_matrix3 matrix, t_point point);
 float				degrees_to_radian(float degrees);
-
 
 double				vector_length(t_vector vector);
 void				normalize(t_vector *vector);
