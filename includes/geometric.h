@@ -36,5 +36,6 @@ void				cross_product(t_vector *result, t_vector v1, t_vector v2);
 t_spherical_point	to_spherical(t_point point);
 t_cylindrical_point	to_cylindrical(t_point base, t_vector orientation,
 						double radius, t_point point);
+t_ellipsoidal_point	to_ellipsoidal(t_ellipsoid ellispoid, t_point point);
 
 #endif

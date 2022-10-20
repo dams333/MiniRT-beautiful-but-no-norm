@@ -30,6 +30,7 @@ SRCS		=	main.c \
 					rotate.c \
 					sec_degree_utils.c \
 					to_cylindrical.c \
+					to_ellipsoidal.c \
 					to_spherical.c \
 					vector.c \
 					vector_scalar_operation.c \
