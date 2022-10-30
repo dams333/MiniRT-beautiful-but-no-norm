@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:26:51 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/17 15:51:59 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/30 12:09:02 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,11 @@ void	compute_diffuse_lightning(t_obj_intersection intersection,
 			{-normal.x, -normal.y, -normal.z}, light_direction);
 	if (n_dot_l > 0)
 	{
-		tables->res[0] += light->brightness_ratio * (light->color_r / 255)
+		tables->res[0] += light->brightness_ratio * (light->color_r / 255.0)
 			* n_dot_l * tables->obj[0];
-		tables->res[1] += light->brightness_ratio * (light->color_g / 255)
+		tables->res[1] += light->brightness_ratio * (light->color_g / 255.0)
 			* n_dot_l * tables->obj[1];
-		tables->res[2] += light->brightness_ratio * (light->color_b / 255)
+		tables->res[2] += light->brightness_ratio * (light->color_b / 255.0)
 			* n_dot_l * tables->obj[2];
 	}
 }
