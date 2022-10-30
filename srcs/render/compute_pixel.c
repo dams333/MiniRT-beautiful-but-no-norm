@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/30 12:09:33 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:21:09 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,22 @@ void	compute_specular_lightning(t_obj_intersection intersection,
 	t_vector	eye_direction;
 	t_vector	store;
 
-	vector_substract(&light_direction, intersection.intersection,
-		(t_point){light->coord_x, light->coord_y, light->coord_z});
-	normalize(&light_direction);
-	store = intersection.normal;
-	multiply_by_scalar(&store,
-		2 * dot_product(light_direction, intersection.normal));
-	vector_substract(&reflected_directions, light_direction, store);
-	normalize(&reflected_directions);
-	vector_substract(&eye_direction, (t_point){camera->coord_x,
-		camera->coord_y, camera->coord_z}, intersection.intersection);
-	normalize(&eye_direction);
-	compute_specular_lightning_2(light, tables, reflected_directions,
-		eye_direction);
+	if (BONUS)
+	{
+		vector_substract(&light_direction, intersection.intersection,
+			(t_point){light->coord_x, light->coord_y, light->coord_z});
+		normalize(&light_direction);
+		store = intersection.normal;
+		multiply_by_scalar(&store,
+			2 * dot_product(light_direction, intersection.normal));
+		vector_substract(&reflected_directions, light_direction, store);
+		normalize(&reflected_directions);
+		vector_substract(&eye_direction, (t_point){camera->coord_x,
+			camera->coord_y, camera->coord_z}, intersection.intersection);
+		normalize(&eye_direction);
+		compute_specular_lightning_2(light, tables, reflected_directions,
+			eye_direction);
+	}
 }
 
 bool	in_shadow(t_obj_intersection intersection,
