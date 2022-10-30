@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 12:46:54 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/13 21:41:50 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/30 18:27:46 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_obj_intersection	get_intersecting_obj(t_ray ray, t_generic_object *objs)
 		return (obj_intersection);
 	t = get_intersecting_time_through_ray(ray, obj_intersection.intersected);
 	obj_intersection.normal = get_fake_normal(obj_intersection.intersected, t);
+	t = fabs(t);
 	obj_intersection.intersection = get_point_through_ray_at_time(ray, t);
 	return (obj_intersection);
 }

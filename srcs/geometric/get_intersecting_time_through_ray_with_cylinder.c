@@ -6,7 +6,7 @@
 /*   By: jmaia <jmaia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 11:30:36 by jmaia             #+#    #+#             */
-/*   Updated: 2022/10/13 21:35:59 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/30 18:34:02 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	get_intersecting_time_through_ray_with_caps(t_ray ray,
 	vector_add(&cap_center, cap_center, cylinder->pos);
 	t_caps[1] = -get_intersecting_time_through_ray_with_cap(ray, cylinder,
 			cap_center);
-	cylinder->last_cap_hitted = t_caps[1] > t_caps[0];
+	cylinder->last_cap_hitted = (isnan(t_caps[0]) || t_caps[1] > t_caps[0]);
 }
 
 static double	get_intersecting_time_through_ray_with_cap(t_ray ray,
