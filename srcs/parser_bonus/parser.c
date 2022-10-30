@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 13:27:40 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/30 12:04:50 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ bool	read_file(int fd, t_parsing *parsing)
 	if (res == READ_ERROR)
 		return (ft_putendl_fd("Error\nThe file cannot be read", 2), false);
 	else if (res == END_OF_READ)
-		return (ft_putendl_fd("End of parsing !", 1), true);
+		return (true);
 	else
 		return (ft_putendl_fd("Error\nA malloc failed during parsing", 2),
 			false);
