@@ -1,0 +1,5 @@
+#      X,Y,Z         Lightning       direction        fov     diameter    height     color
+C      0,70,0                         0,1,0         53
+sp     0,0,0                                                  30                     255,0,0        normal_map textures/moon_normal_map.xpm     texture textures/moon.xpm
+A                     0.3                                                            255,255,255
+L      0,70,0         0.6                                                            255,255,255
