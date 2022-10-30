@@ -6,12 +6,13 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:41:53 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/11 14:49:21 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/30 13:57:40 by jmaia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "events.h"
 #include "render.h"
+#include "rotate.h"
 
 t_vector	*extract_vector(t_params *params)
 {
@@ -26,26 +27,16 @@ t_vector	*extract_vector(t_params *params)
 
 void	exec_vector_rotation(int keycode, t_vector *vector)
 {
-	t_vector	result;
 	float		angle;
 
 	angle = degrees_to_radian(2);
-	if (keycode == XK_i || keycode == XK_j)
+	if (keycode == XK_i || keycode == XK_l)
 		angle = -angle;
 	if (keycode == XK_j || keycode == XK_l)
-	{
-		result.x = vector->x * cos(angle) - vector->z * sin(angle);
-		result.y = vector->y;
-		result.z = -vector->x * sin(angle) + vector->z * cos(angle);
-	}
+		rotate_around_y(vector, angle);
 	if (keycode == XK_i || keycode == XK_k)
-	{
-		result.x = vector->x;
-		result.y = vector->y * cos(angle) - vector->z * sin(angle);
-		result.z = vector->y * sin(angle) + vector->z * cos(angle);
-	}
-	normalize(&result);
-	*vector = result;
+		rotate_around_x(vector, angle);
+	normalize(vector);
 }
 
 void	exec_camera_rotation(int keycode, t_camera_object *camera)
