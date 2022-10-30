@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:23:24 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/17 18:53:47 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/30 12:09:33 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	compute_specular_lightning_2(t_light_object *light, t_tables *tables,
 	specular_color[2] = (1 - p) * tables->obj[2] + p;
 	if (dot_product(reflected_directions, eye_direction) > 0)
 	{
-		tables->res[0] += light->brightness_ratio * (light->color_r / 255)
+		tables->res[0] += light->brightness_ratio * (light->color_r / 255.0)
 			* powf(dot_product(reflected_directions, eye_direction), n)
 			* specular_color[0];
-		tables->res[1] += light->brightness_ratio * (light->color_g / 255)
+		tables->res[1] += light->brightness_ratio * (light->color_g / 255.0)
 			* powf(dot_product(reflected_directions, eye_direction), n)
 			* specular_color[1];
-		tables->res[2] += light->brightness_ratio * (light->color_b / 255)
+		tables->res[2] += light->brightness_ratio * (light->color_b / 255.0)
 			* powf(dot_product(reflected_directions, eye_direction), n)
 			* specular_color[2];
 	}	
