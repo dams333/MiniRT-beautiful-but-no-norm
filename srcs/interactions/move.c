@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:41:53 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/30 11:52:21 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:01:02 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	extract_obj_coord(t_params *params, double *coords[3])
 		point = &(((t_sphere *)params->selected->specific_object)->pos);
 	if (params->selected->type == CYLINDER)
 		point = &(((t_cylinder *)params->selected->specific_object)->pos);
-	if (params->selected->type == SPHERE || params->selected->type == CYLINDER)
+	if (params->selected->type == ELLIPSOID)
+		point = &(((t_ellipsoid *)params->selected->specific_object)->pos);
+	if (params->selected->type == SPHERE || params->selected->type == CYLINDER
+		|| params->selected->type == ELLIPSOID)
 	{
 		coords[0] = &(point->x);
 		coords[1] = &(point->y);
