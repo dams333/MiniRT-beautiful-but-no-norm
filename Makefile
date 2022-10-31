@@ -1,4 +1,5 @@
 NAME		=	miniRT
+NAME_BONUS	=	miniRT_bonus
 
 SRCS		=	main.c \
 				$(addprefix parser/, \
@@ -151,17 +152,24 @@ build/%.o	:	srcs/%.c
 	fi
 	$(CC) ${CFLAGS} ${DEFINE} -MMD -MF $(@:.o=.d) ${INCLUDE} -c $< -o $@
 
-$(NAME)	:	$(OBJS) libs $(LIBMLX)
+$(NAME)	:	$(OBJS) $(LIBFT) $(LIBMLX) $(LIBMLX)
 	$(CC) $(CFLAGS) ${DEFINE} $(OBJS) $(LIBFT) $(LIBMLX) $(EXT_LIBS) -o $(NAME)
-
-bonus	:	$(BONUS_OBJS) libs $(LIBMLX)
-	$(CC) $(CFLAGS) ${DEFINE} $(BONUS_OBJS) $(LIBFT) $(LIBMLX) $(EXT_LIBS) -o $(NAME)
 
 -include $(OBJS_DEPEND)
 
-libs:
+
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS)	:	$(BONUS_OBJS) $(LIBFT) $(LIBMLX) $(LIBMLX)
+	$(CC) $(CFLAGS) ${DEFINE} $(BONUS_OBJS) $(LIBFT) $(LIBMLX) $(EXT_LIBS) -o $(NAME_BONUS)
+	
+-include $(BONUS_OBJS_DEPEND)
+
+$(LIBFT): FORCE
 	make -C libs/libft
+$(LIBMLX): FORCE
 	make -C libs/minilibx-linux
+FORCE:
 
 clean	:	
 	rm -Rf build/
@@ -175,6 +183,7 @@ cleanall	:	clean cleanlibs
 
 fclean	:	clean
 	rm -f ${NAME}
+	rm -f ${NAME_BONUS}
 
 fcleanlibs	:
 	make -C libs/libft fclean
