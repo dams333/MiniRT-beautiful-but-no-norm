@@ -129,7 +129,8 @@ BONUS_OBJS_DEPEND	=	${BONUS_OBJS:.o=.d}
 CC			=	cc
 CFLAGS		=   -O3 -g3 -Wall -Wextra -Werror
 INCLUDE		=	-I includes/ -I libs/minilibx-linux/
-LIBS		=	libs/libft/libft.a libs/minilibx-linux/libmlx.a
+LIBFT		=	libs/libft/libft.a
+LIBMLX		=	libs/minilibx-linux/libmlx.a
 EXT_LIBS	=	-lm -lX11 -lXext
 
 ifeq (bonus, $(filter bonus,$(MAKECMDGOALS)))
@@ -150,30 +151,24 @@ build/%.o	:	srcs/%.c
 	fi
 	$(CC) ${CFLAGS} ${DEFINE} -MMD -MF $(@:.o=.d) ${INCLUDE} -c $< -o $@
 
-$(NAME)	:	$(OBJS) $(LIBS)
-	$(CC) $(CFLAGS) ${DEFINE} $(OBJS) $(LIBS) $(EXT_LIBS) -o $(NAME)
+$(NAME)	:	$(OBJS) libs $(LIBMLX)
+	$(CC) $(CFLAGS) ${DEFINE} $(OBJS) $(LIBFT) $(LIBMLX) $(EXT_LIBS) -o $(NAME)
 
-bonus	:	$(BONUS_OBJS) $(LIBS)
-	$(CC) $(CFLAGS) ${DEFINE} $(BONUS_OBJS) $(LIBS) $(EXT_LIBS) -o $(NAME)
+bonus	:	$(BONUS_OBJS) libs $(LIBMLX)
+	$(CC) $(CFLAGS) ${DEFINE} $(BONUS_OBJS) $(LIBFT) $(LIBMLX) $(EXT_LIBS) -o $(NAME)
 
 -include $(OBJS_DEPEND)
 
-$(LIBS)	:	FORCE
-	@for lib in $(LIBS); do\
-		echo make -C $$(dirname $$lib);\
-		make -C $$(dirname $$lib);\
-	done
-
-FORCE	:
+libs:
+	make -C libs/libft
+	make -C libs/minilibx-linux
 
 clean	:	
 	rm -Rf build/
 
 cleanlibs	:
-	@for lib in $(LIBS); do\
-		echo make -C $$(dirname $$lib) clean;\
-		make -C $$(dirname $$lib) clean;\
-	done
+	make -C libs/libft clean
+	make -C libs/minilibx-linux clean
 
 cleanall	:	clean cleanlibs
 
@@ -182,10 +177,8 @@ fclean	:	clean
 	rm -f ${NAME}
 
 fcleanlibs	:
-	@for lib in $(LIBS); do\
-		echo make -C $$(dirname $$lib) fclean;\
-		make -C $$(dirname $$lib) fclean;\
-	done
+	make -C libs/libft fclean
+	make -C libs/minilibx-linux clean
 
 fcleanall	:	fclean fcleanlibs
 
@@ -195,13 +188,11 @@ re		:	fclean ${NAME}
 rebonus		:	fclean bonus
 
 relibs	:
-	@for lib in $(LIBS); do\
-		echo make -C $$(dirname $$lib) re;\
-		make -C $$(dirname $$lib) re;\
-	done
+	make -C libs/libft re
+	make -C libs/minilibx-linux re
 
 reall	: relibs re
 
 reallbonus	: relibs rebonus
 
-.PHONY	:	all clean cleanlibs cleanall fclean fcleanlibs fcleanall re relibs reall libs bonus rebonus reallbonus
+.PHONY	:	all clean cleanlibs libs cleanall fclean fcleanlibs fcleanall re relibs reall libs bonus rebonus reallbonus
