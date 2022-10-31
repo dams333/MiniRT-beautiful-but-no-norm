@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:18:39 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/17 16:04:10 by jmaia            ###   ########.fr       */
+/*   Updated: 2022/10/31 12:54:50 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	load_texture_color(float c[3], t_generic_object *intersected,
 	if (texture->img != NULL)
 	{
 		board_pos = to_checkerboard_pos(intersected, intersection, is_cap);
+		board_pos.x *= (board_pos.x < 0) * -1 + (board_pos.x >= 0) * 1;
+		board_pos.y *= (board_pos.y < 0) * -1 + (board_pos.y >= 0) * 1;
 		board_pos.x = (int)(board_pos.x * texture->width) % texture->width;
 		board_pos.y = (int)(board_pos.y * texture->height) % texture->height;
 		map_color
