@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:56:56 by jmaia             #+#    #+#             */
-/*   Updated: 2022/11/01 14:11:35 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:22:26 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int	on_key_press(int keycode, void *param)
 		mlx_loop_end(params->mlx->mlx);
 	else if (keycode != 65293)
 	{
-		printf("Key: %i\n", keycode);
 		key_pressed(keycode, params);
 		render_image(params);
 	}
