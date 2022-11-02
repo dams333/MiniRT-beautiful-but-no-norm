@@ -128,7 +128,7 @@ BONUS_OBJS			=	$(addprefix build/, $(_BONUS_OBJS))
 BONUS_OBJS_DEPEND	=	${BONUS_OBJS:.o=.d}
 
 CC			=	cc
-CFLAGS		=   -O3 -g3 -Wall -Wextra -Werror
+CFLAGS		=   -O3 -Wall -Wextra -Werror
 INCLUDE		=	-I includes/ -I libs/minilibx-linux/
 LIBFT		=	libs/libft/libft.a
 LIBMLX		=	libs/minilibx-linux/libmlx.a
