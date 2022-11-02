@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/14 13:18:36 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:29:52 by jmaia            ###   ###               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,4 @@ void	render_image(t_params *params)
 		canvas_y = -1;
 	}
 	put_image(params->mlx);
-	printf("End of render !\n");
 }
