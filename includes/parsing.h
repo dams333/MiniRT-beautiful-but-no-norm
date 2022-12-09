@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 12:33:16 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/13 13:27:21 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:19:34 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define MALLOC_ERROR "Error\nA malloc failed during parsing"
 
-bool	parse_map(int argc, char **argv, t_parsing *parsing);
+bool	parse_map(int argc, char **argv, t_parsing *parsing, t_parsing *second_map);
 bool	parse_double(char *str, double *value);
 bool	parse_int(char *str, int *value);
 int		get_split_size(char **str);

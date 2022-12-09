@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:44:43 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/30 12:04:50 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:20:44 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ bool	read_file(int fd, t_parsing *parsing)
 			false);
 }
 
-bool	parse_map(int argc, char **argv, t_parsing *parsing)
+bool	parse_map(int argc, char **argv, t_parsing *parsing, t_parsing *second_map)
 {
 	char	*file_name;
 	int		fd;
 
-	if (argc != 2)
+	if (argc < 2 || argc > 3)
 	{
 		ft_putendl_fd("Error\nPlease specify a file", 2);
 		return (false);
@@ -130,5 +130,26 @@ bool	parse_map(int argc, char **argv, t_parsing *parsing)
 		perror("The file cannot be open");
 		return (false);
 	}
-	return (read_file(fd, parsing));
+	if (!read_file(fd, parsing))
+		return (close(fd), false);
+	if (argc == 3)
+	{
+		file_name = argv[2];
+		if (ft_strlen(file_name) < 4
+			|| ft_strncmp(file_name + ft_strlen(file_name) - 3, ".rt", 3) != 0)
+		{
+			ft_putendl_fd("Error\nThe file is not a .rt file", 2);
+			return (false);
+		}
+		fd = open(file_name, O_RDONLY);
+		if (fd < 0)
+		{
+			ft_putendl_fd("Error", 2);
+			perror("The file cannot be open");
+			return (false);
+		}
+		if (!read_file(fd, second_map))
+			return (close(fd), false);
+		}
+	return (close(fd), true);
 }

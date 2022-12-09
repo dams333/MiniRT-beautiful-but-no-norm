@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:33:27 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/10/30 12:26:05 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:16:38 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_render_infos
 typedef struct s_params
 {
 	t_parsing			*parsing;
+	t_parsing			*second_map;
 	t_mlx				*mlx;
 	t_generic_object	*selected;
 }	t_params;
