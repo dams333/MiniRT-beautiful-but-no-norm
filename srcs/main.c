@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/12/09 15:03:25 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:14:49 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ void set_increment(t_params *params)
 		else if (obj->type == CYLINDER)
 		{
 			pos = &((t_cylinder *)obj->specific_object)->pos;
+			increment = &((t_cylinder *)obj->specific_object)->coord_increment;
 			direction = &((t_cylinder *)obj->specific_object)->direction;
 			dest_pos = &((t_cylinder *)dest->specific_object)->pos;
 		}
 		else if (obj->type == ELLIPSOID)
 		{
 			pos = &((t_ellipsoid *)obj->specific_object)->pos;
+			increment = &((t_ellipsoid *)obj->specific_object)->coord_increment;
 			direction = &((t_ellipsoid *)obj->specific_object)->direction;
 			dest_pos = &((t_ellipsoid *)dest->specific_object)->pos;
 		}
