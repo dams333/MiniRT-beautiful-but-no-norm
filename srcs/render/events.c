@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:56:56 by jmaia             #+#    #+#             */
-/*   Updated: 2022/12/09 14:54:39 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:03:37 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,31 @@ static void update_objects(t_params *params, int change)
 			*direction = !*direction;
 		}
 		obj = obj->next;
+	}
+
+	t_generic_object *light = params->parsing->lights;
+	while (light)
+	{
+		t_light_object *light_obj = (t_light_object *)light->specific_object;
+		t_point *increment = &light_obj->coord_increment;
+		int *direction = &light_obj->direction;
+		if (*direction == 1)
+		{
+			light_obj->coord_x += increment->x;
+			light_obj->coord_y += increment->y;
+			light_obj->coord_z += increment->z;
+		}
+		else
+		{
+			light_obj->coord_x -= increment->x;
+			light_obj->coord_y -= increment->y;
+			light_obj->coord_z -= increment->z;
+		}
+		if (change)
+		{
+			*direction = !*direction;
+		}
+		light = light->next;
 	}
 }
 

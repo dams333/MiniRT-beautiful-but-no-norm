@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:19:23 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/12/09 14:50:02 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:03:25 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,21 @@ void set_increment(t_params *params)
 
 		obj = obj->next;
 		dest = dest->next;
+	}
+
+	t_generic_object *light = params->parsing->lights;
+	t_generic_object *dest_light = params->second_map->lights;
+	while (light)
+	{
+		t_light_object *light_object = (t_light_object *)light->specific_object;
+		t_light_object *dest_light_object = (t_light_object *)dest_light->specific_object;
+		light_object->coord_increment.x = (dest_light_object->coord_x - light_object->coord_x) / ANIM_UPDATE;
+		light_object->coord_increment.y = (dest_light_object->coord_y - light_object->coord_y) / ANIM_UPDATE;
+		light_object->coord_increment.z = (dest_light_object->coord_z - light_object->coord_z) / ANIM_UPDATE;
+		light_object->direction = 1;
+
+		light = light->next;
+		dest_light = dest_light->next;
 	}
 }
 

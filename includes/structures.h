@@ -6,7 +6,7 @@
 /*   By: dhubleur <dhubleur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 11:43:56 by dhubleur          #+#    #+#             */
-/*   Updated: 2022/12/09 14:54:41 by dhubleur         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:59:24 by dhubleur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_light_object
 	double coord_x;
 	double coord_y;
 	double coord_z;
+	int direction;
 	t_point coord_increment;
 	double brightness_ratio;
 	int color_r;
