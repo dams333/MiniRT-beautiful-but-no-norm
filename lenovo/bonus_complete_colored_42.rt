@@ -1,0 +1,10 @@
+#      X,Y,Z         Lightning       direction        fov     diameter    height     color
+A                    0.1                                                             255,255,255
+
+C      0,0,0                         0,1,0            70
+
+L      -10,-15,-10    0.5                                                             255,30,30
+L      10,-15,-10     0.5                                                             30,150,30
+L      0,-20,-10      0.5                                                             30,30,150
+
+sp     0,-30,0                                                 13                     255,255,255 texture textures/42paris.xpm
